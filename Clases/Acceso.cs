@@ -46,9 +46,6 @@ namespace MASTER_TUNE_UP.Clases
 
             }
             return cadena_Final;
-
-       
-
         }
         public void Registrar_auditoria(byte tipo,string usuario)
         {
