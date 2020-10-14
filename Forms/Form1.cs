@@ -36,15 +36,16 @@ namespace MASTER_TUNE_UP
             if (e.KeyChar == 13)
 
             {
-
-                if (Txtusuario.Text.Trim() == "AZUCENA" || Txtusuario.Text.Trim() == "MARIO")
+                //se controlan errores
+                try
                 {
-                    txtpassword.Enabled = true;
-                    txtpassword.Focus();
-
-                    pictureBox1.Image = Image.FromFile(@"C:\Foto\" + Txtusuario.Text + ".jpg");
-
+                    pictureBox1.Image = Image.FromFile(@"C:\Foto" + Txtusuario.Text + ".jpg");
                     pictureBox1.Visible = true;
+
+                }
+                catch (System.IO.FileNotFoundException ex)
+                {
+                    pictureBox1.Image = global::MASTER_TUNE_UP.Properties.Resources.user2;
 
                 }
 
@@ -60,6 +61,8 @@ namespace MASTER_TUNE_UP
                 SqlDataReader leer = comando.ExecuteReader();
                 if (leer.Read())
                 {
+                    txtpassword.Enabled = true;
+                    txtpassword.Focus();
                     pass = leer["us_password"].ToString();
                     nivel = leer["Us_nivel"].ToString();
                     if (nivel == "1")
@@ -95,7 +98,8 @@ namespace MASTER_TUNE_UP
             //regresa bool true 
             if (acceso.Login(Txtusuario.Text, txtpassword.Text))
             {
-                acceso.Registrar_auditoria(1, Txtusuario.Text);
+                string actividad = "El usuario " + acceso.Usuario + " ingresó al sistema.";
+                acceso.Registrar_auditoria(actividad);
                 this.Hide();
                 Frmmenu x = new Frmmenu(Txtusuario.Text);
                 x.Show();
@@ -119,25 +123,18 @@ namespace MASTER_TUNE_UP
             //Valores.Numeros(e);
             if (e.KeyChar == 13)
             {
-                if (txtpassword.Text.Trim() == pass)
+                Acceso acceso = new Acceso();
+                if (acceso.Login(Txtusuario.Text, txtpassword.Text))
                 {
                     btnaccesar.Enabled = true;
                     btnaccesar.Focus();
-                    //Acceso acceso = new Acceso();
-                    ////regresa bool true 
-                    //if (acceso.Login(Txtusuario.Text, txtpassword.Text))
-                    //{
-                    //    acceso.Registrar_auditoria(1, Txtusuario.Text);
-                    //    this.Hide();
-                    //    Frmmenu x = new Frmmenu(Txtusuario.Text);
-                    //    x.Show();
-                    //}
-
-                    //else
-                    //{
-                    //    MessageBox.Show("Error,contraseña incorrecta", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                    //}
+                   
+                        string actividad = "El usuario ingresó al sistema.";
+                        acceso.Registrar_auditoria(actividad);
+                        this.Hide();
+                        Frmmenu x = new Frmmenu(Txtusuario.Text);
+                        x.Show();
+                    
 
                 }
                 else
@@ -145,7 +142,7 @@ namespace MASTER_TUNE_UP
 
                     if (intento <= 2)
                     {
-                        MessageBox.Show("Error verificar", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Error verificar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         txtpassword.Clear();
                         txtpassword.Focus();
                         intento++;

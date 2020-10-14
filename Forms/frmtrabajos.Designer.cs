@@ -1,6 +1,6 @@
 ﻿namespace MASTER_TUNE_UP.Forms
 {
-    partial class frmservicios
+    partial class frmtrabajos
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmservicios));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmtrabajos));
             this.lblbuscar = new System.Windows.Forms.Label();
             this.cboxservicio = new System.Windows.Forms.ComboBox();
             this.txtnombre = new System.Windows.Forms.TextBox();
@@ -59,6 +59,7 @@
             this.cboxservicio.Name = "cboxservicio";
             this.cboxservicio.Size = new System.Drawing.Size(166, 21);
             this.cboxservicio.TabIndex = 18;
+            this.cboxservicio.Visible = false;
             this.cboxservicio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cboxservicio_KeyPress);
             // 
             // txtnombre
@@ -163,6 +164,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmservicios";
             this.Text = "frmservicios";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmservicios_FormClosing);
             this.Load += new System.EventHandler(this.frmservicios_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

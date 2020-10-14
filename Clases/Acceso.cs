@@ -13,9 +13,11 @@ namespace MASTER_TUNE_UP.Clases
     {
         Clases.Conexión objconexion;
         SqlConnection Conexion;
+        private static String USUARIO = null;
 
         public bool Login(string usuario, string password)
         {
+
             string contraseña_bd = null;
             objconexion = new Clases.Conexión();
             Conexion = new SqlConnection(objconexion.Conn());
@@ -30,10 +32,12 @@ namespace MASTER_TUNE_UP.Clases
                 contraseña_bd = leer["us_password"].ToString();
             Conexion.Close();
             string contraseña_encriptada = this.Encriptar(password);//comparando las
-            return contraseña_bd.Equals(contraseña_encriptada);
+            bool correcto = contraseña_bd.Equals(contraseña_encriptada);
+            USUARIO = correcto ? usuario : null;
+            return correcto;
 
         }
-        public  string Encriptar(string contraseña)
+        public string Encriptar(string contraseña)
         {
             int longitud = contraseña.Length;//se saca la longitud
             string cadena_Final = "";
@@ -47,21 +51,23 @@ namespace MASTER_TUNE_UP.Clases
             }
             return cadena_Final;
         }
-        public void Registrar_auditoria(byte tipo,string usuario)
+        public void Registrar_auditoria(string actividad)
         {
-            string mensaje = tipo == 1 ? "El usuario: " + usuario + " ingreso al sistema" : "El usuario: " + usuario + " Salio del sistema";
             objconexion = new Clases.Conexión();
-            Conexion = new SqlConnection(objconexion.Conn());
+            Conexion = new SqlConnection(objconexion.Conn());//se va a recibir la actividad que se va a guardar
             Conexion.Open();
             string query = "Insert into Auditoriaa values( @Au_Clave, @Au_Fecha, @Au_Actividad )";
             SqlCommand comando = new SqlCommand(query, Conexion);
             comando.Parameters.Clear();
-            comando.Parameters.AddWithValue("@Au_Clave",(usuario)); 
-            comando.Parameters.AddWithValue("@Au_Fecha", DateTime.Now);
-            comando.Parameters.AddWithValue("@Au_Actividad", mensaje);
+            comando.Parameters.AddWithValue("@Au_Clave", (USUARIO));
+            comando.Parameters.AddWithValue("@Au_Fecha", DateTime.Now);//guarda fecha
+            comando.Parameters.AddWithValue("@Au_Actividad", actividad);//guarda actividad
             comando.ExecuteNonQuery();
-
+            Conexion.Close();
 
         }
+        public void Logout() => USUARIO = null;
+        public string Usuario { get => USUARIO; }
+
     }
 } 

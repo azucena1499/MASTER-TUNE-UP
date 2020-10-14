@@ -30,7 +30,8 @@ namespace MASTER_TUNE_UP.Forms
         {
             
             Acceso acceso = new Acceso();
-            acceso.Registrar_auditoria(2, this.usuario);
+            string actividad = "El usuario " + acceso.Usuario + " salio al sistema.";
+            acceso.Registrar_auditoria(actividad);
             this.Close();
         }
 
@@ -52,7 +53,7 @@ namespace MASTER_TUNE_UP.Forms
 
         private void comprasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Forms.frmservicios x = new Forms.frmservicios();
+            Forms.frmtrabajos x = new Forms.frmtrabajos();
             x.Show();
         }
 
@@ -63,10 +64,27 @@ namespace MASTER_TUNE_UP.Forms
 
         private void Frmmenu_Load(object sender, EventArgs e)
         {
-
+            Acceso acceso = new Acceso();
+            string actividad = "El usuario  ingresó al Menu.";
+            acceso.Registrar_auditoria(actividad);
+            //maximizar pantalla
+            this.Location = Screen.PrimaryScreen.WorkingArea.Location;
+            this.Size = Screen.PrimaryScreen.WorkingArea.Size;
         }
 
         private void acercaDeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void Frmmenu_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Acceso acceso = new Acceso();
+            string actividad = "El usuario " + acceso.Usuario + " salió del Menu.";
+            acceso.Registrar_auditoria(actividad);
+        }
+
+        private void datosGeneralesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Forms.frmdatosg x = new Forms.frmdatosg();
             x.Show();

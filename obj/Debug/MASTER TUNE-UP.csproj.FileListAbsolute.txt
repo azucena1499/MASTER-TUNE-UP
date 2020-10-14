@@ -66,9 +66,9 @@ C:\MASTER_TUNE-UP\obj\Debug\MASTER_TUNE_UP.Forms.FrmAuditoria.resources
 C:\MASTER_TUNE-UP\obj\Debug\MASTER_TUNE_UP.Forms.Frmclientes.resources
 C:\MASTER_TUNE-UP\obj\Debug\MASTER_TUNE_UP.Forms.frmdatosg.resources
 C:\MASTER_TUNE-UP\obj\Debug\MASTER_TUNE_UP.Forms.Frmmenu.resources
-C:\MASTER_TUNE-UP\obj\Debug\MASTER_TUNE_UP.Forms.frmservicios.resources
 C:\MASTER_TUNE-UP\obj\Debug\MASTER_TUNE_UP.Properties.Resources.resources
 C:\MASTER_TUNE-UP\obj\Debug\MASTER TUNE-UP.csproj.GenerateResource.cache
 C:\MASTER_TUNE-UP\obj\Debug\MASTER TUNE-UP.csproj.CoreCompileInputs.cache
 C:\MASTER_TUNE-UP\obj\Debug\MASTER TUNE-UP.exe
 C:\MASTER_TUNE-UP\obj\Debug\MASTER TUNE-UP.pdb
+C:\MASTER_TUNE-UP\obj\Debug\MASTER_TUNE_UP.Forms.frmtrabajos.resources

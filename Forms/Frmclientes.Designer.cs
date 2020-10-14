@@ -51,6 +51,11 @@
             this.btncerrar = new System.Windows.Forms.Button();
             this.btneliminar = new System.Windows.Forms.Button();
             this.btngrabar = new System.Windows.Forms.Button();
+            this.cboxCliente = new System.Windows.Forms.ComboBox();
+            this.btnbuscar = new System.Windows.Forms.Button();
+            this.txtapeMat = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.lblbuscar = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -114,9 +119,9 @@
             // txtnombre
             // 
             this.txtnombre.Enabled = false;
-            this.txtnombre.Location = new System.Drawing.Point(47, 47);
+            this.txtnombre.Location = new System.Drawing.Point(68, 57);
             this.txtnombre.Name = "txtnombre";
-            this.txtnombre.Size = new System.Drawing.Size(177, 20);
+            this.txtnombre.Size = new System.Drawing.Size(205, 20);
             this.txtnombre.TabIndex = 29;
             this.txtnombre.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtnombre_KeyDown);
             // 
@@ -167,11 +172,11 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(0, 50);
+            this.label2.Location = new System.Drawing.Point(6, 57);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(47, 13);
+            this.label2.Size = new System.Drawing.Size(52, 13);
             this.label2.TabIndex = 23;
-            this.label2.Text = "Nombre:";
+            this.label2.Text = "Nombres:";
             // 
             // label1
             // 
@@ -185,7 +190,7 @@
             // txtxape
             // 
             this.txtxape.Enabled = false;
-            this.txtxape.Location = new System.Drawing.Point(47, 83);
+            this.txtxape.Location = new System.Drawing.Point(92, 86);
             this.txtxape.Name = "txtxape";
             this.txtxape.Size = new System.Drawing.Size(177, 20);
             this.txtxape.TabIndex = 43;
@@ -196,21 +201,26 @@
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(0, 86);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(47, 13);
+            this.label7.Size = new System.Drawing.Size(86, 13);
             this.label7.TabIndex = 42;
-            this.label7.Text = "Apellido:";
+            this.label7.Text = "Apellido paterno:";
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.lblbuscar);
+            this.groupBox1.Controls.Add(this.txtapeMat);
+            this.groupBox1.Controls.Add(this.label9);
+            this.groupBox1.Controls.Add(this.cboxCliente);
+            this.groupBox1.Controls.Add(this.btnbuscar);
             this.groupBox1.Controls.Add(this.txtxape);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.txtclave);
             this.groupBox1.Controls.Add(this.txtnombre);
-            this.groupBox1.Location = new System.Drawing.Point(12, 67);
+            this.groupBox1.Location = new System.Drawing.Point(12, 38);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(279, 125);
+            this.groupBox1.Size = new System.Drawing.Size(524, 145);
             this.groupBox1.TabIndex = 44;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos personales";
@@ -221,7 +231,7 @@
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.txtdomicilio);
-            this.groupBox2.Location = new System.Drawing.Point(314, 67);
+            this.groupBox2.Location = new System.Drawing.Point(356, 194);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(283, 99);
             this.groupBox2.TabIndex = 45;
@@ -236,7 +246,7 @@
             this.groupBox3.Controls.Add(this.txtteleono);
             this.groupBox3.Controls.Add(this.label8);
             this.groupBox3.Controls.Add(this.txtemail);
-            this.groupBox3.Location = new System.Drawing.Point(12, 225);
+            this.groupBox3.Location = new System.Drawing.Point(12, 189);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(293, 128);
             this.groupBox3.TabIndex = 46;
@@ -275,6 +285,52 @@
             this.btngrabar.UseVisualStyleBackColor = true;
             this.btngrabar.Click += new System.EventHandler(this.btngrabar_Click);
             // 
+            // cboxCliente
+            // 
+            this.cboxCliente.FormattingEnabled = true;
+            this.cboxCliente.Location = new System.Drawing.Point(210, 23);
+            this.cboxCliente.Name = "cboxCliente";
+            this.cboxCliente.Size = new System.Drawing.Size(166, 21);
+            this.cboxCliente.TabIndex = 48;
+            this.cboxCliente.Visible = false;
+            this.cboxCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cboxCliente_KeyPress);
+            // 
+            // btnbuscar
+            // 
+            this.btnbuscar.Image = global::MASTER_TUNE_UP.Properties.Resources.lupa3;
+            this.btnbuscar.Location = new System.Drawing.Point(140, 10);
+            this.btnbuscar.Name = "btnbuscar";
+            this.btnbuscar.Size = new System.Drawing.Size(64, 36);
+            this.btnbuscar.TabIndex = 47;
+            this.btnbuscar.UseVisualStyleBackColor = true;
+            this.btnbuscar.Click += new System.EventHandler(this.btnbuscar_Click);
+            // 
+            // txtapeMat
+            // 
+            this.txtapeMat.Location = new System.Drawing.Point(93, 112);
+            this.txtapeMat.Name = "txtapeMat";
+            this.txtapeMat.Size = new System.Drawing.Size(177, 20);
+            this.txtapeMat.TabIndex = 50;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(0, 112);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(88, 13);
+            this.label9.TabIndex = 49;
+            this.label9.Text = "Apellido materno:";
+            // 
+            // lblbuscar
+            // 
+            this.lblbuscar.AutoSize = true;
+            this.lblbuscar.Location = new System.Drawing.Point(230, 7);
+            this.lblbuscar.Name = "lblbuscar";
+            this.lblbuscar.Size = new System.Drawing.Size(95, 13);
+            this.lblbuscar.TabIndex = 51;
+            this.lblbuscar.Text = "Cliente por nombre";
+            this.lblbuscar.Visible = false;
+            // 
             // Frmclientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -291,6 +347,7 @@
             this.MinimizeBox = false;
             this.Name = "Frmclientes";
             this.Text = "Registro de Clientes";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Frmclientes_FormClosing);
             this.Load += new System.EventHandler(this.Frmclientes_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -325,5 +382,10 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.TextBox txtapeMat;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.ComboBox cboxCliente;
+        private System.Windows.Forms.Button btnbuscar;
+        private System.Windows.Forms.Label lblbuscar;
     }
 }

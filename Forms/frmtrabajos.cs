@@ -8,19 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
-
-
+using MASTER_TUNE_UP.Clases;
 
 namespace MASTER_TUNE_UP.Forms
 {
-    public partial class frmservicios : Form
+    public partial class frmtrabajos : Form
 
     {
         Clases.Conexión objconexion;
         SqlConnection Conexion;
         int estatus;
         int existe = 0;
-        public frmservicios()
+        public frmtrabajos()
         {
             InitializeComponent();
         }
@@ -89,6 +88,7 @@ namespace MASTER_TUNE_UP.Forms
         {
             lblbuscar.Visible = true;
             cboxservicio.Visible = true;
+            cboxservicio.Focus();
             llenarcbox();
         }
         private void llenarcbox()
@@ -149,6 +149,8 @@ namespace MASTER_TUNE_UP.Forms
                 comando.Parameters.AddWithValue("@se_nombre", txtnombre.Text);
                 comando.Parameters.AddWithValue("@se_precio", txtxprecio.Text);
                 comando.ExecuteNonQuery();//es para verificar os editados
+                Acceso acceso = new Acceso();
+                string actividad = "El usuario " + acceso.Usuario + " registró el servicio " + txtnombre.Text + "."; acceso.Registrar_auditoria(actividad);
                 MessageBox.Show("Servicio guardado con exito", "Guardado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 //dejar el forms como el inicio
                 btnguardar.Enabled = false;
@@ -179,6 +181,9 @@ namespace MASTER_TUNE_UP.Forms
                 comando.Parameters.AddWithValue("@se_precio", txtxprecio.Text);
                 //comando.Parameters.AddWithValue("@gr_estatus", cbox.SelectedIndex);
                 comando.ExecuteNonQuery();
+                Acceso acceso = new Acceso();
+                string actividad = "El usuario " + acceso.Usuario + " modificó el servicio " + txtnombre.Text + "."; 
+                acceso.Registrar_auditoria(actividad);
                 MessageBox.Show("Servicio modificado con exito", "modificado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 //dejar el forms como el inicio
                 btnguardar.Enabled = false;
@@ -194,12 +199,21 @@ namespace MASTER_TUNE_UP.Forms
 
         private void frmservicios_Load(object sender, EventArgs e)
         {
-
+            Acceso acceso = new Acceso();
+            string actividad = "El usuario " + acceso.Usuario + " ingreso a servicios.";
+            acceso.Registrar_auditoria(actividad);
         }
 
         private void btncerrar_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void frmservicios_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Acceso acceso = new Acceso();
+            string actividad = "El usuario " + acceso.Usuario + " salió de servicios.";
+            acceso.Registrar_auditoria(actividad);
         }
     }
 }

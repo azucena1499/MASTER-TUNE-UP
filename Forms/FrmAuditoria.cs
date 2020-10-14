@@ -183,6 +183,8 @@ namespace MASTER_TUNE_UP.Forms
                         comandoInsert.Parameters.AddWithValue("@Us_password", usuario.Us_password);
                         comandoInsert.Parameters.AddWithValue("@Us_nivel", usuario.Us_nivel);
                         comandoInsert.ExecuteNonQuery();
+                        string actividad = "El usuario " + acceso.Usuario + " registró al usuario " + usuario.Us_login + ".";
+                        acceso.Registrar_auditoria(actividad);
                         MessageBox.Show("Usuario guardado con exito", "guardado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         resetearCampos();
                         TxtRegistroUsuario.Text = "";
@@ -225,6 +227,9 @@ namespace MASTER_TUNE_UP.Forms
                 comando.Parameters.Clear();
                 comando.Parameters.AddWithValue("@Us_login", TxtRegistroUsuario.Text);
                 comando.ExecuteNonQuery();
+                Acceso acceso = new Acceso();
+                string actividad = "El usuario " + acceso.Usuario + " elimino al usuario " + TxtRegistroUsuario.Text + ".";
+                acceso.Registrar_auditoria(actividad);
                 MessageBox.Show("Usuario eliminado", "Eliminar", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 resetearCampos();
                 TxtRegistroUsuario.Text = "";
@@ -244,6 +249,9 @@ namespace MASTER_TUNE_UP.Forms
             }
             else
             {
+                Acceso acceso = new Acceso();
+                string actividad = "El usuario " + acceso.Usuario + " busco un usuario.";
+                acceso.Registrar_auditoria(actividad);
                 objconexion = new Clases.Conexión();
                 Conexion = new SqlConnection(objconexion.Conn());
                 //se abre la conexion
@@ -317,6 +325,9 @@ namespace MASTER_TUNE_UP.Forms
             cboxnivel.Text = "Seleccione";
             cboxnivel.Items.Add("Administrador");
             cboxnivel.Items.Add("Operador");
+            Acceso acceso = new Acceso();
+            string actividad = "El usuario " + acceso.Usuario + " entro a auditorias.";
+            acceso.Registrar_auditoria(actividad);
         }
 
         private void TxtRegistroUsuario_TextChanged(object sender, EventArgs e)
@@ -428,6 +439,9 @@ namespace MASTER_TUNE_UP.Forms
             }
             if (actualizarUsuario())
             {
+                Acceso acceso = new Acceso();
+                string actividad = "El usuario " + acceso.Usuario + " modifico al usuario " + TxtRegistroUsuario.Text + ".";
+                acceso.Registrar_auditoria(actividad);
                 MessageBox.Show("Usuario modificado con éxito", "Listo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.resetearCampos();
                 TxtRegistroUsuario.Text = "";
@@ -443,6 +457,13 @@ namespace MASTER_TUNE_UP.Forms
         private void cboxnivel_SelectedIndexChanged(object sender, EventArgs e)
         {
             establecerNivel();
+        }
+
+        private void FrmAuditoria_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Acceso acceso = new Acceso();
+            string actividad = "El usuario " + acceso.Usuario + " salió de auditoria.";
+            acceso.Registrar_auditoria(actividad);
         }
     }
 }

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using MASTER_TUNE_UP.Clases;
 
 namespace MASTER_TUNE_UP.Forms
 {
@@ -53,8 +54,8 @@ namespace MASTER_TUNE_UP.Forms
                     comando.Parameters.AddWithValue("@Cl_dire", this.txtdomicilio.Text);
                     comando.Parameters.AddWithValue("@Cl_loc", this.txtlocalidad.Text);
                     comando.Parameters.AddWithValue("@Cl_tel", this.txtteleono.Text);
-                    comando.Parameters.AddWithValue("@Cl_email", this.txtemail.Text);
-
+                    comando.Parameters.AddWithValue("@Cl_email", this.txtemail.Text); 
+                    comando.Parameters.AddWithValue("@Cl_apemat", this.txtapeMat.Text);
                     comando.Parameters.AddWithValue("@Cl_estatus", this.cboxclientee.SelectedIndex);
 
 
@@ -67,6 +68,7 @@ namespace MASTER_TUNE_UP.Forms
                         txtxape.Enabled = true;
                         txtdomicilio.Enabled = true;
                         txtemail.Enabled = true;
+                        txtapeMat.Enabled = true;
                         txtlocalidad.Enabled = true;
                         txtteleono.Enabled = true;
                         txtnombre.Focus();
@@ -84,6 +86,7 @@ namespace MASTER_TUNE_UP.Forms
                         txtclave.Text = leer["Cl_id"].ToString();
                         txtteleono.Text = leer["Cl_tel"].ToString();
                         txtlocalidad.Text = leer["Cl_loc"].ToString();
+                        txtapeMat.Text = leer["Cl_apemat"].ToString();
 
                         if (estatus == 1)
                         {
@@ -103,6 +106,7 @@ namespace MASTER_TUNE_UP.Forms
                             txtdomicilio.Enabled = false;
                             txtemail.Enabled = false;
                             txtlocalidad.Enabled = false;
+                            txtapeMat.Enabled = false;
                             limpiar();
 
 
@@ -139,6 +143,8 @@ namespace MASTER_TUNE_UP.Forms
             txtnombre.Enabled = false;
             txtnombre.Clear();
             txtxape.Clear();
+            txtapeMat.Clear();
+            txtapeMat.Enabled = false;
             txtxape.Enabled = false;
             txtclave.Enabled = true;
             txtclave.Clear();
@@ -153,7 +159,7 @@ namespace MASTER_TUNE_UP.Forms
                 Conexion = new SqlConnection(objconexion.Conn());
                 //se abre la conexion
                 Conexion.Open();
-                string query = "insert into Clientes values(@Cl_id,@Cl_nom,@Cl_ape,@Cl_dire,@Cl_loc,@Cl_email,@Cl_tel,@Cl_estatus)";  //este es para insetar,se hace la conexion el campo y esl paramet                                                                                                            //asigno a comando el sqlcommand
+                string query = "insert into Clientes values(@Cl_id,@Cl_nom,@Cl_ape,@Cl_dire,@Cl_loc,@Cl_email,@Cl_apemat,@Cl_tel,@Cl_estatus)";  //este es para insetar,se hace la conexion el campo y esl paramet                                                                                                            //asigno a comando el sqlcommand
                 SqlCommand comando = new SqlCommand(query, Conexion);
                 //inicializo cualquier parametrodefinido anteriormente
                 comando.Parameters.Clear();
@@ -161,12 +167,16 @@ namespace MASTER_TUNE_UP.Forms
                 comando.Parameters.AddWithValue("@Cl_id", txtclave.Text);  
                 comando.Parameters.AddWithValue("@Cl_nom", txtnombre.Text);
                 comando.Parameters.AddWithValue("@Cl_ape", txtxape.Text);
+                comando.Parameters.AddWithValue("@Cl_apemat", txtapeMat.Text);
                 comando.Parameters.AddWithValue("@Cl_dire", txtdomicilio.Text);
                 comando.Parameters.AddWithValue("@Cl_loc", txtlocalidad.Text);
                 comando.Parameters.AddWithValue("@Cl_email", txtemail.Text);
                 comando.Parameters.AddWithValue("@Cl_tel", txtteleono.Text);
                 comando.Parameters.AddWithValue("@Cl_estatus", cboxclientee.SelectedIndex);
                 comando.ExecuteNonQuery();//es para verificar los editados
+                Acceso acceso = new Acceso();
+                string actividad = "El usuario registró al cliente " + txtnombre.Text + ".";
+                acceso.Registrar_auditoria(actividad);
                 MessageBox.Show("Cliente guardado con exito", "guardado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 limpiar();
                 Maximo();
@@ -179,13 +189,14 @@ namespace MASTER_TUNE_UP.Forms
                 Conexion = new SqlConnection(objconexion.Conn());
                 //se abre la conexion
                 Conexion.Open();
-                string query = "update Clientes set Cl_nom=@Cl_nom,Cl_dire=@Cl_dire,Cl_ape=@Cl_ape, Cl_loc=@Cl_loc,Cl_tel=@Cl_tel,Cl_email=@Cl_email where Cl_id=@Cl_id";  //este es para modificar,se hace la conexion el campo y esl paramet                                                                                                            //asigno a comando el sqlcommand
+                string query = "update Clientes set Cl_nom=@Cl_nom,Cl_dire=@Cl_dire,Cl_ape=@Cl_ape, Cl_loc=@Cl_loc,Cl_tel=@Cl_tel,Cl_email=@Cl_email,Cl_apemat=@Cl_apemat where Cl_id=@Cl_id";  //este es para modificar,se hace la conexion el campo y esl paramet                                                                                                            //asigno a comando el sqlcommand
                 SqlCommand comando = new SqlCommand(query, Conexion);
                 comando.Parameters.Clear();
                 //tranfiero el valor de txtpassword al parametrous_login
                 comando.Parameters.AddWithValue("@Cl_id", int.Parse(txtclave.Text)); //este es para ya modificar 
                 comando.Parameters.AddWithValue("@Cl_dire", txtdomicilio.Text);
                 comando.Parameters.AddWithValue("@Cl_ape", txtxape.Text);
+                comando.Parameters.AddWithValue("@Cl_apemat", txtapeMat.Text);
                 comando.Parameters.AddWithValue("@Cl_loc", txtlocalidad.Text);
                 comando.Parameters.AddWithValue("@Cl_nom", txtnombre.Text);
                 comando.Parameters.AddWithValue("@Cl_estatus", cboxclientee.SelectedIndex);
@@ -193,6 +204,9 @@ namespace MASTER_TUNE_UP.Forms
                 comando.Parameters.AddWithValue("@Cl_email", txtemail.Text);
 
                 comando.ExecuteNonQuery();
+                Acceso acceso = new Acceso();
+                string actividad = "El usuario modifico al cliente " + txtnombre.Text + ".";
+                acceso.Registrar_auditoria(actividad);
                 MessageBox.Show("Cliente modificado con exito", "Modificado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 limpiar(); //dejar el forms como el inicio
                 Maximo();
@@ -225,6 +239,9 @@ namespace MASTER_TUNE_UP.Forms
                 MessageBoxIcon.Stop) == DialogResult.Yes)
             {
                 comando.ExecuteNonQuery();
+                Acceso acceso = new Acceso();
+                string actividad = "El usuario " + acceso.Usuario + " Elimino al cliente " + txtnombre.Text + ".";
+                acceso.Registrar_auditoria(actividad);
                 MessageBox.Show("Cliente dado de baja", "Eliminar", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             limpiar();
@@ -296,11 +313,68 @@ namespace MASTER_TUNE_UP.Forms
             cboxclientee.Items.Add("mayoreo");
             cboxclientee.Items.Add("menudeo");
             Maximo();
+            Acceso acceso = new Acceso();
+            string actividad = "El usuario ingreso a Registro de clientes.";
+            acceso.Registrar_auditoria(actividad);
         }
 
         private void btncerrar_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void Frmclientes_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Acceso acceso = new Acceso();
+            string actividad = "El usuario  salio de registro de clientes.";
+            acceso.Registrar_auditoria(actividad);
+        }
+
+        private void btnbuscar_Click(object sender, EventArgs e)
+        {
+            lblbuscar.Visible = true;
+            cboxCliente.Visible = true;
+            cboxCliente.Focus();
+            llenarcbox();
+        }
+        private void llenarcbox()
+        {
+            //defino el data table
+            DataTable dt = new DataTable();
+            //establezco conex
+            objconexion = new Clases.Conexión();
+            Conexion = new SqlConnection(objconexion.Conn());
+            //abro conexion
+            Conexion.Open();
+            //establezco mi query
+            string query = "SELECT * from Clientes where Cl_id >=1 order by Cl_nom";
+
+            //defino comando  Cl_id=@Cl_id
+            SqlCommand comando = new SqlCommand(query, Conexion);
+            //defino mi adapter
+            SqlDataAdapter da = new SqlDataAdapter(comando);
+            //lleno el datatable
+            da.Fill(dt);
+            this.cboxCliente.DataSource = dt;
+            this.cboxCliente.ValueMember = "Cl_id";
+            this.cboxCliente.DisplayMember = "Cl_nom";
+            Conexion.Close();
+
+        }
+
+        private void cboxCliente_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                this.txtclave.Text = this.cboxCliente.SelectedValue.ToString();
+                //valido
+                lblbuscar.Visible = false;
+                cboxCliente.Visible = false;
+                cboxCliente.Enabled = true;
+                txtclave.Focus();
+
+
+            }
         }
     }
 }
