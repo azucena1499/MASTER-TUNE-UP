@@ -136,10 +136,12 @@ namespace MASTER_TUNE_UP.Forms
                 Conexion = new SqlConnection(objconexion.Conn());
                 //se abre la conexion
                 Conexion.Open();
-                string query = "update Usuario set us_password=@Us_password, Us_nivel=@Us_nivel";  //este es para modificar,se hace la conexion el campo y esl paramet                                                                                                            //asigno a comando el sqlcommand
+                string query = "update Usuario set us_password=@Us_password,Us_nivel=@Us_nivel  where Us_login=@Us_login";  //este es para modificar,se hace la conexion el campo y esl paramet                                                                                                            //asigno a comando el sqlcommand
                 SqlCommand comando = new SqlCommand(query, Conexion);
                 comando.Parameters.Clear();
                 //tranfiero el valor de txtpassword al parametrous_login
+                comando.Parameters.AddWithValue("@Us_login", usuario.Us_login);
+
                 comando.Parameters.AddWithValue("@Us_password", usuario.Us_password);
                 comando.Parameters.AddWithValue("@Us_nivel", usuario.Us_nivel);
                 comando.ExecuteNonQuery();
@@ -266,7 +268,7 @@ namespace MASTER_TUNE_UP.Forms
                 SqlDataReader leer = comando.ExecuteReader();
                 if (leer.Read())
                 {
-                    this.usuario = new Usuario(leer["Us_nivel"].ToString(), leer["us_password"].ToString(), Convert.ToInt32(leer["Us_nivel"].ToString()));
+                    this.usuario = new Usuario(leer["Us_login"].ToString(), leer["us_password"].ToString(), Convert.ToInt32(leer["Us_nivel"].ToString()));
                     existe = true;
                     this.estadoActual = MOSTRANDO_USUARIO;
                     this.resetearCampos();
@@ -445,7 +447,7 @@ namespace MASTER_TUNE_UP.Forms
             if (actualizarUsuario())
             {
                 Acceso acceso = new Acceso();
-                string actividad = "El usuario " + acceso.Usuario + " modifico al usuario " + TxtRegistroUsuario.Text + ".";
+                string actividad = "El usuario modifico al usuario " + TxtRegistroUsuario.Text + ".";
                 acceso.Registrar_auditoria(actividad);
                 MessageBox.Show("Usuario modificado con éxito", "Listo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.resetearCampos();

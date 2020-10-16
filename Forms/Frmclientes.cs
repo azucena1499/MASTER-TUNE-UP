@@ -158,7 +158,7 @@ namespace MASTER_TUNE_UP.Forms
                 Conexion = new SqlConnection(objconexion.Conn());
                 //se abre la conexion
                 Conexion.Open();
-                string query = "insert into Clientes values(@Cl_id,@Cl_nom,@Cl_ape,@Cl_dire,@Cl_loc,@Cl_email,@Cl_apemat,@Cl_tel,@Cl_estatus)";  //este es para insetar,se hace la conexion el campo y esl paramet                                                                                                            //asigno a comando el sqlcommand
+                string query = "insert into Clientes values(@Cl_id,@Cl_nom,@Cl_ape,@Cl_dire,@Cl_loc,@Cl_email,@Cl_tel,@Cl_estatus,@Cl_apemat)";  //este es para insetar,se hace la conexion el campo y esl paramet                                                                                                            //asigno a comando el sqlcommand
                 SqlCommand comando = new SqlCommand(query, Conexion);
                 //inicializo cualquier parametrodefinido anteriormente
                 comando.Parameters.Clear();
@@ -166,12 +166,12 @@ namespace MASTER_TUNE_UP.Forms
                 comando.Parameters.AddWithValue("@Cl_id", txtclave.Text);  
                 comando.Parameters.AddWithValue("@Cl_nom", txtnombre.Text);
                 comando.Parameters.AddWithValue("@Cl_ape", txtxape.Text);
-                comando.Parameters.AddWithValue("@Cl_apemat", txtapeMat.Text);
                 comando.Parameters.AddWithValue("@Cl_dire", txtdomicilio.Text);
                 comando.Parameters.AddWithValue("@Cl_loc", cboxlocalidad.Text);
                 comando.Parameters.AddWithValue("@Cl_email", txtemail.Text);
                 comando.Parameters.AddWithValue("@Cl_tel", txtteleono.Text);
                 comando.Parameters.AddWithValue("@Cl_estatus", cboxclientee.SelectedIndex);
+                comando.Parameters.AddWithValue("@Cl_apemat", txtapeMat.Text);
                 comando.ExecuteNonQuery();//es para verificar los editados
                 Acceso acceso = new Acceso();
                 string actividad = "El usuario registró al cliente " + txtnombre.Text + ".";
@@ -188,19 +188,19 @@ namespace MASTER_TUNE_UP.Forms
                 Conexion = new SqlConnection(objconexion.Conn());
                 //se abre la conexion
                 Conexion.Open();
-                string query = "update Clientes set Cl_nom=@Cl_nom,Cl_dire=@Cl_dire,Cl_ape=@Cl_ape, Cl_loc=@Cl_loc,Cl_tel=@Cl_tel,Cl_email=@Cl_email,Cl_apemat=@Cl_apemat where Cl_id=@Cl_id";  //este es para modificar,se hace la conexion el campo y esl paramet                                                                                                            //asigno a comando el sqlcommand
+                string query = "update Clientes set Cl_nom=@Cl_nom,Cl_ape=@Cl_ape,Cl_dire=@Cl_dire,Cl_loc=@Cl_loc,Cl_email=@Cl_email,Cl_tel=@Cl_tel,Cl_apemat=@Cl_apemat where Cl_id=@Cl_id";  //este es para modificar,se hace la conexion el campo y esl paramet                                                                                                            //asigno a comando el sqlcommand
                 SqlCommand comando = new SqlCommand(query, Conexion);
                 comando.Parameters.Clear();
                 //tranfiero el valor de txtpassword al parametrous_login
                 comando.Parameters.AddWithValue("@Cl_id", int.Parse(txtclave.Text)); //este es para ya modificar 
-                comando.Parameters.AddWithValue("@Cl_dire", txtdomicilio.Text);
-                comando.Parameters.AddWithValue("@Cl_ape", txtxape.Text);
-                comando.Parameters.AddWithValue("@Cl_apemat", txtapeMat.Text);
-                comando.Parameters.AddWithValue("@Cl_loc", cboxlocalidad.Text);
                 comando.Parameters.AddWithValue("@Cl_nom", txtnombre.Text);
-                comando.Parameters.AddWithValue("@Cl_estatus", cboxclientee.SelectedIndex);
-                comando.Parameters.AddWithValue("@Cl_tel", txtteleono.Text);
+                comando.Parameters.AddWithValue("@Cl_ape", txtxape.Text);
+                comando.Parameters.AddWithValue("@Cl_dire", txtdomicilio.Text);
+                comando.Parameters.AddWithValue("@Cl_loc", cboxlocalidad.Text);
                 comando.Parameters.AddWithValue("@Cl_email", txtemail.Text);
+                comando.Parameters.AddWithValue("@Cl_tel", txtteleono.Text);
+                comando.Parameters.AddWithValue("@Cl_estatus", cboxclientee.SelectedIndex);
+                comando.Parameters.AddWithValue("@Cl_apemat", txtapeMat.Text);
 
                 comando.ExecuteNonQuery();
                 Acceso acceso = new Acceso();

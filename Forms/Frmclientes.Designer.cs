@@ -33,7 +33,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.txtemail = new System.Windows.Forms.TextBox();
             this.txtteleono = new System.Windows.Forms.TextBox();
-            this.txtlocalidad = new System.Windows.Forms.TextBox();
             this.txtdomicilio = new System.Windows.Forms.TextBox();
             this.txtnombre = new System.Windows.Forms.TextBox();
             this.txtclave = new System.Windows.Forms.TextBox();
@@ -98,14 +97,6 @@
             this.txtteleono.Size = new System.Drawing.Size(109, 20);
             this.txtteleono.TabIndex = 32;
             this.txtteleono.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtteleono_KeyDown);
-            // 
-            // txtlocalidad
-            // 
-            this.txtlocalidad.Enabled = false;
-            this.txtlocalidad.Location = new System.Drawing.Point(432, 321);
-            this.txtlocalidad.Name = "txtlocalidad";
-            this.txtlocalidad.Size = new System.Drawing.Size(207, 20);
-            this.txtlocalidad.TabIndex = 31;
             // 
             // txtdomicilio
             // 
@@ -290,7 +281,7 @@
             this.cboxlocalidad.FormattingEnabled = true;
             this.cboxlocalidad.Location = new System.Drawing.Point(61, 56);
             this.cboxlocalidad.Name = "cboxlocalidad";
-            this.cboxlocalidad.Size = new System.Drawing.Size(166, 21);
+            this.cboxlocalidad.Size = new System.Drawing.Size(175, 21);
             this.cboxlocalidad.TabIndex = 46;
             this.cboxlocalidad.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cboxlocalidad_KeyDown);
             // 
@@ -346,7 +337,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(697, 438);
-            this.Controls.Add(this.txtlocalidad);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -367,7 +357,6 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -379,7 +368,6 @@
         private System.Windows.Forms.Button btngrabar;
         private System.Windows.Forms.TextBox txtemail;
         private System.Windows.Forms.TextBox txtteleono;
-        private System.Windows.Forms.TextBox txtlocalidad;
         private System.Windows.Forms.TextBox txtdomicilio;
         private System.Windows.Forms.TextBox txtnombre;
         private System.Windows.Forms.TextBox txtclave;
