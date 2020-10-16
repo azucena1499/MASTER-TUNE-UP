@@ -46,16 +46,17 @@
             this.txtxape = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblbuscar = new System.Windows.Forms.Label();
+            this.txtapeMat = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.cboxCliente = new System.Windows.Forms.ComboBox();
+            this.btnbuscar = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cboxlocalidad = new System.Windows.Forms.ComboBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btncerrar = new System.Windows.Forms.Button();
             this.btneliminar = new System.Windows.Forms.Button();
             this.btngrabar = new System.Windows.Forms.Button();
-            this.cboxCliente = new System.Windows.Forms.ComboBox();
-            this.btnbuscar = new System.Windows.Forms.Button();
-            this.txtapeMat = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.lblbuscar = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -101,11 +102,10 @@
             // txtlocalidad
             // 
             this.txtlocalidad.Enabled = false;
-            this.txtlocalidad.Location = new System.Drawing.Point(60, 59);
+            this.txtlocalidad.Location = new System.Drawing.Point(432, 321);
             this.txtlocalidad.Name = "txtlocalidad";
             this.txtlocalidad.Size = new System.Drawing.Size(207, 20);
             this.txtlocalidad.TabIndex = 31;
-            this.txtlocalidad.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtlocalidad_KeyDown);
             // 
             // txtdomicilio
             // 
@@ -225,9 +225,56 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos personales";
             // 
+            // lblbuscar
+            // 
+            this.lblbuscar.AutoSize = true;
+            this.lblbuscar.Location = new System.Drawing.Point(230, 7);
+            this.lblbuscar.Name = "lblbuscar";
+            this.lblbuscar.Size = new System.Drawing.Size(95, 13);
+            this.lblbuscar.TabIndex = 51;
+            this.lblbuscar.Text = "Cliente por nombre";
+            this.lblbuscar.Visible = false;
+            // 
+            // txtapeMat
+            // 
+            this.txtapeMat.Location = new System.Drawing.Point(93, 112);
+            this.txtapeMat.Name = "txtapeMat";
+            this.txtapeMat.Size = new System.Drawing.Size(177, 20);
+            this.txtapeMat.TabIndex = 50;
+            this.txtapeMat.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtapeMat_KeyDown);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(0, 112);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(88, 13);
+            this.label9.TabIndex = 49;
+            this.label9.Text = "Apellido materno:";
+            // 
+            // cboxCliente
+            // 
+            this.cboxCliente.FormattingEnabled = true;
+            this.cboxCliente.Location = new System.Drawing.Point(210, 23);
+            this.cboxCliente.Name = "cboxCliente";
+            this.cboxCliente.Size = new System.Drawing.Size(166, 21);
+            this.cboxCliente.TabIndex = 48;
+            this.cboxCliente.Visible = false;
+            this.cboxCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cboxCliente_KeyPress);
+            // 
+            // btnbuscar
+            // 
+            this.btnbuscar.Image = global::MASTER_TUNE_UP.Properties.Resources.lupa3;
+            this.btnbuscar.Location = new System.Drawing.Point(140, 10);
+            this.btnbuscar.Name = "btnbuscar";
+            this.btnbuscar.Size = new System.Drawing.Size(64, 36);
+            this.btnbuscar.TabIndex = 47;
+            this.btnbuscar.UseVisualStyleBackColor = true;
+            this.btnbuscar.Click += new System.EventHandler(this.btnbuscar_Click);
+            // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.txtlocalidad);
+            this.groupBox2.Controls.Add(this.cboxlocalidad);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.txtdomicilio);
@@ -237,6 +284,15 @@
             this.groupBox2.TabIndex = 45;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Datos del domicilio";
+            // 
+            // cboxlocalidad
+            // 
+            this.cboxlocalidad.FormattingEnabled = true;
+            this.cboxlocalidad.Location = new System.Drawing.Point(61, 56);
+            this.cboxlocalidad.Name = "cboxlocalidad";
+            this.cboxlocalidad.Size = new System.Drawing.Size(166, 21);
+            this.cboxlocalidad.TabIndex = 46;
+            this.cboxlocalidad.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cboxlocalidad_KeyDown);
             // 
             // groupBox3
             // 
@@ -285,57 +341,12 @@
             this.btngrabar.UseVisualStyleBackColor = true;
             this.btngrabar.Click += new System.EventHandler(this.btngrabar_Click);
             // 
-            // cboxCliente
-            // 
-            this.cboxCliente.FormattingEnabled = true;
-            this.cboxCliente.Location = new System.Drawing.Point(210, 23);
-            this.cboxCliente.Name = "cboxCliente";
-            this.cboxCliente.Size = new System.Drawing.Size(166, 21);
-            this.cboxCliente.TabIndex = 48;
-            this.cboxCliente.Visible = false;
-            this.cboxCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cboxCliente_KeyPress);
-            // 
-            // btnbuscar
-            // 
-            this.btnbuscar.Image = global::MASTER_TUNE_UP.Properties.Resources.lupa3;
-            this.btnbuscar.Location = new System.Drawing.Point(140, 10);
-            this.btnbuscar.Name = "btnbuscar";
-            this.btnbuscar.Size = new System.Drawing.Size(64, 36);
-            this.btnbuscar.TabIndex = 47;
-            this.btnbuscar.UseVisualStyleBackColor = true;
-            this.btnbuscar.Click += new System.EventHandler(this.btnbuscar_Click);
-            // 
-            // txtapeMat
-            // 
-            this.txtapeMat.Location = new System.Drawing.Point(93, 112);
-            this.txtapeMat.Name = "txtapeMat";
-            this.txtapeMat.Size = new System.Drawing.Size(177, 20);
-            this.txtapeMat.TabIndex = 50;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(0, 112);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(88, 13);
-            this.label9.TabIndex = 49;
-            this.label9.Text = "Apellido materno:";
-            // 
-            // lblbuscar
-            // 
-            this.lblbuscar.AutoSize = true;
-            this.lblbuscar.Location = new System.Drawing.Point(230, 7);
-            this.lblbuscar.Name = "lblbuscar";
-            this.lblbuscar.Size = new System.Drawing.Size(95, 13);
-            this.lblbuscar.TabIndex = 51;
-            this.lblbuscar.Text = "Cliente por nombre";
-            this.lblbuscar.Visible = false;
-            // 
             // Frmclientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(697, 438);
+            this.Controls.Add(this.txtlocalidad);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -356,6 +367,7 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -387,5 +399,6 @@
         private System.Windows.Forms.ComboBox cboxCliente;
         private System.Windows.Forms.Button btnbuscar;
         private System.Windows.Forms.Label lblbuscar;
+        private System.Windows.Forms.ComboBox cboxlocalidad;
     }
 }

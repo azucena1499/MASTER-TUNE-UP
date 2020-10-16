@@ -127,7 +127,7 @@
             this.tbpregistro.Controls.Add(this.label1);
             this.tbpregistro.Location = new System.Drawing.Point(4, 22);
             this.tbpregistro.Name = "tbpregistro";
-            this.tbpregistro.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tbpregistro.Padding = new System.Windows.Forms.Padding(3);
             this.tbpregistro.Size = new System.Drawing.Size(697, 350);
             this.tbpregistro.TabIndex = 0;
             this.tbpregistro.Text = "Registrar Usuario";
@@ -171,6 +171,7 @@
             this.txtNuevaConfirmar.Size = new System.Drawing.Size(153, 20);
             this.txtNuevaConfirmar.TabIndex = 50;
             this.txtNuevaConfirmar.Visible = false;
+            this.txtNuevaConfirmar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNuevaConfirmar_KeyDown);
             // 
             // labelCambioConfirmar
             // 
@@ -192,6 +193,7 @@
             this.txtNuevaContra.TabIndex = 48;
             this.txtNuevaContra.Visible = false;
             this.txtNuevaContra.TextChanged += new System.EventHandler(this.txtNuevaContra_TextChanged);
+            this.txtNuevaContra.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNuevaContra_KeyDown);
             // 
             // labelCambioNueva
             // 
@@ -233,6 +235,7 @@
             this.cboxnivel.Size = new System.Drawing.Size(153, 21);
             this.cboxnivel.TabIndex = 44;
             this.cboxnivel.SelectedIndexChanged += new System.EventHandler(this.cboxnivel_SelectedIndexChanged);
+            this.cboxnivel.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cboxnivel_KeyDown);
             // 
             // btnbuscar
             // 
@@ -266,6 +269,7 @@
             this.txtRegistroConfirmar.TabIndex = 30;
             this.txtRegistroConfirmar.Visible = false;
             this.txtRegistroConfirmar.TextChanged += new System.EventHandler(this.txtRegistroConfirmar_TextChanged);
+            this.txtRegistroConfirmar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtRegistroConfirmar_KeyDown);
             // 
             // labelRegistroConfirmar
             // 
@@ -328,6 +332,7 @@
             this.txtRegistroContra.TabIndex = 21;
             this.txtRegistroContra.TextChanged += new System.EventHandler(this.txtRegistroContra_TextChanged);
             this.txtRegistroContra.Enter += new System.EventHandler(this.txtRegistroContra_Enter);
+            this.txtRegistroContra.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtRegistroContra_KeyDown);
             this.txtRegistroContra.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtRegistroContra_KeyPress);
             // 
             // label2
@@ -350,6 +355,7 @@
             this.TxtRegistroUsuario.TabIndex = 19;
             this.TxtRegistroUsuario.TextChanged += new System.EventHandler(this.TxtRegistroUsuario_TextChanged);
             this.TxtRegistroUsuario.Enter += new System.EventHandler(this.TxtRegistroUsuario_Enter);
+            this.TxtRegistroUsuario.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtRegistroUsuario_KeyDown);
             this.TxtRegistroUsuario.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtRegistroUsuario_KeyPress);
             // 
             // label1
@@ -371,7 +377,7 @@
             this.tabPage2.Controls.Add(this.groupBox1);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(697, 350);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Deapuracion de movimientos";
@@ -502,7 +508,7 @@
             this.tabPage1.Controls.Add(this.groupBox3);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(697, 350);
             this.tabPage1.TabIndex = 2;
             this.tabPage1.Text = "Informe de auditoria";

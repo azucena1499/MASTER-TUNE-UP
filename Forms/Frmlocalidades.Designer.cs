@@ -1,6 +1,6 @@
 ﻿namespace MASTER_TUNE_UP.Forms
 {
-    partial class frmtrabajos
+    partial class Frmlocalidades
     {
         /// <summary>
         /// Required designer variable.
@@ -28,16 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmtrabajos));
             this.lblbuscar = new System.Windows.Forms.Label();
             this.cboxservicio = new System.Windows.Forms.ComboBox();
             this.txtnombre = new System.Windows.Forms.TextBox();
             this.txtclave = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtxprecio = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.btncerrar = new System.Windows.Forms.Button();
+            this.btnEliminar = new System.Windows.Forms.Button();
             this.btnguardar = new System.Windows.Forms.Button();
             this.btnbuscar = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -45,92 +42,79 @@
             // lblbuscar
             // 
             this.lblbuscar.AutoSize = true;
-            this.lblbuscar.Location = new System.Drawing.Point(251, 17);
+            this.lblbuscar.Location = new System.Drawing.Point(243, 22);
             this.lblbuscar.Name = "lblbuscar";
             this.lblbuscar.Size = new System.Drawing.Size(97, 13);
-            this.lblbuscar.TabIndex = 19;
+            this.lblbuscar.TabIndex = 46;
             this.lblbuscar.Text = "consulta de grupos";
             this.lblbuscar.Visible = false;
             // 
             // cboxservicio
             // 
             this.cboxservicio.FormattingEnabled = true;
-            this.cboxservicio.Location = new System.Drawing.Point(225, 42);
+            this.cboxservicio.Location = new System.Drawing.Point(217, 47);
             this.cboxservicio.Name = "cboxservicio";
             this.cboxservicio.Size = new System.Drawing.Size(166, 21);
-            this.cboxservicio.TabIndex = 18;
+            this.cboxservicio.TabIndex = 45;
             this.cboxservicio.Visible = false;
+            this.cboxservicio.SelectedIndexChanged += new System.EventHandler(this.cboxservicio_SelectedIndexChanged);
             this.cboxservicio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cboxservicio_KeyPress);
             // 
             // txtnombre
             // 
             this.txtnombre.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtnombre.Enabled = false;
-            this.txtnombre.Location = new System.Drawing.Point(92, 75);
+            this.txtnombre.Location = new System.Drawing.Point(84, 80);
             this.txtnombre.Name = "txtnombre";
             this.txtnombre.Size = new System.Drawing.Size(290, 20);
-            this.txtnombre.TabIndex = 16;
+            this.txtnombre.TabIndex = 43;
+            this.txtnombre.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtnombre_KeyDown);
             // 
             // txtclave
             // 
-            this.txtclave.Location = new System.Drawing.Point(75, 43);
+            this.txtclave.Location = new System.Drawing.Point(67, 48);
             this.txtclave.Name = "txtclave";
             this.txtclave.Size = new System.Drawing.Size(63, 20);
-            this.txtclave.TabIndex = 15;
+            this.txtclave.TabIndex = 42;
+            this.txtclave.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtclave_KeyDown);
             this.txtclave.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtclave_KeyPress);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(27, 82);
+            this.label2.Location = new System.Drawing.Point(19, 87);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(44, 13);
-            this.label2.TabIndex = 14;
+            this.label2.TabIndex = 41;
             this.label2.Text = "Nombre";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(35, 46);
+            this.label1.Location = new System.Drawing.Point(27, 51);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(34, 13);
-            this.label1.TabIndex = 13;
+            this.label1.TabIndex = 40;
             this.label1.Text = "Clave";
             // 
-            // txtxprecio
+            // btnEliminar
             // 
-            this.txtxprecio.Location = new System.Drawing.Point(450, 75);
-            this.txtxprecio.Name = "txtxprecio";
-            this.txtxprecio.Size = new System.Drawing.Size(68, 20);
-            this.txtxprecio.TabIndex = 21;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(407, 78);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(37, 13);
-            this.label3.TabIndex = 20;
-            this.label3.Text = "Precio";
-            // 
-            // btncerrar
-            // 
-            this.btncerrar.Image = global::MASTER_TUNE_UP.Properties.Resources.cruzar3;
-            this.btncerrar.Location = new System.Drawing.Point(438, 200);
-            this.btncerrar.Name = "btncerrar";
-            this.btncerrar.Size = new System.Drawing.Size(56, 41);
-            this.btncerrar.TabIndex = 39;
-            this.btncerrar.UseVisualStyleBackColor = true;
-            this.btncerrar.Click += new System.EventHandler(this.btncerrar_Click);
+            this.btnEliminar.Image = global::MASTER_TUNE_UP.Properties.Resources.cruzar3;
+            this.btnEliminar.Location = new System.Drawing.Point(430, 205);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(56, 41);
+            this.btnEliminar.TabIndex = 50;
+            this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // btnguardar
             // 
             this.btnguardar.Enabled = false;
             this.btnguardar.Image = global::MASTER_TUNE_UP.Properties.Resources.disquete4;
-            this.btnguardar.Location = new System.Drawing.Point(365, 200);
+            this.btnguardar.Location = new System.Drawing.Point(357, 205);
             this.btnguardar.Name = "btnguardar";
             this.btnguardar.Size = new System.Drawing.Size(55, 41);
-            this.btnguardar.TabIndex = 37;
+            this.btnguardar.TabIndex = 49;
             this.btnguardar.UseVisualStyleBackColor = true;
             this.btnguardar.UseWaitCursor = true;
             this.btnguardar.Click += new System.EventHandler(this.btnguardar_Click);
@@ -138,22 +122,20 @@
             // btnbuscar
             // 
             this.btnbuscar.Image = global::MASTER_TUNE_UP.Properties.Resources.lupa3;
-            this.btnbuscar.Location = new System.Drawing.Point(146, 33);
+            this.btnbuscar.Location = new System.Drawing.Point(138, 38);
             this.btnbuscar.Name = "btnbuscar";
             this.btnbuscar.Size = new System.Drawing.Size(64, 36);
-            this.btnbuscar.TabIndex = 17;
+            this.btnbuscar.TabIndex = 44;
             this.btnbuscar.UseVisualStyleBackColor = true;
             this.btnbuscar.Click += new System.EventHandler(this.btnbuscar_Click);
             // 
-            // frmtrabajos
+            // Frmlocalidades
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(583, 265);
-            this.Controls.Add(this.btncerrar);
+            this.ClientSize = new System.Drawing.Size(755, 314);
+            this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnguardar);
-            this.Controls.Add(this.txtxprecio);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.lblbuscar);
             this.Controls.Add(this.cboxservicio);
             this.Controls.Add(this.btnbuscar);
@@ -161,11 +143,8 @@
             this.Controls.Add(this.txtclave);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "frmtrabajos";
-            this.Text = "Trabajos";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmservicios_FormClosing);
-            this.Load += new System.EventHandler(this.frmservicios_Load);
+            this.Name = "Frmlocalidades";
+            this.Text = "Frmlocalidades";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -173,6 +152,8 @@
 
         #endregion
 
+        private System.Windows.Forms.Button btnEliminar;
+        private System.Windows.Forms.Button btnguardar;
         private System.Windows.Forms.Label lblbuscar;
         private System.Windows.Forms.ComboBox cboxservicio;
         private System.Windows.Forms.Button btnbuscar;
@@ -180,9 +161,5 @@
         private System.Windows.Forms.TextBox txtclave;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtxprecio;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button btncerrar;
-        private System.Windows.Forms.Button btnguardar;
     }
 }

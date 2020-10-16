@@ -12,14 +12,13 @@ using MASTER_TUNE_UP.Clases;
 
 namespace MASTER_TUNE_UP.Forms
 {
-    public partial class frmtrabajos : Form
-
+    public partial class Frmlocalidades : Form
     {
         Clases.Conexión objconexion;
         SqlConnection Conexion;
         int estatus;
         int existe = 0;
-        public frmtrabajos()
+        public Frmlocalidades()
         {
             InitializeComponent();
         }
@@ -36,18 +35,14 @@ namespace MASTER_TUNE_UP.Forms
                 {
                     //no fue nulo
 
-                    objconexion = new Clases. Conexión();
+                    objconexion = new Clases.Conexión();
                     Conexion = new SqlConnection(objconexion.Conn());
                     //se abre la conexion
                     Conexion.Open();
-                    string query = "select * from Servicios where se_clave=@se_clave";
-                    //asigno a comando el sqlcommand
+                    string query = "select * from Localidad where lo_Id=@lo_Id";
                     SqlCommand comando = new SqlCommand(query, Conexion);
-                    //inicializo cualquier parametrodefinido anteriormente
                     comando.Parameters.Clear();
-                    //cualquier variable,pero se recomienda usar el mismo nombre del campo
-                    comando.Parameters.AddWithValue("@se_clave", this.txtclave.Text);
-                    //asigno a leer el sqldatareader para leer el registro.
+                    comando.Parameters.AddWithValue("@lo_Id", this.txtclave.Text);
                     SqlDataReader leer = comando.ExecuteReader();
                     if (leer.Read())
                     {
@@ -60,10 +55,9 @@ namespace MASTER_TUNE_UP.Forms
                         cboxservicio.Enabled = true;
                         btnbuscar.Enabled = true;
                         //igualo los campos o columnas al txtnombre
-                        txtnombre.Text = leer["se_nombre"].ToString();
-                        txtxprecio.Text = leer["se_precio"].ToString();
-                        
-                        
+                        txtnombre.Text = leer["lo_Nombre"].ToString();
+
+
                     }
                     else
                     {
@@ -80,28 +74,25 @@ namespace MASTER_TUNE_UP.Forms
                         }
 
                     }
-
                 }
         }
 
         private void btnbuscar_Click(object sender, EventArgs e)
         {
+
             lblbuscar.Visible = true;
             cboxservicio.Visible = true;
             cboxservicio.Focus();
             llenarcbox();
+
         }
         private void llenarcbox()
         {
-            //defino el data table
             DataTable dt = new DataTable();
-            //establezco conex
             objconexion = new Clases.Conexión();
             Conexion = new SqlConnection(objconexion.Conn());
-            //abro conexion
             Conexion.Open();
-            //establezco mi query
-            string query = "SELECT * from Servicios where se_clave >=1 order by se_nombre";
+            string query = "SELECT * from Localidad where lo_Id >=1 order by lo_Nombre";
             //defino comando
             SqlCommand comando = new SqlCommand(query, Conexion);
             //defino mi adapter
@@ -109,10 +100,105 @@ namespace MASTER_TUNE_UP.Forms
             //lleno el datatable
             da.Fill(dt);
             this.cboxservicio.DataSource = dt;
-            this.cboxservicio.ValueMember = "se_clave";
-            this.cboxservicio.DisplayMember = "se_nombre";
+            this.cboxservicio.ValueMember = "lo_Id";
+            this.cboxservicio.DisplayMember = "lo_Nombre";
             Conexion.Close();
 
+        }
+
+        private void btnguardar_Click(object sender, EventArgs e)
+        {
+            if (existe == 0)
+            {
+                objconexion = new Clases.Conexión();
+                Conexion = new SqlConnection(objconexion.Conn());
+                Conexion.Open();
+                string query = "insert into Localidad values(@lo_Id,@lo_Nombre)";  //este es para insetar,se hace la conexion el campo y esl paramet                                                                                                            //asigno a comando el sqlcommand
+                SqlCommand comando = new SqlCommand(query, Conexion);
+                comando.Parameters.Clear();
+                comando.Parameters.AddWithValue("@lo_Id", txtclave.Text);
+                comando.Parameters.AddWithValue("@lo_Nombre", txtnombre.Text);
+                comando.ExecuteNonQuery();//es para verificar los editados
+                Acceso acceso = new Acceso();
+                string actividad = "El usuario registró la localidad " + txtnombre.Text + "."; acceso.Registrar_auditoria(actividad);
+                MessageBox.Show("Localidad guardado con exito", "Guardado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                btnguardar.Enabled = false;
+                cboxservicio.ResetText();
+                txtnombre.Clear();
+                cboxservicio.Text = "";
+                txtclave.Enabled = true;
+                txtclave.Clear();
+                txtclave.Focus();
+            }
+            if (existe == 1)
+            {
+                //fue un 0
+                objconexion = new Clases.Conexión();
+                Conexion = new SqlConnection(objconexion.Conn());
+                //se abre la conexion
+                Conexion.Open();
+                string query = "update Localidad set lo_Nombre=@lo_Nombre where lo_Id=@lo_Id";  //este es para modificar,se hace la conexion el campo y esl paramet                                                                                                            //asigno a comando el sqlcommand
+                SqlCommand comando = new SqlCommand(query, Conexion);
+                comando.Parameters.Clear();
+                comando.Parameters.AddWithValue("@lo_Id", txtclave.Text);
+                comando.Parameters.AddWithValue("@lo_Nombre", txtnombre.Text);
+                comando.ExecuteNonQuery();
+                Acceso acceso = new Acceso();
+                string actividad = "El usuario modificó la localidad " + txtnombre.Text + ".";
+                acceso.Registrar_auditoria(actividad);
+                MessageBox.Show("Servicio modificado con exito", "modificado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //dejar el forms como el inicio
+                btnguardar.Enabled = false;
+                cboxservicio.ResetText();
+                txtnombre.Clear();
+                txtclave.Enabled = true;
+                txtclave.Clear();
+                txtclave.Focus();
+
+            }
+        }
+        private void limpiar()
+        {
+            txtclave.Clear();
+            txtclave.Focus();
+            txtnombre.Clear();
+            cboxservicio.ResetText();
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            objconexion = new Clases.Conexión();
+            Conexion = new SqlConnection(objconexion.Conn());
+            //se abre el contenido
+            Conexion.Open();
+            string query = "DELETE from Localidad where lo_Id=" + txtclave.Text;
+            SqlCommand comando = new SqlCommand(query, Conexion);
+            comando.Parameters.Clear();
+            if (MessageBox.Show("La Localidad sera eliminada,está seguro?", "Eliminar", MessageBoxButtons.YesNo,
+                MessageBoxIcon.Stop) == DialogResult.Yes)
+            {
+                comando.ExecuteNonQuery();
+                MessageBox.Show("Localidad Eliminada", "Eliminar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                limpiar();
+            }
+        }
+
+        private void txtclave_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == 13)
+            {
+                txtnombre.Enabled = true;
+                txtnombre.Focus();
+            }
+        }
+
+        private void txtnombre_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == 13)
+            {
+                btnguardar.Enabled = true;
+                btnguardar.Focus();
+            }
         }
 
         private void cboxservicio_KeyPress(object sender, KeyPressEventArgs e)
@@ -130,84 +216,10 @@ namespace MASTER_TUNE_UP.Forms
             }
         }
 
-        private void btnguardar_Click(object sender, EventArgs e)
+        private void cboxservicio_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (existe == 0)
-            {
-                objconexion = new Clases.Conexión();
-                Conexion = new SqlConnection(objconexion.Conn());
-                Conexion.Open();
-                string query = "insert into Servicios values(@se_clave,@se_nombre,@se_precio)";  //este es para insetar,se hace la conexion el campo y esl paramet                                                                                                            //asigno a comando el sqlcommand
-                SqlCommand comando = new SqlCommand(query, Conexion);
-                comando.Parameters.Clear();
-                comando.Parameters.AddWithValue("@se_clave", txtclave.Text); 
-                comando.Parameters.AddWithValue("@se_nombre", txtnombre.Text);
-                comando.Parameters.AddWithValue("@se_precio", txtxprecio.Text);
-                comando.ExecuteNonQuery();//es para verificar los editados
-                Acceso acceso = new Acceso();
-                string actividad = "El usuario " + acceso.Usuario + " registró el servicio " + txtnombre.Text + "."; acceso.Registrar_auditoria(actividad);
-                MessageBox.Show("Servicio guardado con exito", "Guardado", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                btnguardar.Enabled = false;
-                cboxservicio.ResetText();
-                txtnombre.Clear();
-                cboxservicio.Text = "";
-                txtclave.Enabled = true;
-                txtclave.Clear();
-                txtclave.Focus();
-               
 
-            }
-            if (existe == 1)
-            {
-                //fue un 0
-                objconexion = new Clases.Conexión();
-                Conexion = new SqlConnection(objconexion.Conn());
-                //se abre la conexion
-                Conexion.Open();
-                string query = "update Servicios set se_nombre=@se_nombre,se_precio=@se_precio where se_clave=@se_clave";  //este es para modificar,se hace la conexion el campo y esl paramet                                                                                                            //asigno a comando el sqlcommand
-                SqlCommand comando = new SqlCommand(query, Conexion);
-                //inicializo cualquier parametrodefinido anteriormente
-                comando.Parameters.Clear();
-                //tranfiero el valor de txtpassword al parametrous_loginue pueda ser
-                //cualquier variable,pero se recomienda usar el mismo nombre del campo
-                comando.Parameters.AddWithValue("@se_clave",txtclave.Text); //este es para ya modificar 
-                comando.Parameters.AddWithValue("@se_nombre", txtnombre.Text);
-                comando.Parameters.AddWithValue("@se_precio", txtxprecio.Text);
-                //comando.Parameters.AddWithValue("@gr_estatus", cbox.SelectedIndex);
-                comando.ExecuteNonQuery();
-                Acceso acceso = new Acceso();
-                string actividad = "El usuario " + acceso.Usuario + " modificó el servicio " + txtnombre.Text + "."; 
-                acceso.Registrar_auditoria(actividad);
-                MessageBox.Show("Servicio modificado con exito", "modificado", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                //dejar el forms como el inicio
-                btnguardar.Enabled = false;
-                cboxservicio.ResetText();
-                txtnombre.Clear();
-                txtxprecio.Clear();
-                txtclave.Enabled = true;
-                txtclave.Clear();
-                txtclave.Focus();
-                
-            }
-        }
-
-        private void frmservicios_Load(object sender, EventArgs e)
-        {
-            Acceso acceso = new Acceso();
-            string actividad = "El usuario ingreso a servicios.";
-            acceso.Registrar_auditoria(actividad);
-        }
-
-        private void btncerrar_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void frmservicios_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            Acceso acceso = new Acceso();
-            string actividad = "El usuario " + acceso.Usuario + " salió de servicios.";
-            acceso.Registrar_auditoria(actividad);
         }
     }
+
 }

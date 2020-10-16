@@ -24,8 +24,9 @@ namespace MASTER_TUNE_UP.Forms
 
         private void frmdatosg_Load(object sender, EventArgs e)
         {
+
             Acceso acceso = new Acceso();
-            string actividad = "El usuario " + acceso.Usuario + " ingreso a Datos Generales.";
+            string actividad = "El usuario  ingreso a Datos Generales.";
             acceso.Registrar_auditoria(actividad);
 
             objconexion = new Clases.Conexión();
@@ -51,7 +52,8 @@ namespace MASTER_TUNE_UP.Forms
                 txtlocalidad.Text = leer["dg_loca"].ToString();
                 txttel.Text = leer["dg_tlefono"].ToString();
                 txtemail.Text = leer["dg_emal"].ToString();
-                
+
+    
 
             }
 

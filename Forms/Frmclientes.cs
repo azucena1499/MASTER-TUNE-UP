@@ -52,7 +52,7 @@ namespace MASTER_TUNE_UP.Forms
                     comando.Parameters.AddWithValue("@Cl_nom", this.txtnombre.Text);
                     comando.Parameters.AddWithValue("@Cl_ape", this.txtxape.Text);
                     comando.Parameters.AddWithValue("@Cl_dire", this.txtdomicilio.Text);
-                    comando.Parameters.AddWithValue("@Cl_loc", this.txtlocalidad.Text);
+                    comando.Parameters.AddWithValue("@Cl_loc", this.cboxlocalidad.Text);
                     comando.Parameters.AddWithValue("@Cl_tel", this.txtteleono.Text);
                     comando.Parameters.AddWithValue("@Cl_email", this.txtemail.Text); 
                     comando.Parameters.AddWithValue("@Cl_apemat", this.txtapeMat.Text);
@@ -69,7 +69,7 @@ namespace MASTER_TUNE_UP.Forms
                         txtdomicilio.Enabled = true;
                         txtemail.Enabled = true;
                         txtapeMat.Enabled = true;
-                        txtlocalidad.Enabled = true;
+                        cboxlocalidad.Enabled = true;
                         txtteleono.Enabled = true;
                         txtnombre.Focus();
                         txtclave.Enabled = false;
@@ -85,7 +85,7 @@ namespace MASTER_TUNE_UP.Forms
                         txtemail.Text = leer["Cl_email"].ToString();
                         txtclave.Text = leer["Cl_id"].ToString();
                         txtteleono.Text = leer["Cl_tel"].ToString();
-                        txtlocalidad.Text = leer["Cl_loc"].ToString();
+                        cboxlocalidad.Text =leer["Cl_loc"].ToString();
                         txtapeMat.Text = leer["Cl_apemat"].ToString();
 
                         if (estatus == 1)
@@ -105,7 +105,7 @@ namespace MASTER_TUNE_UP.Forms
                             txtnombre.Enabled = true;
                             txtdomicilio.Enabled = false;
                             txtemail.Enabled = false;
-                            txtlocalidad.Enabled = false;
+                            cboxlocalidad.Enabled = false;
                             txtapeMat.Enabled = false;
                             limpiar();
 
@@ -136,8 +136,7 @@ namespace MASTER_TUNE_UP.Forms
             txtemail.Clear();
             txtteleono.Enabled = false;
             txtteleono.Clear();
-            txtlocalidad.Enabled = false;
-            txtlocalidad.Clear();
+            cboxlocalidad.Enabled = false;
             txtdomicilio.Enabled = false;
             txtdomicilio.Clear();
             txtnombre.Enabled = false;
@@ -169,7 +168,7 @@ namespace MASTER_TUNE_UP.Forms
                 comando.Parameters.AddWithValue("@Cl_ape", txtxape.Text);
                 comando.Parameters.AddWithValue("@Cl_apemat", txtapeMat.Text);
                 comando.Parameters.AddWithValue("@Cl_dire", txtdomicilio.Text);
-                comando.Parameters.AddWithValue("@Cl_loc", txtlocalidad.Text);
+                comando.Parameters.AddWithValue("@Cl_loc", cboxlocalidad.Text);
                 comando.Parameters.AddWithValue("@Cl_email", txtemail.Text);
                 comando.Parameters.AddWithValue("@Cl_tel", txtteleono.Text);
                 comando.Parameters.AddWithValue("@Cl_estatus", cboxclientee.SelectedIndex);
@@ -197,7 +196,7 @@ namespace MASTER_TUNE_UP.Forms
                 comando.Parameters.AddWithValue("@Cl_dire", txtdomicilio.Text);
                 comando.Parameters.AddWithValue("@Cl_ape", txtxape.Text);
                 comando.Parameters.AddWithValue("@Cl_apemat", txtapeMat.Text);
-                comando.Parameters.AddWithValue("@Cl_loc", txtlocalidad.Text);
+                comando.Parameters.AddWithValue("@Cl_loc", cboxlocalidad.Text);
                 comando.Parameters.AddWithValue("@Cl_nom", txtnombre.Text);
                 comando.Parameters.AddWithValue("@Cl_estatus", cboxclientee.SelectedIndex);
                 comando.Parameters.AddWithValue("@Cl_tel", txtteleono.Text);
@@ -224,6 +223,25 @@ namespace MASTER_TUNE_UP.Forms
             if (leer.Read())
                 txtclave.Text = leer["ultimo"].ToString();
         }
+        private void llenarcboxlocalidad()
+        {
+            DataTable dt = new DataTable();
+            objconexion = new Clases.Conexión();
+            Conexion = new SqlConnection(objconexion.Conn());
+            Conexion.Open();
+            string query = "SELECT * from Localidad where lo_Id >=1 order by lo_Nombre";
+            //defino comando
+            SqlCommand comando = new SqlCommand(query, Conexion);
+            //defino mi adapter
+            SqlDataAdapter da = new SqlDataAdapter(comando);
+            //lleno el datatable
+            da.Fill(dt);
+            this.cboxlocalidad.DataSource = dt;
+            this.cboxlocalidad.ValueMember = "lo_Id";
+            this.cboxlocalidad.DisplayMember = "lo_Nombre";
+            Conexion.Close();
+
+        }
 
         private void btneliminar_Click(object sender, EventArgs e)
         {
@@ -240,9 +258,9 @@ namespace MASTER_TUNE_UP.Forms
             {
                 comando.ExecuteNonQuery();
                 Acceso acceso = new Acceso();
-                string actividad = "El usuario " + acceso.Usuario + " Elimino al cliente " + txtnombre.Text + ".";
+                string actividad = "El usuario  Elimino al cliente " + txtnombre.Text + ".";
                 acceso.Registrar_auditoria(actividad);
-                MessageBox.Show("Cliente dado de baja", "Eliminar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Cliente eliminado", "Eliminar", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             limpiar();
         }
@@ -262,8 +280,8 @@ namespace MASTER_TUNE_UP.Forms
 
             if (e.KeyValue == 13)
             {
-                txtdomicilio.Enabled = true;
-                txtdomicilio.Focus();
+                txtapeMat.Enabled = true;
+                txtapeMat.Focus();
             }
         }
 
@@ -272,18 +290,8 @@ namespace MASTER_TUNE_UP.Forms
 
             if (e.KeyValue == 13)
             {
-                txtlocalidad.Enabled = true;
-                txtlocalidad.Focus();
-            }
-        }
-
-        private void txtlocalidad_KeyDown(object sender, KeyEventArgs e)
-        {
-
-            if (e.KeyValue == 13)
-            {
-                txtteleono.Enabled = true;
-                txtteleono.Focus();
+                cboxlocalidad.Enabled = true;
+                cboxlocalidad.Focus();
             }
         }
 
@@ -294,6 +302,15 @@ namespace MASTER_TUNE_UP.Forms
             {
                 txtemail.Enabled = true;
                 txtemail.Focus();
+            }
+        }
+        private void txtapeMat_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == 13)
+            {
+
+                txtdomicilio.Enabled = true;
+                txtdomicilio.Focus();
             }
         }
         private void txtemail_KeyDown(object sender, KeyEventArgs e)
@@ -316,6 +333,7 @@ namespace MASTER_TUNE_UP.Forms
             Acceso acceso = new Acceso();
             string actividad = "El usuario ingreso a Registro de clientes.";
             acceso.Registrar_auditoria(actividad);
+            llenarcboxlocalidad();
         }
 
         private void btncerrar_Click(object sender, EventArgs e)
@@ -374,6 +392,15 @@ namespace MASTER_TUNE_UP.Forms
                 txtclave.Focus();
 
 
+            }
+        }
+
+        private void cboxlocalidad_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == 13)
+            {
+                txtteleono.Enabled = true;
+                txtteleono.Focus();
             }
         }
     }

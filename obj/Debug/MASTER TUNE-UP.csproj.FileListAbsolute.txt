@@ -72,3 +72,5 @@ C:\MASTER_TUNE-UP\obj\Debug\MASTER TUNE-UP.csproj.CoreCompileInputs.cache
 C:\MASTER_TUNE-UP\obj\Debug\MASTER TUNE-UP.exe
 C:\MASTER_TUNE-UP\obj\Debug\MASTER TUNE-UP.pdb
 C:\MASTER_TUNE-UP\obj\Debug\MASTER_TUNE_UP.Forms.frmtrabajos.resources
+C:\MASTER_TUNE-UP\obj\Debug\MASTER_TUNE_UP.Forms.Frmservicios.resources
+C:\MASTER_TUNE-UP\obj\Debug\MASTER_TUNE_UP.Forms.Frmlocalidades.resources

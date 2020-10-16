@@ -70,6 +70,10 @@ namespace MASTER_TUNE_UP.Forms
             //maximizar pantalla
             this.Location = Screen.PrimaryScreen.WorkingArea.Location;
             this.Size = Screen.PrimaryScreen.WorkingArea.Size;
+            //float lblUsuario = (float.Parse(acceso.Usuario));
+            //lbluser.Text = lblUsuario.ToString();
+
+
         }
 
         private void acercaDeToolStripMenuItem_Click(object sender, EventArgs e)
@@ -88,6 +92,33 @@ namespace MASTER_TUNE_UP.Forms
         {
             Forms.frmdatosg x = new Forms.frmdatosg();
             x.Show();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void serviciosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Forms.Frmservicios x = new Forms.Frmservicios();
+            x.Show();
+        }
+
+        private void localidadesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Forms.Frmlocalidades x = new Forms.Frmlocalidades();
+            x.Show();
+        }
+
+        public void lbluser_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
         }
     }
 }

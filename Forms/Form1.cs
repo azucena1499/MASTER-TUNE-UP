@@ -39,7 +39,7 @@ namespace MASTER_TUNE_UP
                 //se controlan errores
                 try
                 {
-                    pictureBox1.Image = Image.FromFile(@"C:\Foto" + Txtusuario.Text + ".jpg");
+                    pictureBox1.Image = Image.FromFile(@"C:\Foto\" + Txtusuario.Text + ".jpg");
                     pictureBox1.Visible = true;
 
                 }
@@ -98,11 +98,15 @@ namespace MASTER_TUNE_UP
             //regresa bool true 
             if (acceso.Login(Txtusuario.Text, txtpassword.Text))
             {
-                string actividad = "El usuario " + acceso.Usuario + " ingresó al sistema.";
+                string actividad = "El usuario ingresó al sistema.";
                 acceso.Registrar_auditoria(actividad);
                 this.Hide();
                 Frmmenu x = new Frmmenu(Txtusuario.Text);
+                x.lbluser.Text =  "Usuario:" + Txtusuario.Text;
+                x.lbl3.Text = "Nivel:" + txtnivel.Text;
+
                 x.Show();
+                //"Master Tune-up, version 1.0" +
             }
             else
             {
@@ -124,17 +128,19 @@ namespace MASTER_TUNE_UP
             if (e.KeyChar == 13)
             {
                 Acceso acceso = new Acceso();
+
                 if (acceso.Login(Txtusuario.Text, txtpassword.Text))
                 {
                     btnaccesar.Enabled = true;
                     btnaccesar.Focus();
-                   
-                        string actividad = "El usuario ingresó al sistema.";
-                        acceso.Registrar_auditoria(actividad);
-                        this.Hide();
-                        Frmmenu x = new Frmmenu(Txtusuario.Text);
-                        x.Show();
-                    
+
+                    string actividad = "El usuario ingresó al sistema.";
+                    acceso.Registrar_auditoria(actividad);
+                    this.Hide();
+                    Frmmenu x = new Frmmenu(Txtusuario.Text);
+                    x.lbluser.Text = "Usuario:" + Txtusuario.Text;
+                    x.lbl3.Text = "Nivel:" + txtnivel.Text;
+                    x.Show();
 
                 }
                 else

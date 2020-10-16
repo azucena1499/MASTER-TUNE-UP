@@ -32,6 +32,7 @@ namespace MASTER_TUNE_UP.Forms
 
         private void tabPage1_Click(object sender, EventArgs e)
         {
+            
 
         }
         private bool verificarCambioContra()
@@ -306,7 +307,7 @@ namespace MASTER_TUNE_UP.Forms
                         cboxnivel.Enabled = true;
                         txtRegistroContra.Focus();
                         btnguardar.Enabled = true;
-                       
+
 
 
                     }
@@ -332,6 +333,8 @@ namespace MASTER_TUNE_UP.Forms
 
         private void TxtRegistroUsuario_TextChanged(object sender, EventArgs e)
         {
+            TxtRegistroUsuario.Focus();
+
             habilitarBusqueda();
             habilitarGuardar();
         }
@@ -364,6 +367,8 @@ namespace MASTER_TUNE_UP.Forms
         private void btnCambio_Click(object sender, EventArgs e)
         {
             labelCambioNueva.Visible = true;
+            txtNuevaContra.Focus();
+
             txtNuevaContra.Visible = true;
             labelCambioConfirmar.Visible = true;
             txtNuevaConfirmar.Visible = true;
@@ -465,6 +470,85 @@ namespace MASTER_TUNE_UP.Forms
             string actividad = "El usuario " + acceso.Usuario + " salió de auditoria.";
             acceso.Registrar_auditoria(actividad);
         }
+
+        private void TxtRegistroUsuario_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == 13)
+            {
+                txtRegistroContra.Enabled = true;
+                txtRegistroContra.Focus();
+            }
+        }
+
+        private void txtRegistroContra_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == 13)
+            {
+                txtRegistroConfirmar.Enabled = true;
+                txtRegistroConfirmar.Focus();
+            }
+        }
+
+        private void txtRegistroConfirmar_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == 13)
+            {
+                if (txtRegistroConfirmar.Text == txtRegistroContra.Text)
+                {
+                    cboxnivel.Enabled = true;
+                    cboxnivel.Focus();
+
+                }
+                else
+                {
+                    MessageBox.Show("Las contraseñas no coinciden.", "Error");
+                    txtRegistroContra.Focus();
+                }
+
+
+            }
+
+        }
+
+        private void cboxnivel_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == 13)
+            {
+                if (txtRegistroConfirmar.Text == txtRegistroContra.Text)
+                {
+                    btnguardar.Enabled = true;
+                    btnguardar.Focus();
+
+                }
+            }
+        }
+
+        private void txtNuevaContra_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == 13)
+            {
+
+                txtNuevaConfirmar.Enabled = true;
+                txtNuevaConfirmar.Focus();
+
+
+            }
+        }
+        private void txtNuevaConfirmar_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == 13)
+            {
+
+                btnGuardarCambio.Enabled = true;
+                btnGuardarCambio.Focus();
+
+
+            }
+        }
     }
 }
+    
+
+    
+
 

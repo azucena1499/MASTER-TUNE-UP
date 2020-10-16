@@ -56,15 +56,15 @@
             // txtdomicilio
             // 
             this.txtdomicilio.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtdomicilio.Location = new System.Drawing.Point(108, 74);
+            this.txtdomicilio.Location = new System.Drawing.Point(108, 62);
             this.txtdomicilio.Name = "txtdomicilio";
-            this.txtdomicilio.Size = new System.Drawing.Size(242, 20);
+            this.txtdomicilio.Size = new System.Drawing.Size(213, 20);
             this.txtdomicilio.TabIndex = 1;
             // 
             // txtlocalidad
             // 
             this.txtlocalidad.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtlocalidad.Location = new System.Drawing.Point(108, 121);
+            this.txtlocalidad.Location = new System.Drawing.Point(108, 104);
             this.txtlocalidad.Name = "txtlocalidad";
             this.txtlocalidad.Size = new System.Drawing.Size(213, 20);
             this.txtlocalidad.TabIndex = 2;
@@ -72,23 +72,23 @@
             // txtgerente
             // 
             this.txtgerente.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtgerente.Location = new System.Drawing.Point(108, 171);
+            this.txtgerente.Location = new System.Drawing.Point(108, 142);
             this.txtgerente.Name = "txtgerente";
             this.txtgerente.Size = new System.Drawing.Size(213, 20);
             this.txtgerente.TabIndex = 3;
             // 
             // txtemail
             // 
-            this.txtemail.Location = new System.Drawing.Point(108, 216);
+            this.txtemail.Location = new System.Drawing.Point(108, 182);
             this.txtemail.Name = "txtemail";
-            this.txtemail.Size = new System.Drawing.Size(162, 20);
+            this.txtemail.Size = new System.Drawing.Size(213, 20);
             this.txtemail.TabIndex = 4;
             // 
             // txttel
             // 
-            this.txttel.Location = new System.Drawing.Point(108, 257);
+            this.txttel.Location = new System.Drawing.Point(108, 218);
             this.txttel.Name = "txttel";
-            this.txttel.Size = new System.Drawing.Size(100, 20);
+            this.txttel.Size = new System.Drawing.Size(113, 20);
             this.txttel.TabIndex = 5;
             // 
             // label1
@@ -103,7 +103,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(48, 74);
+            this.label2.Location = new System.Drawing.Point(48, 62);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(49, 13);
             this.label2.TabIndex = 7;
@@ -112,7 +112,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(48, 124);
+            this.label3.Location = new System.Drawing.Point(48, 107);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(53, 13);
             this.label3.TabIndex = 8;
@@ -121,7 +121,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(53, 174);
+            this.label4.Location = new System.Drawing.Point(53, 145);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(45, 13);
             this.label4.TabIndex = 9;
@@ -130,7 +130,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(59, 216);
+            this.label5.Location = new System.Drawing.Point(59, 182);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(38, 13);
             this.label5.TabIndex = 10;
@@ -139,7 +139,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(53, 260);
+            this.label6.Location = new System.Drawing.Point(53, 225);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(49, 13);
             this.label6.TabIndex = 11;
@@ -189,6 +189,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmdatosg";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Datos Gnerales";
             this.Load += new System.EventHandler(this.frmdatosg_Load);
             this.ResumeLayout(false);
