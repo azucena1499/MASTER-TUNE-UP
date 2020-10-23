@@ -191,6 +191,7 @@
             this.Name = "frmdatosg";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Datos Gnerales";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmdatosg_FormClosing);
             this.Load += new System.EventHandler(this.frmdatosg_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

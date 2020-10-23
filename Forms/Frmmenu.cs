@@ -30,7 +30,7 @@ namespace MASTER_TUNE_UP.Forms
         {
             
             Acceso acceso = new Acceso();
-            string actividad = "El usuario " + acceso.Usuario + " salio al sistema.";
+            string actividad = "El usuario  salio al sistema.";
             acceso.Registrar_auditoria(actividad);
             this.Close();
         }
@@ -84,7 +84,7 @@ namespace MASTER_TUNE_UP.Forms
         private void Frmmenu_FormClosing(object sender, FormClosingEventArgs e)
         {
             Acceso acceso = new Acceso();
-            string actividad = "El usuario " + acceso.Usuario + " salió del Menu.";
+            string actividad = "El usuario salió del Menu.";
             acceso.Registrar_auditoria(actividad);
         }
 

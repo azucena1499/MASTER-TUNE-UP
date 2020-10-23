@@ -220,6 +220,20 @@ namespace MASTER_TUNE_UP.Forms
         {
 
         }
+
+        private void Frmlocalidades_Load(object sender, EventArgs e)
+        {
+            Acceso acceso = new Acceso();
+            string actividad = "El usuario  Ingreso a Localidades.";
+            acceso.Registrar_auditoria(actividad);
+        }
+
+        private void Frmlocalidades_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Acceso acceso = new Acceso();
+            string actividad = "El usuario  salio de Localidades.";
+            acceso.Registrar_auditoria(actividad);
+        }
     }
 
 }

@@ -145,7 +145,7 @@ namespace MASTER_TUNE_UP.Forms
                 comando.Parameters.AddWithValue("@se_precio", txtxprecio.Text);
                 comando.ExecuteNonQuery();//es para verificar los editados
                 Acceso acceso = new Acceso();
-                string actividad = "El usuario " + acceso.Usuario + " registró el servicio " + txtnombre.Text + "."; acceso.Registrar_auditoria(actividad);
+                string actividad = "El usuario registró el servicio " + txtnombre.Text + "."; acceso.Registrar_auditoria(actividad);
                 MessageBox.Show("Servicio guardado con exito", "Guardado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 btnguardar.Enabled = false;
                 cboxservicio.ResetText();
@@ -176,7 +176,7 @@ namespace MASTER_TUNE_UP.Forms
                 //comando.Parameters.AddWithValue("@gr_estatus", cbox.SelectedIndex);
                 comando.ExecuteNonQuery();
                 Acceso acceso = new Acceso();
-                string actividad = "El usuario " + acceso.Usuario + " modificó el servicio " + txtnombre.Text + "."; 
+                string actividad = "El usuario modificó el servicio " + txtnombre.Text + "."; 
                 acceso.Registrar_auditoria(actividad);
                 MessageBox.Show("Servicio modificado con exito", "modificado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 //dejar el forms como el inicio
@@ -194,7 +194,7 @@ namespace MASTER_TUNE_UP.Forms
         private void frmservicios_Load(object sender, EventArgs e)
         {
             Acceso acceso = new Acceso();
-            string actividad = "El usuario ingreso a servicios.";
+            string actividad = "El usuario ingreso a Trabajos.";
             acceso.Registrar_auditoria(actividad);
         }
 
@@ -206,7 +206,7 @@ namespace MASTER_TUNE_UP.Forms
         private void frmservicios_FormClosing(object sender, FormClosingEventArgs e)
         {
             Acceso acceso = new Acceso();
-            string actividad = "El usuario " + acceso.Usuario + " salió de servicios.";
+            string actividad = "El usuario salió de Trabajos.";
             acceso.Registrar_auditoria(actividad);
         }
     }

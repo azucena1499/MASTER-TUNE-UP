@@ -354,7 +354,6 @@
             // 
             // dtpfecha
             // 
-            this.dtpfecha.Enabled = false;
             this.dtpfecha.Location = new System.Drawing.Point(535, 0);
             this.dtpfecha.Name = "dtpfecha";
             this.dtpfecha.Size = new System.Drawing.Size(212, 20);
@@ -396,6 +395,7 @@
             this.MinimizeBox = false;
             this.Name = "Frmservicios";
             this.Text = "Servicios";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Frmservicios_FormClosing);
             this.Load += new System.EventHandler(this.Frmservicios_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgServicios)).EndInit();
             this.groupBox1.ResumeLayout(false);

@@ -1,5 +1,6 @@
 ﻿using MASTER_TUNE_UP.Clases;
 using System;
+using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Windows.Forms;
@@ -24,10 +25,16 @@ namespace MASTER_TUNE_UP.Forms
         private int estadoActual = BUSCANDO;
         private Usuario usuario = null;
 
+        string todos;
+        string User;
+
+        //greet cmda = new greet();
+
         public FrmAuditoria()
         {
             InitializeComponent();
             acceso = new Acceso();
+            dgServicios.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
         private void tabPage1_Click(object sender, EventArgs e)
@@ -329,8 +336,11 @@ namespace MASTER_TUNE_UP.Forms
             cboxnivel.Items.Add("Administrador");
             cboxnivel.Items.Add("Operador");
             Acceso acceso = new Acceso();
-            string actividad = "El usuario " + acceso.Usuario + " entro a auditorias.";
+            string actividad = "El usuario entro a auditorias.";
             acceso.Registrar_auditoria(actividad);
+            RdbTodos.Focus();
+
+
         }
 
         private void TxtRegistroUsuario_TextChanged(object sender, EventArgs e)
@@ -469,7 +479,7 @@ namespace MASTER_TUNE_UP.Forms
         private void FrmAuditoria_FormClosing(object sender, FormClosingEventArgs e)
         {
             Acceso acceso = new Acceso();
-            string actividad = "El usuario " + acceso.Usuario + " salió de auditoria.";
+            string actividad = "El usuario salió de auditoria.";
             acceso.Registrar_auditoria(actividad);
         }
 
@@ -547,6 +557,93 @@ namespace MASTER_TUNE_UP.Forms
 
             }
         }
+       
+        private void llenarcbox()//este me llena el CboxUsuario
+        {
+            
+            objconexion = new Clases.Conexión();
+            Conexion = new SqlConnection(objconexion.Conn());
+            //abro conexion
+            Conexion.Open();
+           // SqlCommand comando = new SqlCommand("select Au_Clave from Auditoriaa", Conexion);
+            SqlCommand comando = new SqlCommand("select Us_login from Usuario", Conexion);
+
+            //defino mi adapter
+            SqlDataReader leer = comando.ExecuteReader();
+            while(leer.Read())
+            {
+                CboxUsuario.Items.Add(leer["Us_login"].ToString());
+
+            }
+            Conexion.Close();
+
+        }
+
+        private void tabPage2_Click(object sender, EventArgs e)
+        {
+            RdbTodos.Focus();
+        }
+
+        private void RdbUsuario_CheckedChanged(object sender, EventArgs e)
+        {
+            if (RdbUsuario.Checked)
+            {
+               
+                CboxUsuario.Enabled = true;
+                btnAgregar.Enabled = true;
+                llenarcbox();
+
+            }
+            else
+            {
+                CboxUsuario.Enabled = false;
+
+            }
+        }
+
+        private void RdbTodos_CheckedChanged(object sender, EventArgs e)
+        {
+            if (RdbTodos.Checked)
+            {
+               btnAgregar.Enabled = true;
+               CargarUnDatagrid(dgServicios);//aqui lo mando lla,ar
+            }
+           
+
+        }
+        public void CargarUnDatagrid(DataGridView dgServicios)//esto es para lenar el datagrid con TODOS
+        {
+            objconexion = new Clases.Conexión();
+            Conexion = new SqlConnection(objconexion.Conn());
+            //se abre la conexion
+            Conexion.Open();
+            SqlCommand cm = new SqlCommand("select*from Auditoriaa", Conexion);
+            SqlDataAdapter da = new SqlDataAdapter(cm);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            dgServicios.DataSource = dt;
+        }
+        void buscar()//se supone que con este iba a buscar por fechas,pero falle
+        {
+            objconexion = new Clases.Conexión();
+            Conexion = new SqlConnection(objconexion.Conn());
+            //se abre la conexion
+            Conexion.Open();
+            SqlDataAdapter cm = new SqlDataAdapter("select*from Auditoriaa", Conexion);
+            cm.SelectCommand.Parameters.Add("Au_Fecha", SqlDbType.DateTime).Value = Dtp1.Text;
+           // cm.SelectCommand.Parameters.Add("Au_Fecha", SqlDbType.DateTime).Value = Dtp2.Text;
+            DataTable dt = new DataTable();
+            cm.Fill(dt);
+            dgServicios.DataSource = dt;
+
+
+        }
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            //buscar();
+        }
+       
+
     }
 }
     

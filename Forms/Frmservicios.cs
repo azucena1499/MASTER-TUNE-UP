@@ -253,5 +253,11 @@ namespace MASTER_TUNE_UP.Forms
                 }
         }
 
+        private void Frmservicios_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Acceso acceso = new Acceso();
+            string actividad = "El usuario salió de Servicios.";
+            acceso.Registrar_auditoria(actividad);
+        }
     }
 }
