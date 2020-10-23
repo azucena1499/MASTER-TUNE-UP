@@ -53,13 +53,14 @@
             this.TxtRegistroUsuario = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.btnEliminar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.dgServicios = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.Dtp2 = new System.Windows.Forms.DateTimePicker();
+            this.FechaHasta = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
-            this.Dtp1 = new System.Windows.Forms.DateTimePicker();
+            this.FechasDesde = new System.Windows.Forms.DateTimePicker();
             this.CboxUsuario = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -82,7 +83,6 @@
             this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.radioButton4 = new System.Windows.Forms.RadioButton();
             this.btnsalir = new System.Windows.Forms.Button();
-            this.btnEliminar = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tbpregistro.SuspendLayout();
             this.groupCambio.SuspendLayout();
@@ -387,6 +387,17 @@
             this.tabPage2.UseVisualStyleBackColor = true;
             this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
             // 
+            // btnEliminar
+            // 
+            this.btnEliminar.Enabled = false;
+            this.btnEliminar.Image = global::MASTER_TUNE_UP.Properties.Resources.cruzar3;
+            this.btnEliminar.Location = new System.Drawing.Point(605, 279);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(56, 30);
+            this.btnEliminar.TabIndex = 41;
+            this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
+            // 
             // btnAgregar
             // 
             this.btnAgregar.Image = global::MASTER_TUNE_UP.Properties.Resources.comprobar1;
@@ -409,9 +420,9 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Controls.Add(this.Dtp2);
+            this.groupBox2.Controls.Add(this.FechaHasta);
             this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Controls.Add(this.Dtp1);
+            this.groupBox2.Controls.Add(this.FechasDesde);
             this.groupBox2.Location = new System.Drawing.Point(308, 27);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(353, 60);
@@ -428,12 +439,13 @@
             this.label6.TabIndex = 23;
             this.label6.Text = "Al:";
             // 
-            // Dtp2
+            // FechaHasta
             // 
-            this.Dtp2.Location = new System.Drawing.Point(180, 33);
-            this.Dtp2.Name = "Dtp2";
-            this.Dtp2.Size = new System.Drawing.Size(127, 20);
-            this.Dtp2.TabIndex = 24;
+            this.FechaHasta.Location = new System.Drawing.Point(180, 33);
+            this.FechaHasta.Name = "FechaHasta";
+            this.FechaHasta.Size = new System.Drawing.Size(127, 20);
+            this.FechaHasta.TabIndex = 24;
+            this.FechaHasta.ValueChanged += new System.EventHandler(this.FechaHasta_ValueChanged);
             // 
             // label5
             // 
@@ -444,12 +456,13 @@
             this.label5.TabIndex = 22;
             this.label5.Text = "De:";
             // 
-            // Dtp1
+            // FechasDesde
             // 
-            this.Dtp1.Location = new System.Drawing.Point(33, 31);
-            this.Dtp1.Name = "Dtp1";
-            this.Dtp1.Size = new System.Drawing.Size(114, 20);
-            this.Dtp1.TabIndex = 22;
+            this.FechasDesde.Location = new System.Drawing.Point(33, 31);
+            this.FechasDesde.Name = "FechasDesde";
+            this.FechasDesde.Size = new System.Drawing.Size(114, 20);
+            this.FechasDesde.TabIndex = 22;
+            this.FechasDesde.ValueChanged += new System.EventHandler(this.FechasDesde_ValueChanged);
             // 
             // CboxUsuario
             // 
@@ -487,7 +500,6 @@
             this.RdbUsuario.Name = "RdbUsuario";
             this.RdbUsuario.Size = new System.Drawing.Size(78, 17);
             this.RdbUsuario.TabIndex = 1;
-            this.RdbUsuario.TabStop = true;
             this.RdbUsuario.Text = "Por usuario";
             this.RdbUsuario.UseVisualStyleBackColor = true;
             this.RdbUsuario.CheckedChanged += new System.EventHandler(this.RdbUsuario_CheckedChanged);
@@ -495,6 +507,7 @@
             // RdbTodos
             // 
             this.RdbTodos.AutoSize = true;
+            this.RdbTodos.Checked = true;
             this.RdbTodos.Location = new System.Drawing.Point(6, 31);
             this.RdbTodos.Name = "RdbTodos";
             this.RdbTodos.Size = new System.Drawing.Size(55, 17);
@@ -678,15 +691,6 @@
             this.btnsalir.UseVisualStyleBackColor = true;
             this.btnsalir.Click += new System.EventHandler(this.btnsalir_Click);
             // 
-            // btnEliminar
-            // 
-            this.btnEliminar.Image = global::MASTER_TUNE_UP.Properties.Resources.cruzar3;
-            this.btnEliminar.Location = new System.Drawing.Point(605, 279);
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(56, 30);
-            this.btnEliminar.TabIndex = 41;
-            this.btnEliminar.UseVisualStyleBackColor = true;
-            // 
             // FrmAuditoria
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -752,11 +756,11 @@
         private System.Windows.Forms.RadioButton RdbUsuario;
         private System.Windows.Forms.RadioButton RdbTodos;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.DateTimePicker Dtp1;
+        private System.Windows.Forms.DateTimePicker FechasDesde;
         private System.Windows.Forms.ComboBox CboxUsuario;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.DateTimePicker Dtp2;
+        private System.Windows.Forms.DateTimePicker FechaHasta;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.GroupBox groupBox5;
