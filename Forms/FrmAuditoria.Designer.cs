@@ -82,6 +82,7 @@
             this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.radioButton4 = new System.Windows.Forms.RadioButton();
             this.btnsalir = new System.Windows.Forms.Button();
+            this.btnEliminar = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tbpregistro.SuspendLayout();
             this.groupCambio.SuspendLayout();
@@ -370,6 +371,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.btnEliminar);
             this.tabPage2.Controls.Add(this.btnAgregar);
             this.tabPage2.Controls.Add(this.dgServicios);
             this.tabPage2.Controls.Add(this.groupBox2);
@@ -387,21 +389,21 @@
             // 
             // btnAgregar
             // 
-            this.btnAgregar.Location = new System.Drawing.Point(586, 127);
+            this.btnAgregar.Image = global::MASTER_TUNE_UP.Properties.Resources.comprobar1;
+            this.btnAgregar.Location = new System.Drawing.Point(594, 113);
             this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(75, 23);
+            this.btnAgregar.Size = new System.Drawing.Size(48, 34);
             this.btnAgregar.TabIndex = 40;
-            this.btnAgregar.Text = "button3";
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
             // dgServicios
             // 
-            this.dgServicios.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
+            this.dgServicios.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.dgServicios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgServicios.Location = new System.Drawing.Point(19, 181);
+            this.dgServicios.Location = new System.Drawing.Point(127, 193);
             this.dgServicios.Name = "dgServicios";
-            this.dgServicios.Size = new System.Drawing.Size(367, 163);
+            this.dgServicios.Size = new System.Drawing.Size(415, 107);
             this.dgServicios.TabIndex = 39;
             // 
             // groupBox2
@@ -410,7 +412,7 @@
             this.groupBox2.Controls.Add(this.Dtp2);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.Dtp1);
-            this.groupBox2.Location = new System.Drawing.Point(325, 27);
+            this.groupBox2.Location = new System.Drawing.Point(308, 27);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(353, 60);
             this.groupBox2.TabIndex = 3;
@@ -453,7 +455,7 @@
             // 
             this.CboxUsuario.Enabled = false;
             this.CboxUsuario.FormattingEnabled = true;
-            this.CboxUsuario.Location = new System.Drawing.Point(158, 36);
+            this.CboxUsuario.Location = new System.Drawing.Point(166, 57);
             this.CboxUsuario.Name = "CboxUsuario";
             this.CboxUsuario.Size = new System.Drawing.Size(121, 21);
             this.CboxUsuario.TabIndex = 21;
@@ -461,7 +463,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(172, 20);
+            this.label4.Location = new System.Drawing.Point(180, 41);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(41, 13);
             this.label4.TabIndex = 20;
@@ -619,7 +621,7 @@
             // 
             this.comboBox2.Enabled = false;
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(157, 28);
+            this.comboBox2.Location = new System.Drawing.Point(171, 50);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(121, 21);
             this.comboBox2.TabIndex = 24;
@@ -627,7 +629,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(171, 12);
+            this.label7.Location = new System.Drawing.Point(190, 34);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(41, 13);
             this.label7.TabIndex = 23;
@@ -669,18 +671,27 @@
             // btnsalir
             // 
             this.btnsalir.Image = global::MASTER_TUNE_UP.Properties.Resources.error_1526110;
-            this.btnsalir.Location = new System.Drawing.Point(697, 406);
+            this.btnsalir.Location = new System.Drawing.Point(732, 423);
             this.btnsalir.Name = "btnsalir";
             this.btnsalir.Size = new System.Drawing.Size(61, 28);
             this.btnsalir.TabIndex = 23;
             this.btnsalir.UseVisualStyleBackColor = true;
             this.btnsalir.Click += new System.EventHandler(this.btnsalir_Click);
             // 
+            // btnEliminar
+            // 
+            this.btnEliminar.Image = global::MASTER_TUNE_UP.Properties.Resources.cruzar3;
+            this.btnEliminar.Location = new System.Drawing.Point(605, 279);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(56, 30);
+            this.btnEliminar.TabIndex = 41;
+            this.btnEliminar.UseVisualStyleBackColor = true;
+            // 
             // FrmAuditoria
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(777, 442);
+            this.ClientSize = new System.Drawing.Size(941, 514);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.btnsalir);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -772,5 +783,6 @@
         private System.Windows.Forms.Button btnGuardarCambio;
         private System.Windows.Forms.DataGridView dgServicios;
         private System.Windows.Forms.Button btnAgregar;
+        private System.Windows.Forms.Button btnEliminar;
     }
 }
