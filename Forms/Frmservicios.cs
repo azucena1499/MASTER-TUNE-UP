@@ -157,6 +157,7 @@ namespace MASTER_TUNE_UP.Forms
             string actividad = "El usuario ingreso a servicios.";
             acceso.Registrar_auditoria(actividad);
         }
+        
 
         private void btngrabar_KeyPress(object sender, KeyPressEventArgs e)
         {

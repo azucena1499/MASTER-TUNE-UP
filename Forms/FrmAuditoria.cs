@@ -25,8 +25,7 @@ namespace MASTER_TUNE_UP.Forms
         private int estadoActual = BUSCANDO;
         private Usuario usuario = null;
 
-        string todos;
-        string User;
+      
 
         //greet cmda = new greet();
 
@@ -560,14 +559,14 @@ namespace MASTER_TUNE_UP.Forms
        
         private void llenarcbox()//este me llena el CboxUsuario
         {
-            
+            CboxUsuario.Items.Clear();
             objconexion = new Clases.Conexión();
             Conexion = new SqlConnection(objconexion.Conn());
             //abro conexion
             Conexion.Open();
            // SqlCommand comando = new SqlCommand("select Au_Clave from Auditoriaa", Conexion);
             SqlCommand comando = new SqlCommand("select Us_login from Usuario", Conexion);
-
+            
             //defino mi adapter
             SqlDataReader leer = comando.ExecuteReader();
             while(leer.Read())
@@ -575,6 +574,7 @@ namespace MASTER_TUNE_UP.Forms
                 CboxUsuario.Items.Add(leer["Us_login"].ToString());
 
             }
+            CboxUsuario.SelectedIndex = 0;
             Conexion.Close();
 
         }
@@ -590,7 +590,6 @@ namespace MASTER_TUNE_UP.Forms
             {
                
                 CboxUsuario.Enabled = true;
-                btnAgregar.Enabled = true;
                 llenarcbox();
 
             }
@@ -606,44 +605,158 @@ namespace MASTER_TUNE_UP.Forms
             if (RdbTodos.Checked)
             {
                btnAgregar.Enabled = true;
-               CargarUnDatagrid(dgServicios);//aqui lo mando lla,ar
             }
            
 
         }
-        public void CargarUnDatagrid(DataGridView dgServicios)//esto es para lenar el datagrid con TODOS
+        public void consulartodo(DataGridView dgServicios)//esto es para lenar el datagrid con TODOS
         {
             objconexion = new Clases.Conexión();
             Conexion = new SqlConnection(objconexion.Conn());
-            //se abre la conexion
             Conexion.Open();
-            SqlCommand cm = new SqlCommand("select*from Auditoriaa", Conexion);
+            SqlCommand cm = new SqlCommand("select * from Auditoriaa where Au_Fecha BETWEEN @FechaDesde AND @FechaHasta", Conexion);
+            cm.Parameters.Clear();
+            cm.Parameters.AddWithValue("@FechaDesde", FechasDesde.Value.Date.Add(new TimeSpan(0, 0, 0)));
+            cm.Parameters.AddWithValue("@FechaHasta", FechaHasta.Value.Date.Add(new TimeSpan(23, 59, 59)));
             SqlDataAdapter da = new SqlDataAdapter(cm);
             DataTable dt = new DataTable();
             da.Fill(dt);
             dgServicios.DataSource = dt;
+            if (!(dt.Rows.Count > 0))
+            {
+                MessageBox.Show("No se encontraron resultados", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                btnEliminar.Enabled = false;
+
+            }
+            else
+            {
+                btnEliminar.Enabled = true;
+
+            }
+
         }
-        void buscar()//se supone que con este iba a buscar por fechas,pero falle
+        public void consularporUsuario(DataGridView dgServicios)//esto es para lenar el datagrid con TODOS
         {
             objconexion = new Clases.Conexión();
             Conexion = new SqlConnection(objconexion.Conn());
-            //se abre la conexion
             Conexion.Open();
-            SqlDataAdapter cm = new SqlDataAdapter("select*from Auditoriaa", Conexion);
-            cm.SelectCommand.Parameters.Add("Au_Fecha", SqlDbType.DateTime).Value = Dtp1.Text;
-           // cm.SelectCommand.Parameters.Add("Au_Fecha", SqlDbType.DateTime).Value = Dtp2.Text;
+            SqlCommand cm = new SqlCommand("select * from Auditoriaa where Au_Clave=@usuario and Au_Fecha BETWEEN @FechaDesde AND @FechaHasta", Conexion);
+            cm.Parameters.Clear();
+            cm.Parameters.AddWithValue("@usuario", CboxUsuario.SelectedItem.ToString());
+            cm.Parameters.AddWithValue("@FechaDesde", FechasDesde.Value.Date.Add(new TimeSpan(0, 0, 0)));
+            cm.Parameters.AddWithValue("@FechaHasta", FechaHasta.Value.Date.Add(new TimeSpan(23, 59, 59)));
+            SqlDataAdapter da = new SqlDataAdapter(cm);
             DataTable dt = new DataTable();
-            cm.Fill(dt);
+            da.Fill(dt);
             dgServicios.DataSource = dt;
+            if (!(dt.Rows.Count > 0))
+            {
+                MessageBox.Show("No se encontraron resultados", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                btnEliminar.Enabled = false;
 
+            }
+            else
+            {
+                btnEliminar.Enabled = true;
+
+            }
 
         }
+
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            //buscar();
-        }
-       
+            if(RdbTodos.Checked)
+            {
+                consulartodo(dgServicios);
 
+            }
+            else
+            {
+                consularporUsuario(dgServicios);
+            }
+        }
+
+        private void FechasDesde_ValueChanged(object sender, EventArgs e)
+        {
+            FechaHasta.MinDate = FechasDesde.Value;
+        }
+
+        private void FechaHasta_ValueChanged(object sender, EventArgs e)
+        {
+            FechasDesde.MaxDate = FechaHasta.Value;
+        }
+        private bool eliminartodos()
+        {
+            try
+            {
+                objconexion = new Clases.Conexión();
+                Conexion = new SqlConnection(objconexion.Conn());
+                //se abre la conexion
+                Conexion.Open();
+                SqlCommand cm = new SqlCommand("delete from Auditoriaa where Au_Fecha BETWEEN @FechaDesde AND @FechaHasta", Conexion);
+                cm.Parameters.Clear();
+                cm.Parameters.AddWithValue("@FechaDesde", FechasDesde.Value.Date.Add(new TimeSpan(0, 0, 0)));
+                cm.Parameters.AddWithValue("@FechaHasta", FechaHasta.Value.Date.Add(new TimeSpan(23, 59, 59)));
+                cm.ExecuteNonQuery();
+                return true;
+            }
+            catch (SqlException excep)
+            {
+                return false;
+            }
+        }
+        private bool eliminarPorUsuario()
+        {
+            try
+            {
+                objconexion = new Clases.Conexión();
+                Conexion = new SqlConnection(objconexion.Conn());
+                //se abre la conexion
+                Conexion.Open();
+                SqlCommand cm = new SqlCommand("delete from Auditoriaa where Au_Clave=@usuario and Au_Fecha BETWEEN @FechaDesde AND @FechaHasta", Conexion);
+                cm.Parameters.Clear();
+                cm.Parameters.AddWithValue("@usuario", CboxUsuario.SelectedItem.ToString());
+                cm.Parameters.AddWithValue("@FechaDesde", FechasDesde.Value.Date.Add(new TimeSpan(0, 0, 0)));
+                cm.Parameters.AddWithValue("@FechaHasta", FechaHasta.Value.Date.Add(new TimeSpan(23, 59, 59)));
+                cm.ExecuteNonQuery();
+                return true;
+            }
+            catch (SqlException excep)
+            {
+                return false;
+            }
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            if (RdbTodos.Checked)
+            {
+                if (eliminartodos())
+                {
+                    dgServicios.DataSource = null;
+                    btnEliminar.Enabled = false;
+                    MessageBox.Show("Registros eliminados correctamente.");
+                }
+                else
+                {
+                    MessageBox.Show("Error", "No se pudieron eliminar los registros.");
+                }
+            }
+            else
+            {
+                if (eliminarPorUsuario())
+                {
+                    dgServicios.DataSource = null;
+                    btnEliminar.Enabled = false;
+                    MessageBox.Show("Registros eliminados correctamente.");
+                }
+                else
+                {
+                    MessageBox.Show("Error", "No se pudieron eliminar los registros.");
+                }
+            }
+        }
+        
     }
 }
     

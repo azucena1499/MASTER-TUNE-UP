@@ -22,6 +22,17 @@ namespace MASTER_TUNE_UP.Forms
         {
             InitializeComponent();
         }
+        private void maximo()
+        {
+            objconexion = new Clases.Conexión();
+            Conexion = new SqlConnection(objconexion.Conn());
+            Conexion.Open();
+            string query = "SELECT max(Cl_id)+1 as ultimo from clientes";
+            SqlCommand comando = new SqlCommand(query, Conexion);
+            SqlDataReader leer = comando.ExecuteReader();
+            if (leer.Read())
+                txtclave.Text = leer["ultimo"].ToString();
+        }
 
         private void txtclave_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -178,7 +189,8 @@ namespace MASTER_TUNE_UP.Forms
                 acceso.Registrar_auditoria(actividad);
                 MessageBox.Show("Cliente guardado con exito", "guardado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 limpiar();
-                Maximo();
+                maximo();
+                
 
             }
             if (existe == 1)
@@ -208,21 +220,12 @@ namespace MASTER_TUNE_UP.Forms
                 acceso.Registrar_auditoria(actividad);
                 MessageBox.Show("Cliente modificado con exito", "Modificado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 limpiar(); //dejar el forms como el inicio
-                Maximo();
+                maximo();
+                
 
             }
         }
-        private void Maximo()
-        {
-            objconexion = new Clases.Conexión();
-            Conexion = new SqlConnection(objconexion.Conn());
-            Conexion.Open();
-            string query = "Select max(Cl_id)+1 as ultimo from Clientes";
-            SqlCommand comando = new SqlCommand(query, Conexion);
-            SqlDataReader leer = comando.ExecuteReader();
-            if (leer.Read())
-                txtclave.Text = leer["ultimo"].ToString();
-        }
+        
         private void llenarcboxlocalidad()
         {
             DataTable dt = new DataTable();
@@ -329,7 +332,8 @@ namespace MASTER_TUNE_UP.Forms
             cboxclientee.Text = "seleccione";
             cboxclientee.Items.Add("mayoreo");
             cboxclientee.Items.Add("menudeo");
-            Maximo();
+            maximo();
+            txtclave.Focus();
             Acceso acceso = new Acceso();
             string actividad = "El usuario ingreso a Registro de clientes.";
             acceso.Registrar_auditoria(actividad);
