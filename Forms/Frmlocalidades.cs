@@ -129,6 +129,7 @@ namespace MASTER_TUNE_UP.Forms
                 txtclave.Enabled = true;
                 txtclave.Clear();
                 txtclave.Focus();
+                maximo();
             }
             if (existe == 1)
             {
@@ -154,6 +155,7 @@ namespace MASTER_TUNE_UP.Forms
                 txtclave.Enabled = true;
                 txtclave.Clear();
                 txtclave.Focus();
+                maximo();
 
             }
         }
@@ -180,6 +182,7 @@ namespace MASTER_TUNE_UP.Forms
                 comando.ExecuteNonQuery();
                 MessageBox.Show("Localidad Eliminada", "Eliminar", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 limpiar();
+                maximo();
             }
         }
 
@@ -220,12 +223,24 @@ namespace MASTER_TUNE_UP.Forms
         {
 
         }
+        private void maximo()
+        {
+            objconexion = new Clases.Conexión();
+            Conexion = new SqlConnection(objconexion.Conn());
+            Conexion.Open();
+            string query = "SELECT max(lo_Id)+1 as ultimo from Localidad";
+            SqlCommand comando = new SqlCommand(query, Conexion);
+            SqlDataReader leer = comando.ExecuteReader();
+            if (leer.Read())
+                txtclave.Text = leer["ultimo"].ToString();
+        }
 
         private void Frmlocalidades_Load(object sender, EventArgs e)
         {
             Acceso acceso = new Acceso();
             string actividad = "El usuario  Ingreso a Localidades.";
             acceso.Registrar_auditoria(actividad);
+            maximo();
         }
 
         private void Frmlocalidades_FormClosing(object sender, FormClosingEventArgs e)
@@ -233,6 +248,26 @@ namespace MASTER_TUNE_UP.Forms
             Acceso acceso = new Acceso();
             string actividad = "El usuario  salio de Localidades.";
             acceso.Registrar_auditoria(actividad);
+        }
+
+        private void btnsalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void txtnombre_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                txtclave.Clear();
+                txtclave.Focus();
+                txtclave.Enabled = true;
+                txtnombre.Clear();
+                txtnombre.Enabled = false;
+                cboxservicio.Visible = false;
+                cboxservicio.ResetText();
+
+            }
         }
     }
 

@@ -38,6 +38,7 @@
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnguardar = new System.Windows.Forms.Button();
             this.btnbuscar = new System.Windows.Forms.Button();
+            this.btnsalir = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblbuscar
@@ -70,6 +71,7 @@
             this.txtnombre.Size = new System.Drawing.Size(290, 20);
             this.txtnombre.TabIndex = 43;
             this.txtnombre.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtnombre_KeyDown);
+            this.txtnombre.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtnombre_KeyUp);
             // 
             // txtclave
             // 
@@ -130,11 +132,22 @@
             this.btnbuscar.UseVisualStyleBackColor = true;
             this.btnbuscar.Click += new System.EventHandler(this.btnbuscar_Click);
             // 
+            // btnsalir
+            // 
+            this.btnsalir.Image = global::MASTER_TUNE_UP.Properties.Resources.error_1526110;
+            this.btnsalir.Location = new System.Drawing.Point(682, 274);
+            this.btnsalir.Name = "btnsalir";
+            this.btnsalir.Size = new System.Drawing.Size(61, 28);
+            this.btnsalir.TabIndex = 51;
+            this.btnsalir.UseVisualStyleBackColor = true;
+            this.btnsalir.Click += new System.EventHandler(this.btnsalir_Click);
+            // 
             // Frmlocalidades
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(755, 314);
+            this.Controls.Add(this.btnsalir);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnguardar);
             this.Controls.Add(this.lblbuscar);
@@ -165,5 +178,6 @@
         private System.Windows.Forms.TextBox txtclave;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnsalir;
     }
 }

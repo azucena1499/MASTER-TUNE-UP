@@ -70,6 +70,7 @@
             this.txtnombre.Name = "txtnombre";
             this.txtnombre.Size = new System.Drawing.Size(290, 20);
             this.txtnombre.TabIndex = 16;
+            this.txtnombre.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtnombre_KeyUp);
             // 
             // txtclave
             // 

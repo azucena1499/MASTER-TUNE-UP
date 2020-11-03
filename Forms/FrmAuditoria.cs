@@ -1,4 +1,5 @@
 ﻿using MASTER_TUNE_UP.Clases;
+using MASTER_TUNE_UP.Informes;
 using System;
 using System.Data;
 using System.Data.SqlClient;
@@ -556,7 +557,7 @@ namespace MASTER_TUNE_UP.Forms
 
             }
         }
-       
+       //aqui empieza todo lo de deapuracion
         private void llenarcbox()//este me llena el CboxUsuario
         {
             CboxUsuario.Items.Clear();
@@ -578,6 +579,7 @@ namespace MASTER_TUNE_UP.Forms
             Conexion.Close();
 
         }
+
 
         private void tabPage2_Click(object sender, EventArgs e)
         {
@@ -651,7 +653,7 @@ namespace MASTER_TUNE_UP.Forms
             dgServicios.DataSource = dt;
             if (!(dt.Rows.Count > 0))
             {
-                MessageBox.Show("No se encontraron resultados", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("No se encontraron resultados", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 btnEliminar.Enabled = false;
 
             }
@@ -675,6 +677,8 @@ namespace MASTER_TUNE_UP.Forms
                 consularporUsuario(dgServicios);
             }
         }
+
+
 
         private void FechasDesde_ValueChanged(object sender, EventArgs e)
         {
@@ -735,7 +739,12 @@ namespace MASTER_TUNE_UP.Forms
                 {
                     dgServicios.DataSource = null;
                     btnEliminar.Enabled = false;
-                    MessageBox.Show("Registros eliminados correctamente.");
+                    if (MessageBox.Show("El Registro sera eliminado,está seguro?", "Eliminar", MessageBoxButtons.YesNo,
+                                         MessageBoxIcon.Stop) == DialogResult.Yes)
+                    {
+                        MessageBox.Show("Registros eliminados correctamente.");
+
+                    }
                 }
                 else
                 {
@@ -748,7 +757,12 @@ namespace MASTER_TUNE_UP.Forms
                 {
                     dgServicios.DataSource = null;
                     btnEliminar.Enabled = false;
-                    MessageBox.Show("Registros eliminados correctamente.");
+                    if (MessageBox.Show("El Registro sera eliminado,está seguro?", "Eliminar", MessageBoxButtons.YesNo,
+                     MessageBoxIcon.Stop) == DialogResult.Yes)
+                    {
+                        MessageBox.Show("Registros eliminados correctamente.");
+
+                    }
                 }
                 else
                 {
@@ -756,7 +770,132 @@ namespace MASTER_TUNE_UP.Forms
                 }
             }
         }
-        
+       //el de informes
+        private void llenarcbox2()//este me llena el CboxUsuario
+        {
+            cboxUSUARIOS.Items.Clear();
+            objconexion = new Clases.Conexión();
+            Conexion = new SqlConnection(objconexion.Conn());
+            //abro conexion
+            Conexion.Open();
+            // SqlCommand comando = new SqlCommand("select Au_Clave from Auditoriaa", Conexion);
+            SqlCommand comando = new SqlCommand("select Us_login from Usuario", Conexion);
+
+            //defino mi adapter
+            SqlDataReader leer = comando.ExecuteReader();
+            while (leer.Read())
+            {
+                cboxUSUARIOS.Items.Add(leer["Us_login"].ToString());
+
+            }
+            cboxUSUARIOS.SelectedIndex = 0;
+            Conexion.Close();
+
+        }
+        private void RdbTodoInforme_CheckedChanged(object sender, EventArgs e)
+        {
+            if (RdbTodoInforme.Checked)
+            {
+                btnImprimir.Enabled = true;
+            }
+
+        }
+
+        private void RdbUsuarioInforme_CheckedChanged(object sender, EventArgs e)
+        {
+            if (RdbUsuarioInforme.Checked)
+            {
+
+                cboxUSUARIOS.Enabled = true;
+                llenarcbox2();
+
+            }
+            else
+            {
+                cboxUSUARIOS.Enabled = true;
+
+            }
+        }
+
+        private void FechasDesde2_ValueChanged(object sender, EventArgs e)
+        {
+            FechasHasta2.MinDate = FechasDesde2.Value;
+
+        }
+
+        private void FechasHasta2_ValueChanged(object sender, EventArgs e)
+        {
+            FechasDesde2.MaxDate = FechasHasta2.Value;
+
+        }
+        public void consultatodo()//aqui es lo del reporte,no tengo idea de como hacerlo
+        {
+            objconexion = new Clases.Conexión();
+            Conexion = new SqlConnection(objconexion.Conn());
+            Conexion.Open();
+            SqlCommand cm = new SqlCommand("select * from Auditoriaa where Au_Fecha BETWEEN @FechaDesde AND @FechaHasta", Conexion);
+            cm.Parameters.Clear();
+            cm.Parameters.AddWithValue("@FechaDesde", FechasDesde.Value.Date.Add(new TimeSpan(0, 0, 0)));
+            cm.Parameters.AddWithValue("@FechaHasta", FechaHasta.Value.Date.Add(new TimeSpan(23, 59, 59)));
+            SqlDataReader leer = cm.ExecuteReader();
+
+           // cm.ExecuteNonQuery();//es para verificar los editados
+
+            //SqlDataAdapter da = new SqlDataAdapter(cm);
+            //DataTable dt = new DataTable();
+            //da.Fill(dt);
+            //FrtTodos.DataSource = dt;
+            //if (!(dt.Rows.Count > 0))
+            //{
+            //    MessageBox.Show("No se encontraron resultados", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    btnEliminar.Enabled = false;
+
+            //}
+        }
+        public void consultarporUsuario(DataGridView dgServicios)//esto es para lenar el datagrid con TODOS
+        {
+            objconexion = new Clases.Conexión();
+            Conexion = new SqlConnection(objconexion.Conn());
+            Conexion.Open();
+            SqlCommand cm = new SqlCommand("select * from Auditoriaa where Au_Clave=@usuario and Au_Fecha BETWEEN @FechaDesde AND @FechaHasta", Conexion);
+            cm.Parameters.Clear();
+            cm.Parameters.AddWithValue("@usuario", CboxUsuario.SelectedItem.ToString());
+            cm.Parameters.AddWithValue("@FechaDesde", FechasDesde.Value.Date.Add(new TimeSpan(0, 0, 0)));
+            cm.Parameters.AddWithValue("@FechaHasta", FechaHasta.Value.Date.Add(new TimeSpan(23, 59, 59)));
+            SqlDataAdapter da = new SqlDataAdapter(cm);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            dgServicios.DataSource = dt;
+            if (!(dt.Rows.Count > 0))
+            {
+                MessageBox.Show("No se encontraron resultados", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                btnEliminar.Enabled = false;
+
+            }
+        }
+
+         private void btnImprimir_Click(object sender, EventArgs e)
+        {
+            if (RdbTodoInforme.Checked)
+            {
+                consultatodo();
+                {
+                    Informes.FrtTodos grupos = new Informes.FrtTodos();
+                    Forms.FrmReportes reporte = new FrmReportes();
+                    reporte.crystalReportViewer1.ReportSource = grupos;
+                    reporte.ShowDialog();
+                }
+
+
+
+
+            }
+        }
+
+        private void dgServicios_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
     

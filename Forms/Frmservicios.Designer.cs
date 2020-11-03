@@ -62,6 +62,7 @@
             this.btntotal = new System.Windows.Forms.Button();
             this.dtpfecha = new System.Windows.Forms.DateTimePicker();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnsalir = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgServicios)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -75,10 +76,11 @@
             this.codigo,
             this.Servicio,
             this.Precio1});
-            this.dgServicios.Location = new System.Drawing.Point(12, 331);
+            this.dgServicios.Location = new System.Drawing.Point(48, 304);
             this.dgServicios.Name = "dgServicios";
             this.dgServicios.Size = new System.Drawing.Size(490, 163);
             this.dgServicios.TabIndex = 30;
+            this.dgServicios.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgServicios_CellContentClick);
             // 
             // codigo
             // 
@@ -101,7 +103,7 @@
             // btneliminar
             // 
             this.btneliminar.Image = global::MASTER_TUNE_UP.Properties.Resources.cruzar4;
-            this.btneliminar.Location = new System.Drawing.Point(676, 496);
+            this.btneliminar.Location = new System.Drawing.Point(739, 378);
             this.btneliminar.Name = "btneliminar";
             this.btneliminar.Size = new System.Drawing.Size(54, 41);
             this.btneliminar.TabIndex = 38;
@@ -111,7 +113,7 @@
             // btngrabar
             // 
             this.btngrabar.Image = global::MASTER_TUNE_UP.Properties.Resources.disquete5;
-            this.btngrabar.Location = new System.Drawing.Point(615, 496);
+            this.btngrabar.Location = new System.Drawing.Point(678, 378);
             this.btngrabar.Name = "btngrabar";
             this.btngrabar.Size = new System.Drawing.Size(55, 41);
             this.btngrabar.TabIndex = 37;
@@ -139,7 +141,7 @@
             // lblbuscar
             // 
             this.lblbuscar.AutoSize = true;
-            this.lblbuscar.Location = new System.Drawing.Point(168, 11);
+            this.lblbuscar.Location = new System.Drawing.Point(167, 11);
             this.lblbuscar.Name = "lblbuscar";
             this.lblbuscar.Size = new System.Drawing.Size(158, 13);
             this.lblbuscar.TabIndex = 46;
@@ -337,14 +339,14 @@
             // txttotal
             // 
             this.txttotal.Enabled = false;
-            this.txttotal.Location = new System.Drawing.Point(426, 514);
+            this.txttotal.Location = new System.Drawing.Point(469, 482);
             this.txttotal.Name = "txttotal";
             this.txttotal.Size = new System.Drawing.Size(76, 20);
             this.txttotal.TabIndex = 51;
             // 
             // btntotal
             // 
-            this.btntotal.Location = new System.Drawing.Point(349, 514);
+            this.btntotal.Location = new System.Drawing.Point(392, 482);
             this.btntotal.Name = "btntotal";
             this.btntotal.Size = new System.Drawing.Size(75, 23);
             this.btntotal.TabIndex = 52;
@@ -354,7 +356,7 @@
             // 
             // dtpfecha
             // 
-            this.dtpfecha.Location = new System.Drawing.Point(535, 0);
+            this.dtpfecha.Location = new System.Drawing.Point(469, 12);
             this.dtpfecha.Name = "dtpfecha";
             this.dtpfecha.Size = new System.Drawing.Size(212, 20);
             this.dtpfecha.TabIndex = 53;
@@ -370,18 +372,29 @@
             this.groupBox2.Controls.Add(this.cboxservicio);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.lblbuscar);
-            this.groupBox2.Location = new System.Drawing.Point(5, 225);
+            this.groupBox2.Location = new System.Drawing.Point(8, 193);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(399, 100);
+            this.groupBox2.Size = new System.Drawing.Size(451, 105);
             this.groupBox2.TabIndex = 54;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Busqueda de servicios";
+            // 
+            // btnsalir
+            // 
+            this.btnsalir.Image = global::MASTER_TUNE_UP.Properties.Resources.error_1526110;
+            this.btnsalir.Location = new System.Drawing.Point(732, 439);
+            this.btnsalir.Name = "btnsalir";
+            this.btnsalir.Size = new System.Drawing.Size(61, 28);
+            this.btnsalir.TabIndex = 55;
+            this.btnsalir.UseVisualStyleBackColor = true;
+            this.btnsalir.Click += new System.EventHandler(this.btnsalir_Click);
             // 
             // Frmservicios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(762, 541);
+            this.ClientSize = new System.Drawing.Size(853, 533);
+            this.Controls.Add(this.btnsalir);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.dtpfecha);
             this.Controls.Add(this.btntotal);
@@ -394,6 +407,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Frmservicios";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Servicios";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Frmservicios_FormClosing);
             this.Load += new System.EventHandler(this.Frmservicios_Load);
@@ -442,5 +456,6 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox txtclave;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Button btnsalir;
     }
 }

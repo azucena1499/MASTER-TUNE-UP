@@ -55,7 +55,6 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
-            this.dgServicios = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label6 = new System.Windows.Forms.Label();
             this.FechaHasta = new System.Windows.Forms.DateTimePicker();
@@ -67,22 +66,23 @@
             this.RdbUsuario = new System.Windows.Forms.RadioButton();
             this.RdbTodos = new System.Windows.Forms.RadioButton();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnImprimir = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.Dtp5 = new System.Windows.Forms.DateTimePicker();
+            this.FechasHasta2 = new System.Windows.Forms.DateTimePicker();
             this.label9 = new System.Windows.Forms.Label();
-            this.Dtp4 = new System.Windows.Forms.DateTimePicker();
+            this.FechasDesde2 = new System.Windows.Forms.DateTimePicker();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.radioButton5 = new System.Windows.Forms.RadioButton();
-            this.radioButton6 = new System.Windows.Forms.RadioButton();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.RdbImpresora = new System.Windows.Forms.RadioButton();
+            this.RdbPntalla = new System.Windows.Forms.RadioButton();
+            this.cboxUSUARIOS = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
+            this.RdbUsuarioInforme = new System.Windows.Forms.RadioButton();
+            this.RdbTodoInforme = new System.Windows.Forms.RadioButton();
             this.btnsalir = new System.Windows.Forms.Button();
+            this.dgServicios = new System.Windows.Forms.DataGridView();
             this.tabControl1.SuspendLayout();
             this.tbpregistro.SuspendLayout();
             this.groupCambio.SuspendLayout();
@@ -90,13 +90,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgServicios)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgServicios)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -401,21 +401,12 @@
             // btnAgregar
             // 
             this.btnAgregar.Image = global::MASTER_TUNE_UP.Properties.Resources.comprobar1;
-            this.btnAgregar.Location = new System.Drawing.Point(594, 113);
+            this.btnAgregar.Location = new System.Drawing.Point(664, 104);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(48, 34);
             this.btnAgregar.TabIndex = 40;
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
-            // 
-            // dgServicios
-            // 
-            this.dgServicios.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
-            this.dgServicios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgServicios.Location = new System.Drawing.Point(127, 193);
-            this.dgServicios.Name = "dgServicios";
-            this.dgServicios.Size = new System.Drawing.Size(415, 107);
-            this.dgServicios.TabIndex = 39;
             // 
             // groupBox2
             // 
@@ -519,11 +510,11 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.button1);
+            this.tabPage1.Controls.Add(this.btnImprimir);
             this.tabPage1.Controls.Add(this.button2);
             this.tabPage1.Controls.Add(this.groupBox5);
             this.tabPage1.Controls.Add(this.groupBox4);
-            this.tabPage1.Controls.Add(this.comboBox2);
+            this.tabPage1.Controls.Add(this.cboxUSUARIOS);
             this.tabPage1.Controls.Add(this.label7);
             this.tabPage1.Controls.Add(this.groupBox3);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
@@ -534,14 +525,15 @@
             this.tabPage1.Text = "Informe de auditoria";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // btnImprimir
             // 
-            this.button1.Location = new System.Drawing.Point(311, 229);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 28);
-            this.button1.TabIndex = 34;
-            this.button1.Text = "Imprimir";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnImprimir.Location = new System.Drawing.Point(311, 229);
+            this.btnImprimir.Name = "btnImprimir";
+            this.btnImprimir.Size = new System.Drawing.Size(75, 28);
+            this.btnImprimir.TabIndex = 34;
+            this.btnImprimir.Text = "Imprimir";
+            this.btnImprimir.UseVisualStyleBackColor = true;
+            this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
             // 
             // button2
             // 
@@ -555,12 +547,12 @@
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.label8);
-            this.groupBox5.Controls.Add(this.Dtp5);
+            this.groupBox5.Controls.Add(this.FechasHasta2);
             this.groupBox5.Controls.Add(this.label9);
-            this.groupBox5.Controls.Add(this.Dtp4);
+            this.groupBox5.Controls.Add(this.FechasDesde2);
             this.groupBox5.Location = new System.Drawing.Point(323, 12);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(301, 80);
+            this.groupBox5.Size = new System.Drawing.Size(364, 92);
             this.groupBox5.TabIndex = 25;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Periodo";
@@ -568,18 +560,19 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(153, 35);
+            this.label8.Location = new System.Drawing.Point(174, 33);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(19, 13);
             this.label8.TabIndex = 23;
             this.label8.Text = "Al:";
             // 
-            // Dtp5
+            // FechasHasta2
             // 
-            this.Dtp5.Location = new System.Drawing.Point(180, 33);
-            this.Dtp5.Name = "Dtp5";
-            this.Dtp5.Size = new System.Drawing.Size(98, 20);
-            this.Dtp5.TabIndex = 24;
+            this.FechasHasta2.Location = new System.Drawing.Point(201, 31);
+            this.FechasHasta2.Name = "FechasHasta2";
+            this.FechasHasta2.Size = new System.Drawing.Size(121, 20);
+            this.FechasHasta2.TabIndex = 24;
+            this.FechasHasta2.ValueChanged += new System.EventHandler(this.FechasHasta2_ValueChanged);
             // 
             // label9
             // 
@@ -590,17 +583,18 @@
             this.label9.TabIndex = 22;
             this.label9.Text = "De:";
             // 
-            // Dtp4
+            // FechasDesde2
             // 
-            this.Dtp4.Location = new System.Drawing.Point(33, 31);
-            this.Dtp4.Name = "Dtp4";
-            this.Dtp4.Size = new System.Drawing.Size(98, 20);
-            this.Dtp4.TabIndex = 22;
+            this.FechasDesde2.Location = new System.Drawing.Point(33, 31);
+            this.FechasDesde2.Name = "FechasDesde2";
+            this.FechasDesde2.Size = new System.Drawing.Size(122, 20);
+            this.FechasDesde2.TabIndex = 22;
+            this.FechasDesde2.ValueChanged += new System.EventHandler(this.FechasDesde2_ValueChanged);
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.radioButton5);
-            this.groupBox4.Controls.Add(this.radioButton6);
+            this.groupBox4.Controls.Add(this.RdbImpresora);
+            this.groupBox4.Controls.Add(this.RdbPntalla);
             this.groupBox4.Location = new System.Drawing.Point(18, 157);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(117, 100);
@@ -608,36 +602,36 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Seleccione";
             // 
-            // radioButton5
+            // RdbImpresora
             // 
-            this.radioButton5.AutoSize = true;
-            this.radioButton5.Location = new System.Drawing.Point(6, 55);
-            this.radioButton5.Name = "radioButton5";
-            this.radioButton5.Size = new System.Drawing.Size(89, 17);
-            this.radioButton5.TabIndex = 1;
-            this.radioButton5.TabStop = true;
-            this.radioButton5.Text = "Por impresora";
-            this.radioButton5.UseVisualStyleBackColor = true;
+            this.RdbImpresora.AutoSize = true;
+            this.RdbImpresora.Location = new System.Drawing.Point(6, 55);
+            this.RdbImpresora.Name = "RdbImpresora";
+            this.RdbImpresora.Size = new System.Drawing.Size(89, 17);
+            this.RdbImpresora.TabIndex = 1;
+            this.RdbImpresora.TabStop = true;
+            this.RdbImpresora.Text = "Por impresora";
+            this.RdbImpresora.UseVisualStyleBackColor = true;
             // 
-            // radioButton6
+            // RdbPntalla
             // 
-            this.radioButton6.AutoSize = true;
-            this.radioButton6.Location = new System.Drawing.Point(6, 31);
-            this.radioButton6.Name = "radioButton6";
-            this.radioButton6.Size = new System.Drawing.Size(81, 17);
-            this.radioButton6.TabIndex = 0;
-            this.radioButton6.TabStop = true;
-            this.radioButton6.Text = "Por pantalla";
-            this.radioButton6.UseVisualStyleBackColor = true;
+            this.RdbPntalla.AutoSize = true;
+            this.RdbPntalla.Location = new System.Drawing.Point(6, 31);
+            this.RdbPntalla.Name = "RdbPntalla";
+            this.RdbPntalla.Size = new System.Drawing.Size(81, 17);
+            this.RdbPntalla.TabIndex = 0;
+            this.RdbPntalla.TabStop = true;
+            this.RdbPntalla.Text = "Por pantalla";
+            this.RdbPntalla.UseVisualStyleBackColor = true;
             // 
-            // comboBox2
+            // cboxUSUARIOS
             // 
-            this.comboBox2.Enabled = false;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(171, 50);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 21);
-            this.comboBox2.TabIndex = 24;
+            this.cboxUSUARIOS.Enabled = false;
+            this.cboxUSUARIOS.FormattingEnabled = true;
+            this.cboxUSUARIOS.Location = new System.Drawing.Point(171, 50);
+            this.cboxUSUARIOS.Name = "cboxUSUARIOS";
+            this.cboxUSUARIOS.Size = new System.Drawing.Size(121, 21);
+            this.cboxUSUARIOS.TabIndex = 24;
             // 
             // label7
             // 
@@ -650,8 +644,8 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.radioButton3);
-            this.groupBox3.Controls.Add(this.radioButton4);
+            this.groupBox3.Controls.Add(this.RdbUsuarioInforme);
+            this.groupBox3.Controls.Add(this.RdbTodoInforme);
             this.groupBox3.Location = new System.Drawing.Point(18, 19);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(117, 100);
@@ -659,27 +653,29 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Seleccione";
             // 
-            // radioButton3
+            // RdbUsuarioInforme
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(6, 55);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(78, 17);
-            this.radioButton3.TabIndex = 1;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "Por usuario";
-            this.radioButton3.UseVisualStyleBackColor = true;
+            this.RdbUsuarioInforme.AutoSize = true;
+            this.RdbUsuarioInforme.Location = new System.Drawing.Point(6, 55);
+            this.RdbUsuarioInforme.Name = "RdbUsuarioInforme";
+            this.RdbUsuarioInforme.Size = new System.Drawing.Size(78, 17);
+            this.RdbUsuarioInforme.TabIndex = 1;
+            this.RdbUsuarioInforme.TabStop = true;
+            this.RdbUsuarioInforme.Text = "Por usuario";
+            this.RdbUsuarioInforme.UseVisualStyleBackColor = true;
+            this.RdbUsuarioInforme.CheckedChanged += new System.EventHandler(this.RdbUsuarioInforme_CheckedChanged);
             // 
-            // radioButton4
+            // RdbTodoInforme
             // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(6, 31);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(55, 17);
-            this.radioButton4.TabIndex = 0;
-            this.radioButton4.TabStop = true;
-            this.radioButton4.Text = "Todos";
-            this.radioButton4.UseVisualStyleBackColor = true;
+            this.RdbTodoInforme.AutoSize = true;
+            this.RdbTodoInforme.Location = new System.Drawing.Point(6, 31);
+            this.RdbTodoInforme.Name = "RdbTodoInforme";
+            this.RdbTodoInforme.Size = new System.Drawing.Size(55, 17);
+            this.RdbTodoInforme.TabIndex = 0;
+            this.RdbTodoInforme.TabStop = true;
+            this.RdbTodoInforme.Text = "Todos";
+            this.RdbTodoInforme.UseVisualStyleBackColor = true;
+            this.RdbTodoInforme.CheckedChanged += new System.EventHandler(this.RdbTodoInforme_CheckedChanged);
             // 
             // btnsalir
             // 
@@ -690,6 +686,16 @@
             this.btnsalir.TabIndex = 23;
             this.btnsalir.UseVisualStyleBackColor = true;
             this.btnsalir.Click += new System.EventHandler(this.btnsalir_Click);
+            // 
+            // dgServicios
+            // 
+            this.dgServicios.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
+            this.dgServicios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgServicios.Location = new System.Drawing.Point(127, 193);
+            this.dgServicios.Name = "dgServicios";
+            this.dgServicios.Size = new System.Drawing.Size(415, 107);
+            this.dgServicios.TabIndex = 39;
+            this.dgServicios.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgServicios_CellContentClick);
             // 
             // FrmAuditoria
             // 
@@ -715,7 +721,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgServicios)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -728,6 +733,7 @@
             this.groupBox4.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgServicios)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -765,18 +771,18 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.DateTimePicker Dtp5;
+        private System.Windows.Forms.DateTimePicker FechasHasta2;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.DateTimePicker Dtp4;
+        private System.Windows.Forms.DateTimePicker FechasDesde2;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.RadioButton radioButton5;
-        private System.Windows.Forms.RadioButton radioButton6;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.RadioButton RdbImpresora;
+        private System.Windows.Forms.RadioButton RdbPntalla;
+        private System.Windows.Forms.ComboBox cboxUSUARIOS;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.RadioButton radioButton4;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.RadioButton RdbUsuarioInforme;
+        private System.Windows.Forms.RadioButton RdbTodoInforme;
+        private System.Windows.Forms.Button btnImprimir;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.GroupBox groupCambio;
         private System.Windows.Forms.TextBox txtNuevaConfirmar;
@@ -785,8 +791,8 @@
         private System.Windows.Forms.Label labelCambioNueva;
         private System.Windows.Forms.Button btnCambio;
         private System.Windows.Forms.Button btnGuardarCambio;
-        private System.Windows.Forms.DataGridView dgServicios;
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.Button btnEliminar;
+        private System.Windows.Forms.DataGridView dgServicios;
     }
 }

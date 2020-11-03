@@ -24,6 +24,17 @@ namespace MASTER_TUNE_UP.Forms
         {
             InitializeComponent();
         }
+        private void maximo()
+        {
+            objconexion = new Clases.Conexión();
+            Conexion = new SqlConnection(objconexion.Conn());
+            Conexion.Open();
+            string query = "SELECT max(Cl_id)+1 as ultimo from clientes";
+            SqlCommand comando = new SqlCommand(query, Conexion);
+            SqlDataReader leer = comando.ExecuteReader();
+            if (leer.Read())
+                txtclave.Text = leer["ultimo"].ToString();
+        }
 
         private void btngrabar_Click(object sender, EventArgs e)
         {
@@ -156,6 +167,7 @@ namespace MASTER_TUNE_UP.Forms
             Acceso acceso = new Acceso();
             string actividad = "El usuario ingreso a servicios.";
             acceso.Registrar_auditoria(actividad);
+            maximo();
         }
         
 
@@ -248,8 +260,13 @@ namespace MASTER_TUNE_UP.Forms
                     {
                         //si lavariable existe vale 0 y se usara insert
                         existe = 0;
-                        MessageBox.Show("Cliente no existente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        txtclave.Clear();
+                        if (MessageBox.Show("Cliente no registrado.¿desea agregar un nuevo grupo?", "no existe", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
+                        {
+                            //poner un habilitar aqui
+                            txtCliente.Enabled = true;
+                            txtCliente.Focus();
+                            maximo();
+                        }
                     }
                 }
         }
@@ -259,6 +276,16 @@ namespace MASTER_TUNE_UP.Forms
             Acceso acceso = new Acceso();
             string actividad = "El usuario salió de Servicios.";
             acceso.Registrar_auditoria(actividad);
+        }
+
+        private void btnsalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void dgServicios_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

@@ -115,13 +115,14 @@
             this.txtnombre.Size = new System.Drawing.Size(205, 20);
             this.txtnombre.TabIndex = 29;
             this.txtnombre.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtnombre_KeyDown);
+            this.txtnombre.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtnombre_KeyUp);
             // 
             // txtclave
             // 
             this.txtclave.Location = new System.Drawing.Point(43, 22);
             this.txtclave.Name = "txtclave";
             this.txtclave.Size = new System.Drawing.Size(51, 20);
-            this.txtclave.TabIndex = 28;
+            this.txtclave.TabIndex = 1;
             this.txtclave.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtclave_KeyPress);
             // 
             // label6
@@ -347,6 +348,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Frmclientes";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Registro de Clientes";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Frmclientes_FormClosing);
             this.Load += new System.EventHandler(this.Frmclientes_Load);

@@ -146,7 +146,7 @@ namespace MASTER_TUNE_UP.Forms
                 comando.ExecuteNonQuery();//es para verificar los editados
                 Acceso acceso = new Acceso();
                 string actividad = "El usuario registró el servicio " + txtnombre.Text + "."; acceso.Registrar_auditoria(actividad);
-                MessageBox.Show("Servicio guardado con exito", "Guardado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Trabajo guardado con exito", "Guardado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 btnguardar.Enabled = false;
                 cboxservicio.ResetText();
                 txtnombre.Clear();
@@ -154,7 +154,9 @@ namespace MASTER_TUNE_UP.Forms
                 txtclave.Enabled = true;
                 txtclave.Clear();
                 txtclave.Focus();
-               
+                maximo();
+
+
 
             }
             if (existe == 1)
@@ -178,7 +180,7 @@ namespace MASTER_TUNE_UP.Forms
                 Acceso acceso = new Acceso();
                 string actividad = "El usuario modificó el servicio " + txtnombre.Text + "."; 
                 acceso.Registrar_auditoria(actividad);
-                MessageBox.Show("Servicio modificado con exito", "modificado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Trabajo modificado con exito", "modificado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 //dejar el forms como el inicio
                 btnguardar.Enabled = false;
                 cboxservicio.ResetText();
@@ -187,8 +189,21 @@ namespace MASTER_TUNE_UP.Forms
                 txtclave.Enabled = true;
                 txtclave.Clear();
                 txtclave.Focus();
-                
+                maximo();
+
+
             }
+        }
+        private void maximo()
+        {
+            objconexion = new Clases.Conexión();
+            Conexion = new SqlConnection(objconexion.Conn());
+            Conexion.Open();
+            string query = "SELECT max(se_clave)+1 as ultimo from Servicios";
+            SqlCommand comando = new SqlCommand(query, Conexion);
+            SqlDataReader leer = comando.ExecuteReader();
+            if (leer.Read())
+                txtclave.Text = leer["ultimo"].ToString();
         }
 
         private void frmservicios_Load(object sender, EventArgs e)
@@ -196,6 +211,8 @@ namespace MASTER_TUNE_UP.Forms
             Acceso acceso = new Acceso();
             string actividad = "El usuario ingreso a Trabajos.";
             acceso.Registrar_auditoria(actividad);
+            maximo();
+
         }
 
         private void btncerrar_Click(object sender, EventArgs e)
@@ -208,6 +225,24 @@ namespace MASTER_TUNE_UP.Forms
             Acceso acceso = new Acceso();
             string actividad = "El usuario salió de Trabajos.";
             acceso.Registrar_auditoria(actividad);
+        }
+
+        private void txtnombre_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+
+                txtclave.Clear();
+                txtclave.Focus();
+                txtclave.Enabled = true;
+                txtnombre.Clear();
+                txtnombre.Enabled = false;
+                txtxprecio.Clear();
+                txtxprecio.Enabled = false;
+                cboxservicio.Visible = false;
+                cboxservicio.ResetText();
+
+            }
         }
     }
 }

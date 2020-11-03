@@ -407,6 +407,14 @@ namespace MASTER_TUNE_UP.Forms
                 txtteleono.Focus();
             }
         }
+
+        private void txtnombre_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                limpiar();
+            }
+        }
     }
 }
        
