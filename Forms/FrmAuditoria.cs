@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Windows.Forms;
+using CrystalDecisions.CrystalReports.Engine;
 //using MASTER_TUNE_UP.Forms;
 
 
@@ -828,7 +829,7 @@ namespace MASTER_TUNE_UP.Forms
             FechasDesde2.MaxDate = FechasHasta2.Value;
 
         }
-        public void consultatodo()//aqui es lo del reporte,no tengo idea de como hacerlo, AddWithValue es para remplazar un valor enviado
+        public void reportetodo()//aqui es lo del reporte,no tengo idea de como hacerlo, AddWithValue es para remplazar un valor enviado
         {
             objconexion = new Clases.Conexión();
             Conexion = new SqlConnection(objconexion.Conn());
@@ -840,45 +841,85 @@ namespace MASTER_TUNE_UP.Forms
             SqlDataAdapter dscmd = new SqlDataAdapter(cm);
             DataSet ds = new DataSet();
             dscmd.Fill(ds, "Auditoriaa");
-
             Informes.FrtTodos grupos = new Informes.FrtTodos();
             grupos.SetDataSource(ds.Tables[0]);
-            Forms.FrmReportes reporte = new FrmReportes();
-            reporte.crystalReportViewer1.ReportSource = grupos;
-            reporte.ShowDialog();
+            if(RdbPntalla.Checked)
+            {
+                Forms.FrmReportes reporte = new FrmReportes();
+                reporte.crystalReportViewer1.ReportSource = grupos;
+                reporte.ShowDialog();
+            }
+            else
+            {
+                imprimir(grupos);
+            }
+            
         }
-        public void consultarporUsuario(DataGridView dgServicios)//esto es para lenar el datagrid con TODOS
+        public void reporteporUsuario()//esto es para lenar el datagrid con TODOS
         {
             objconexion = new Clases.Conexión();
             Conexion = new SqlConnection(objconexion.Conn());
             Conexion.Open();
             SqlCommand cm = new SqlCommand("select * from Auditoriaa where Au_Clave=@usuario and Au_Fecha BETWEEN @FechaDesde AND @FechaHasta", Conexion);
             cm.Parameters.Clear();
-            cm.Parameters.AddWithValue("@usuario", CboxUsuario.SelectedItem.ToString());
-            cm.Parameters.AddWithValue("@FechaDesde", FechasDesde.Value.Date.Add(new TimeSpan(0, 0, 0)));
-            cm.Parameters.AddWithValue("@FechaHasta", FechaHasta.Value.Date.Add(new TimeSpan(23, 59, 59)));
-            SqlDataAdapter da = new SqlDataAdapter(cm);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            dgServicios.DataSource = dt;
-            if (!(dt.Rows.Count > 0))
+            cm.Parameters.AddWithValue("@usuario", cboxUSUARIOS.SelectedItem.ToString());
+            cm.Parameters.AddWithValue("@FechaDesde", FechasDesde2.Value.Date.Add(new TimeSpan(0, 0, 0)));
+            cm.Parameters.AddWithValue("@FechaHasta", FechasHasta2.Value.Date.Add(new TimeSpan(23, 59, 59)));
+            SqlDataAdapter dscmd = new SqlDataAdapter(cm);
+            DataSet ds = new DataSet();//este es para decir al reporte que datos va a buscar
+            dscmd.Fill(ds, "Auditoriaa");
+            Informes.FrtTodos grupos = new Informes.FrtTodos();
+            grupos.SetDataSource(ds.Tables[0]);
+            if (RdbPntalla.Checked)
             {
-                MessageBox.Show("No se encontraron resultados", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                btnEliminar.Enabled = false;
-
+                Forms.FrmReportes reporte = new FrmReportes();
+                reporte.crystalReportViewer1.ReportSource = grupos;
+                reporte.ShowDialog();
             }
+            else
+            {
+                imprimir(grupos);
+            }
+            
         }
+        public void imprimir(ReportClass reporte )//recibe un objeto repor,abre el dilogo impresora y si da si va a sacar las opciones,llama al metodo impri repor de donde a donde
+        {
+            PrintDialog dialog1 = new PrintDialog();
+            if (dialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                int copies = dialog1.PrinterSettings.Copies;
+                int fromPage = dialog1.PrinterSettings.FromPage;
+                int toPage = dialog1.PrinterSettings.ToPage;
+                bool collate = dialog1.PrinterSettings.Collate;
+
+                reporte.PrintOptions.PrinterName = dialog1.PrinterSettings.PrinterName;
+                reporte.PrintToPrinter(copies, collate, fromPage, toPage);
+            }
+            reporte.Dispose();
+            dialog1.Dispose();
+        }
+       
 
          private void btnImprimir_Click(object sender, EventArgs e)
-        {
+         {
             if (RdbTodoInforme.Checked)
             {
-                consultatodo();
+                reportetodo();
 
             }
-        }
+            else
+            {
+                reporteporUsuario();
+
+            }
+         }
 
         private void dgServicios_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void tabPage1_Click_1(object sender, EventArgs e)
         {
 
         }

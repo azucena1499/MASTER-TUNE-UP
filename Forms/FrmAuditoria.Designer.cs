@@ -55,6 +55,7 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
+            this.dgServicios = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label6 = new System.Windows.Forms.Label();
             this.FechaHasta = new System.Windows.Forms.DateTimePicker();
@@ -82,7 +83,6 @@
             this.RdbUsuarioInforme = new System.Windows.Forms.RadioButton();
             this.RdbTodoInforme = new System.Windows.Forms.RadioButton();
             this.btnsalir = new System.Windows.Forms.Button();
-            this.dgServicios = new System.Windows.Forms.DataGridView();
             this.tabControl1.SuspendLayout();
             this.tbpregistro.SuspendLayout();
             this.groupCambio.SuspendLayout();
@@ -90,13 +90,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgServicios)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgServicios)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -408,6 +408,16 @@
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
+            // dgServicios
+            // 
+            this.dgServicios.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
+            this.dgServicios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgServicios.Location = new System.Drawing.Point(127, 193);
+            this.dgServicios.Name = "dgServicios";
+            this.dgServicios.Size = new System.Drawing.Size(415, 107);
+            this.dgServicios.TabIndex = 39;
+            this.dgServicios.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgServicios_CellContentClick);
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.label6);
@@ -524,6 +534,7 @@
             this.tabPage1.TabIndex = 2;
             this.tabPage1.Text = "Informe de auditoria";
             this.tabPage1.UseVisualStyleBackColor = true;
+            this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click_1);
             // 
             // btnImprimir
             // 
@@ -609,13 +620,13 @@
             this.RdbImpresora.Name = "RdbImpresora";
             this.RdbImpresora.Size = new System.Drawing.Size(89, 17);
             this.RdbImpresora.TabIndex = 1;
-            this.RdbImpresora.TabStop = true;
             this.RdbImpresora.Text = "Por impresora";
             this.RdbImpresora.UseVisualStyleBackColor = true;
             // 
             // RdbPntalla
             // 
             this.RdbPntalla.AutoSize = true;
+            this.RdbPntalla.Checked = true;
             this.RdbPntalla.Location = new System.Drawing.Point(6, 31);
             this.RdbPntalla.Name = "RdbPntalla";
             this.RdbPntalla.Size = new System.Drawing.Size(81, 17);
@@ -687,16 +698,6 @@
             this.btnsalir.UseVisualStyleBackColor = true;
             this.btnsalir.Click += new System.EventHandler(this.btnsalir_Click);
             // 
-            // dgServicios
-            // 
-            this.dgServicios.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
-            this.dgServicios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgServicios.Location = new System.Drawing.Point(127, 193);
-            this.dgServicios.Name = "dgServicios";
-            this.dgServicios.Size = new System.Drawing.Size(415, 107);
-            this.dgServicios.TabIndex = 39;
-            this.dgServicios.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgServicios_CellContentClick);
-            // 
             // FrmAuditoria
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -721,6 +722,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgServicios)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -733,7 +735,6 @@
             this.groupBox4.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgServicios)).EndInit();
             this.ResumeLayout(false);
 
         }
