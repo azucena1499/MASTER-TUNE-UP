@@ -828,29 +828,24 @@ namespace MASTER_TUNE_UP.Forms
             FechasDesde2.MaxDate = FechasHasta2.Value;
 
         }
-        public void consultatodo()//aqui es lo del reporte,no tengo idea de como hacerlo
+        public void consultatodo()//aqui es lo del reporte,no tengo idea de como hacerlo, AddWithValue es para remplazar un valor enviado
         {
             objconexion = new Clases.Conexión();
             Conexion = new SqlConnection(objconexion.Conn());
             Conexion.Open();
             SqlCommand cm = new SqlCommand("select * from Auditoriaa where Au_Fecha BETWEEN @FechaDesde AND @FechaHasta", Conexion);
             cm.Parameters.Clear();
-            cm.Parameters.AddWithValue("@FechaDesde", FechasDesde.Value.Date.Add(new TimeSpan(0, 0, 0)));
-            cm.Parameters.AddWithValue("@FechaHasta", FechaHasta.Value.Date.Add(new TimeSpan(23, 59, 59)));
-            SqlDataReader leer = cm.ExecuteReader();
+            cm.Parameters.AddWithValue("@FechaDesde", FechasDesde2.Value.Date.Add(new TimeSpan(0, 0, 0)));
+            cm.Parameters.AddWithValue("@FechaHasta", FechasHasta2.Value.Date.Add(new TimeSpan(23, 59, 59)));
+            SqlDataAdapter dscmd = new SqlDataAdapter(cm);
+            DataSet ds = new DataSet();
+            dscmd.Fill(ds, "Auditoriaa");
 
-           // cm.ExecuteNonQuery();//es para verificar los editados
-
-            //SqlDataAdapter da = new SqlDataAdapter(cm);
-            //DataTable dt = new DataTable();
-            //da.Fill(dt);
-            //FrtTodos.DataSource = dt;
-            //if (!(dt.Rows.Count > 0))
-            //{
-            //    MessageBox.Show("No se encontraron resultados", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    btnEliminar.Enabled = false;
-
-            //}
+            Informes.FrtTodos grupos = new Informes.FrtTodos();
+            grupos.SetDataSource(ds.Tables[0]);
+            Forms.FrmReportes reporte = new FrmReportes();
+            reporte.crystalReportViewer1.ReportSource = grupos;
+            reporte.ShowDialog();
         }
         public void consultarporUsuario(DataGridView dgServicios)//esto es para lenar el datagrid con TODOS
         {
@@ -879,13 +874,6 @@ namespace MASTER_TUNE_UP.Forms
             if (RdbTodoInforme.Checked)
             {
                 consultatodo();
-                {
-                    Informes.FrtTodos grupos = new Informes.FrtTodos();
-                    Forms.FrmReportes reporte = new FrmReportes();
-                    reporte.crystalReportViewer1.ReportSource = grupos;
-                    reporte.ShowDialog();
-                }
-
 
             }
         }
