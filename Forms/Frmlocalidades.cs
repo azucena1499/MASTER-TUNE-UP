@@ -62,7 +62,7 @@ namespace MASTER_TUNE_UP.Forms
                     else
                     {
                         existe = 0;
-                        if (MessageBox.Show("Servicio no registrado.¿desea agregar un nuevo grupo?", "no existe", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
+                        if (MessageBox.Show("Localidad no registrada.¿Desea agregar una nueva?", "No existe", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
                         {
                             txtnombre.Enabled = true;
                             cboxservicio.Enabled = false;
@@ -104,6 +104,16 @@ namespace MASTER_TUNE_UP.Forms
             this.cboxservicio.DisplayMember = "lo_Nombre";
             Conexion.Close();
 
+            AutoCompleteStringCollection coleccion = new AutoCompleteStringCollection();
+            foreach (DataRow rows in dt.Rows)
+            {
+                coleccion.Add(Convert.ToString(rows["lo_Nombre"]));//Leer cada registro de la columna Nom y añadir a la coleccion
+
+            }
+            cboxservicio.AutoCompleteCustomSource = coleccion;
+            cboxservicio.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            cboxservicio.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
         }
 
         private void btnguardar_Click(object sender, EventArgs e)
@@ -129,7 +139,6 @@ namespace MASTER_TUNE_UP.Forms
                 txtclave.Enabled = true;
                 txtclave.Clear();
                 txtclave.Focus();
-                maximo();
             }
             if (existe == 1)
             {
@@ -155,7 +164,6 @@ namespace MASTER_TUNE_UP.Forms
                 txtclave.Enabled = true;
                 txtclave.Clear();
                 txtclave.Focus();
-                maximo();
 
             }
         }
@@ -182,7 +190,6 @@ namespace MASTER_TUNE_UP.Forms
                 comando.ExecuteNonQuery();
                 MessageBox.Show("Localidad Eliminada", "Eliminar", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 limpiar();
-                maximo();
             }
         }
 
@@ -223,24 +230,12 @@ namespace MASTER_TUNE_UP.Forms
         {
 
         }
-        private void maximo()
-        {
-            objconexion = new Clases.Conexión();
-            Conexion = new SqlConnection(objconexion.Conn());
-            Conexion.Open();
-            string query = "SELECT max(lo_Id)+1 as ultimo from Localidad";
-            SqlCommand comando = new SqlCommand(query, Conexion);
-            SqlDataReader leer = comando.ExecuteReader();
-            if (leer.Read())
-                txtclave.Text = leer["ultimo"].ToString();
-        }
-
+       
         private void Frmlocalidades_Load(object sender, EventArgs e)
         {
             Acceso acceso = new Acceso();
             string actividad = "El usuario  Ingreso a Localidades.";
             acceso.Registrar_auditoria(actividad);
-            maximo();
         }
 
         private void Frmlocalidades_FormClosing(object sender, FormClosingEventArgs e)

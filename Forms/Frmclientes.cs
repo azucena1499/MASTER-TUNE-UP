@@ -109,16 +109,20 @@ namespace MASTER_TUNE_UP.Forms
                         }
                         if (estatus == 0)
                         {
-                            MessageBox.Show("Grupo dado de baja", "ok", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("Cliente dado de baja", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             btneliminar.Enabled = false;
                             btngrabar.Enabled = false;
                             cboxclientee.Enabled = false;
-                            txtnombre.Enabled = true;
+                            txtnombre.Enabled = false;
                             txtdomicilio.Enabled = false;
                             txtemail.Enabled = false;
                             cboxlocalidad.Enabled = false;
                             txtapeMat.Enabled = false;
-                            limpiar();
+                            txtteleono.Enabled = false;
+                            txtxape.Enabled = false;
+                            txtclave.Enabled = true;
+
+                            //limpiar();
 
 
 
@@ -413,6 +417,7 @@ namespace MASTER_TUNE_UP.Forms
             if (e.KeyCode == Keys.Escape)
             {
                 limpiar();
+                maximo();
             }
         }
     }

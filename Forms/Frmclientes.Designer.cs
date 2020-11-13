@@ -65,7 +65,7 @@
             // 
             this.cboxclientee.Enabled = false;
             this.cboxclientee.FormattingEnabled = true;
-            this.cboxclientee.Location = new System.Drawing.Point(75, 91);
+            this.cboxclientee.Location = new System.Drawing.Point(68, 91);
             this.cboxclientee.Name = "cboxclientee";
             this.cboxclientee.Size = new System.Drawing.Size(120, 21);
             this.cboxclientee.TabIndex = 38;
@@ -110,7 +110,7 @@
             // txtnombre
             // 
             this.txtnombre.Enabled = false;
-            this.txtnombre.Location = new System.Drawing.Point(68, 57);
+            this.txtnombre.Location = new System.Drawing.Point(88, 57);
             this.txtnombre.Name = "txtnombre";
             this.txtnombre.Size = new System.Drawing.Size(205, 20);
             this.txtnombre.TabIndex = 29;
@@ -119,9 +119,9 @@
             // 
             // txtclave
             // 
-            this.txtclave.Location = new System.Drawing.Point(43, 22);
+            this.txtclave.Location = new System.Drawing.Point(88, 23);
             this.txtclave.Name = "txtclave";
-            this.txtclave.Size = new System.Drawing.Size(51, 20);
+            this.txtclave.Size = new System.Drawing.Size(46, 20);
             this.txtclave.TabIndex = 1;
             this.txtclave.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtclave_KeyPress);
             // 
@@ -164,7 +164,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 57);
+            this.label2.Location = new System.Drawing.Point(30, 57);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(52, 13);
             this.label2.TabIndex = 23;
@@ -173,7 +173,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(0, 22);
+            this.label1.Location = new System.Drawing.Point(45, 30);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(37, 13);
             this.label1.TabIndex = 22;
@@ -182,9 +182,9 @@
             // txtxape
             // 
             this.txtxape.Enabled = false;
-            this.txtxape.Location = new System.Drawing.Point(92, 86);
+            this.txtxape.Location = new System.Drawing.Point(87, 83);
             this.txtxape.Name = "txtxape";
-            this.txtxape.Size = new System.Drawing.Size(177, 20);
+            this.txtxape.Size = new System.Drawing.Size(206, 20);
             this.txtxape.TabIndex = 43;
             this.txtxape.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtxape_KeyDown);
             // 
@@ -229,9 +229,10 @@
             // 
             // txtapeMat
             // 
-            this.txtapeMat.Location = new System.Drawing.Point(93, 112);
+            this.txtapeMat.Enabled = false;
+            this.txtapeMat.Location = new System.Drawing.Point(88, 109);
             this.txtapeMat.Name = "txtapeMat";
-            this.txtapeMat.Size = new System.Drawing.Size(177, 20);
+            this.txtapeMat.Size = new System.Drawing.Size(205, 20);
             this.txtapeMat.TabIndex = 50;
             this.txtapeMat.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtapeMat_KeyDown);
             // 
@@ -279,6 +280,7 @@
             // 
             // cboxlocalidad
             // 
+            this.cboxlocalidad.Enabled = false;
             this.cboxlocalidad.FormattingEnabled = true;
             this.cboxlocalidad.Location = new System.Drawing.Point(61, 56);
             this.cboxlocalidad.Name = "cboxlocalidad";

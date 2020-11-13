@@ -46,9 +46,9 @@
             this.lblbuscar.AutoSize = true;
             this.lblbuscar.Location = new System.Drawing.Point(243, 22);
             this.lblbuscar.Name = "lblbuscar";
-            this.lblbuscar.Size = new System.Drawing.Size(97, 13);
+            this.lblbuscar.Size = new System.Drawing.Size(122, 13);
             this.lblbuscar.TabIndex = 46;
-            this.lblbuscar.Text = "consulta de grupos";
+            this.lblbuscar.Text = "consulta de Localidades";
             this.lblbuscar.Visible = false;
             // 
             // cboxservicio
@@ -66,7 +66,7 @@
             // 
             this.txtnombre.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtnombre.Enabled = false;
-            this.txtnombre.Location = new System.Drawing.Point(84, 80);
+            this.txtnombre.Location = new System.Drawing.Point(67, 80);
             this.txtnombre.Name = "txtnombre";
             this.txtnombre.Size = new System.Drawing.Size(290, 20);
             this.txtnombre.TabIndex = 43;

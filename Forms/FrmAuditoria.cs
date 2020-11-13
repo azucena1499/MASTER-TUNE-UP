@@ -704,6 +704,8 @@ namespace MASTER_TUNE_UP.Forms
                 cm.Parameters.AddWithValue("@FechaHasta", FechaHasta.Value.Date.Add(new TimeSpan(23, 59, 59)));
                 cm.ExecuteNonQuery();
                 return true;
+                
+               
             }
             catch (SqlException excep)
             {
@@ -736,39 +738,41 @@ namespace MASTER_TUNE_UP.Forms
         {
             if (RdbTodos.Checked)
             {
-                if (eliminartodos())
+                if (MessageBox.Show("El Registro sera eliminado,está seguro?", "Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Stop) == DialogResult.Yes)
+
                 {
-                    dgServicios.DataSource = null;
-                    btnEliminar.Enabled = false;
-                    if (MessageBox.Show("El Registro sera eliminado,está seguro?", "Eliminar", MessageBoxButtons.YesNo,
-                                         MessageBoxIcon.Stop) == DialogResult.Yes)
+                    if (eliminartodos())
                     {
+                        dgServicios.DataSource = null;
+                        btnEliminar.Enabled = false;
                         MessageBox.Show("Registros eliminados correctamente.");
 
                     }
+                    else
+                    {
+                        MessageBox.Show("Error", "No se pudieron eliminar los registros.");
+                    }
                 }
-                else
-                {
-                    MessageBox.Show("Error", "No se pudieron eliminar los registros.");
-                }
+                 
             }
             else
             {
-                if (eliminarPorUsuario())
-                {
-                    dgServicios.DataSource = null;
-                    btnEliminar.Enabled = false;
-                    if (MessageBox.Show("El Registro sera eliminado,está seguro?", "Eliminar", MessageBoxButtons.YesNo,
+                if (MessageBox.Show("El Registro sera eliminado,está seguro?", "Eliminar", MessageBoxButtons.YesNo,
                      MessageBoxIcon.Stop) == DialogResult.Yes)
+                {
+                    if (eliminarPorUsuario())
                     {
+                        dgServicios.DataSource = null;
+                        btnEliminar.Enabled = false;
                         MessageBox.Show("Registros eliminados correctamente.");
 
                     }
+                    else
+                    {
+                        MessageBox.Show("Error", "No se pudieron eliminar los registros.");
+                    }
                 }
-                else
-                {
-                    MessageBox.Show("Error", "No se pudieron eliminar los registros.");
-                }
+                   
             }
         }
        //el de informes
@@ -922,6 +926,11 @@ namespace MASTER_TUNE_UP.Forms
         private void tabPage1_Click_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -30,9 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frmservicios));
             this.dgServicios = new System.Windows.Forms.DataGridView();
-            this.codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Servicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Precio1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btneliminar = new System.Windows.Forms.Button();
             this.btngrabar = new System.Windows.Forms.Button();
             this.txtxprecio = new System.Windows.Forms.TextBox();
@@ -63,9 +60,18 @@
             this.dtpfecha = new System.Windows.Forms.DateTimePicker();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnsalir = new System.Windows.Forms.Button();
+            this.codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Trabajos = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Precio1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.gpboxtipo = new System.Windows.Forms.GroupBox();
+            this.rdbtncontado = new System.Windows.Forms.RadioButton();
+            this.rdbtncreito = new System.Windows.Forms.RadioButton();
+            this.txtfolio = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgServicios)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.gpboxtipo.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgServicios
@@ -74,31 +80,13 @@
             this.dgServicios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgServicios.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.codigo,
-            this.Servicio,
+            this.Trabajos,
             this.Precio1});
             this.dgServicios.Location = new System.Drawing.Point(48, 304);
             this.dgServicios.Name = "dgServicios";
             this.dgServicios.Size = new System.Drawing.Size(490, 163);
             this.dgServicios.TabIndex = 30;
             this.dgServicios.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgServicios_CellContentClick);
-            // 
-            // codigo
-            // 
-            this.codigo.HeaderText = "Codigo";
-            this.codigo.Name = "codigo";
-            this.codigo.ReadOnly = true;
-            // 
-            // Servicio
-            // 
-            this.Servicio.HeaderText = "Servicio";
-            this.Servicio.Name = "Servicio";
-            this.Servicio.ReadOnly = true;
-            this.Servicio.Width = 250;
-            // 
-            // Precio1
-            // 
-            this.Precio1.HeaderText = "Precio";
-            this.Precio1.Name = "Precio1";
             // 
             // btneliminar
             // 
@@ -218,9 +206,9 @@
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.txtCliente);
-            this.groupBox1.Location = new System.Drawing.Point(2, 12);
+            this.groupBox1.Location = new System.Drawing.Point(17, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(339, 166);
+            this.groupBox1.Size = new System.Drawing.Size(409, 175);
             this.groupBox1.TabIndex = 49;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos del Cliente";
@@ -356,7 +344,7 @@
             // 
             // dtpfecha
             // 
-            this.dtpfecha.Location = new System.Drawing.Point(469, 12);
+            this.dtpfecha.Location = new System.Drawing.Point(624, 3);
             this.dtpfecha.Name = "dtpfecha";
             this.dtpfecha.Size = new System.Drawing.Size(212, 20);
             this.dtpfecha.TabIndex = 53;
@@ -389,11 +377,85 @@
             this.btnsalir.UseVisualStyleBackColor = true;
             this.btnsalir.Click += new System.EventHandler(this.btnsalir_Click);
             // 
+            // codigo
+            // 
+            this.codigo.HeaderText = "Codigo";
+            this.codigo.Name = "codigo";
+            this.codigo.ReadOnly = true;
+            // 
+            // Trabajos
+            // 
+            this.Trabajos.HeaderText = "Trabajos";
+            this.Trabajos.Name = "Trabajos";
+            this.Trabajos.ReadOnly = true;
+            this.Trabajos.Width = 250;
+            // 
+            // Precio1
+            // 
+            this.Precio1.HeaderText = "Precio";
+            this.Precio1.Name = "Precio1";
+            // 
+            // gpboxtipo
+            // 
+            this.gpboxtipo.Controls.Add(this.rdbtncontado);
+            this.gpboxtipo.Controls.Add(this.rdbtncreito);
+            this.gpboxtipo.Location = new System.Drawing.Point(468, 46);
+            this.gpboxtipo.Name = "gpboxtipo";
+            this.gpboxtipo.Size = new System.Drawing.Size(105, 62);
+            this.gpboxtipo.TabIndex = 58;
+            this.gpboxtipo.TabStop = false;
+            this.gpboxtipo.Text = "Tipo";
+            // 
+            // rdbtncontado
+            // 
+            this.rdbtncontado.AutoSize = true;
+            this.rdbtncontado.Checked = true;
+            this.rdbtncontado.Location = new System.Drawing.Point(11, 19);
+            this.rdbtncontado.Name = "rdbtncontado";
+            this.rdbtncontado.Size = new System.Drawing.Size(65, 17);
+            this.rdbtncontado.TabIndex = 13;
+            this.rdbtncontado.TabStop = true;
+            this.rdbtncontado.Text = "Contado";
+            this.rdbtncontado.UseVisualStyleBackColor = true;
+            this.rdbtncontado.CheckedChanged += new System.EventHandler(this.rdbtncontado_CheckedChanged);
+            this.rdbtncontado.Click += new System.EventHandler(this.rdbtncontado_Click);
+            // 
+            // rdbtncreito
+            // 
+            this.rdbtncreito.AutoSize = true;
+            this.rdbtncreito.Location = new System.Drawing.Point(11, 41);
+            this.rdbtncreito.Name = "rdbtncreito";
+            this.rdbtncreito.Size = new System.Drawing.Size(58, 17);
+            this.rdbtncreito.TabIndex = 14;
+            this.rdbtncreito.Text = "Credito";
+            this.rdbtncreito.UseVisualStyleBackColor = true;
+            this.rdbtncreito.Click += new System.EventHandler(this.rdbtncreito_Click);
+            // 
+            // txtfolio
+            // 
+            this.txtfolio.Enabled = false;
+            this.txtfolio.Location = new System.Drawing.Point(676, 67);
+            this.txtfolio.Name = "txtfolio";
+            this.txtfolio.Size = new System.Drawing.Size(57, 20);
+            this.txtfolio.TabIndex = 57;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(633, 70);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(29, 13);
+            this.label8.TabIndex = 56;
+            this.label8.Text = "Folio";
+            // 
             // Frmservicios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(853, 533);
+            this.Controls.Add(this.gpboxtipo);
+            this.Controls.Add(this.txtfolio);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.btnsalir);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.dtpfecha);
@@ -416,6 +478,8 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.gpboxtipo.ResumeLayout(false);
+            this.gpboxtipo.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -436,9 +500,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn codigo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Servicio;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Precio1;
         private System.Windows.Forms.TextBox txttotal;
         private System.Windows.Forms.Button btntotal;
         private System.Windows.Forms.DateTimePicker dtpfecha;
@@ -457,5 +518,13 @@
         private System.Windows.Forms.TextBox txtclave;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button btnsalir;
+        private System.Windows.Forms.DataGridViewTextBoxColumn codigo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Trabajos;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Precio1;
+        private System.Windows.Forms.GroupBox gpboxtipo;
+        private System.Windows.Forms.RadioButton rdbtncontado;
+        private System.Windows.Forms.RadioButton rdbtncreito;
+        private System.Windows.Forms.TextBox txtfolio;
+        private System.Windows.Forms.Label label8;
     }
 }

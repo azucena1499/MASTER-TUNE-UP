@@ -260,7 +260,7 @@ namespace MASTER_TUNE_UP.Forms
                     {
                         //si lavariable existe vale 0 y se usara insert
                         existe = 0;
-                        if (MessageBox.Show("Cliente no registrado.¿desea agregar un nuevo grupo?", "no existe", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
+                        if (MessageBox.Show("Servicio no registrado.¿desea agregar un nuevo Servicio?", "No existe", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
                         {
                             //poner un habilitar aqui
                             txtCliente.Enabled = true;
@@ -286,6 +286,34 @@ namespace MASTER_TUNE_UP.Forms
         private void dgServicios_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void rdbtncontado_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void rdbtncontado_Click(object sender, EventArgs e)
+        {
+            if (rdbtncontado.Checked)
+            {
+                groupBox1.Visible = true;
+                txtfolio.Enabled = false;
+                txtclave.Focus();
+            }
+        }
+
+        private void rdbtncreito_Click(object sender, EventArgs e)
+        {
+            if (rdbtncreito.Checked)
+            {
+                txtfolio.Enabled = true;
+                dtpfecha.Enabled = true;
+                groupBox1.Visible = false;
+                txtfolio.Focus();
+
+
+            }
         }
     }
 }

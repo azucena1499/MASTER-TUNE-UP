@@ -554,6 +554,7 @@
             this.button2.TabIndex = 33;
             this.button2.Text = "salir";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // groupBox5
             // 
@@ -671,7 +672,6 @@
             this.RdbUsuarioInforme.Name = "RdbUsuarioInforme";
             this.RdbUsuarioInforme.Size = new System.Drawing.Size(78, 17);
             this.RdbUsuarioInforme.TabIndex = 1;
-            this.RdbUsuarioInforme.TabStop = true;
             this.RdbUsuarioInforme.Text = "Por usuario";
             this.RdbUsuarioInforme.UseVisualStyleBackColor = true;
             this.RdbUsuarioInforme.CheckedChanged += new System.EventHandler(this.RdbUsuarioInforme_CheckedChanged);
@@ -679,6 +679,7 @@
             // RdbTodoInforme
             // 
             this.RdbTodoInforme.AutoSize = true;
+            this.RdbTodoInforme.Checked = true;
             this.RdbTodoInforme.Location = new System.Drawing.Point(6, 31);
             this.RdbTodoInforme.Name = "RdbTodoInforme";
             this.RdbTodoInforme.Size = new System.Drawing.Size(55, 17);
