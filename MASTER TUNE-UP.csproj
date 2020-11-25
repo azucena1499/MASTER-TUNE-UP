@@ -70,6 +70,12 @@
     <Compile Include="Forms\FrmAuditoria.Designer.cs">
       <DependentUpon>FrmAuditoria.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\frmCatalogos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmCatalogos.Designer.cs">
+      <DependentUpon>frmCatalogos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Frmclientes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -112,10 +118,28 @@
     <Compile Include="Forms\frmtrabajos.Designer.cs">
       <DependentUpon>frmtrabajos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Informes\FrtClienteNom.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FrtClienteNom.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Informes\FrtTodos.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>FrtTodos.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Informes\rptActivos.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptActivos.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Informes\rptClienteId.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptClienteId.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Program.cs" />
@@ -125,6 +149,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmAuditoria.resx">
       <DependentUpon>FrmAuditoria.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmCatalogos.resx">
+      <DependentUpon>frmCatalogos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Frmclientes.resx">
       <DependentUpon>Frmclientes.cs</DependentUpon>
@@ -147,9 +174,21 @@
     <EmbeddedResource Include="Forms\frmtrabajos.resx">
       <DependentUpon>frmtrabajos.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Informes\FrtClienteNom.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>FrtClienteNom.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Informes\FrtTodos.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>FrtTodos.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Informes\rptActivos.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptActivos.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Informes\rptClienteId.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptClienteId.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -120,5 +120,12 @@ namespace MASTER_TUNE_UP.Forms
         {
 
         }
+
+        private void catalogoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Forms.frmCatalogos x = new Forms.frmCatalogos();
+            x.Show();
+
+        }
     }
 }

@@ -49,6 +49,7 @@
             this.lbluser = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lbl3 = new System.Windows.Forms.Label();
+            this.catalogoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -131,7 +132,8 @@
             // informesToolStripMenuItem
             // 
             this.informesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.comprasToolStripMenuItem1});
+            this.comprasToolStripMenuItem1,
+            this.catalogoToolStripMenuItem});
             this.informesToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("informesToolStripMenuItem.Image")));
             this.informesToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.informesToolStripMenuItem.Name = "informesToolStripMenuItem";
@@ -232,6 +234,13 @@
             this.lbl3.Size = new System.Drawing.Size(0, 15);
             this.lbl3.TabIndex = 11;
             // 
+            // catalogoToolStripMenuItem
+            // 
+            this.catalogoToolStripMenuItem.Name = "catalogoToolStripMenuItem";
+            this.catalogoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.catalogoToolStripMenuItem.Text = "Catalogo";
+            this.catalogoToolStripMenuItem.Click += new System.EventHandler(this.catalogoToolStripMenuItem_Click);
+            // 
             // Frmmenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -275,5 +284,6 @@
         public System.Windows.Forms.Label lbluser;
         private System.Windows.Forms.GroupBox groupBox1;
         public System.Windows.Forms.Label lbl3;
+        private System.Windows.Forms.ToolStripMenuItem catalogoToolStripMenuItem;
     }
 }
