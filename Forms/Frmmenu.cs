@@ -123,7 +123,7 @@ namespace MASTER_TUNE_UP.Forms
 
         private void catalogoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Forms.frmCatalogos x = new Forms.frmCatalogos();
+            Forms.Catalogos x = new Forms.Catalogos();
             x.Show();
 
         }

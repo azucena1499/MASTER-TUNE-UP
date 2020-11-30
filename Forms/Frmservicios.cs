@@ -19,7 +19,7 @@ namespace MASTER_TUNE_UP.Forms
         int posicion;
         Clases.Conexión objconexion;
         SqlConnection Conexion;
-       
+
         public Frmservicios()
         {
             InitializeComponent();
@@ -44,12 +44,22 @@ namespace MASTER_TUNE_UP.Forms
             txtnombre.Clear();
             txtxprecio.Clear();
             txtCodigo.Focus();
+            btneliminar.Enabled = true;
+            btnsalir.Enabled = true;
+
         }
 
         private void btneliminar_Click(object sender, EventArgs e)
         {
-            dgServicios.Rows.RemoveAt(posicion);
-            txtnombre.Focus();
+            //dgServicios.Rows.RemoveAt(posicion);
+
+
+            if (dgServicios.RowCount > 1)
+            {
+                dgServicios.Rows.RemoveAt(dgServicios.CurrentRow.Index);
+                txtnombre.Focus();
+            }
+           
 
         }
 
@@ -79,10 +89,11 @@ namespace MASTER_TUNE_UP.Forms
 
                         txtnombre.Text = leer["se_nombre"].ToString();
                         txtxprecio.Text = leer["se_precio"].ToString();
+                        btngrabar.Enabled = true;
                         btngrabar.Focus();
 
                     }
-                   
+
                 }
         }
 
@@ -92,7 +103,10 @@ namespace MASTER_TUNE_UP.Forms
             cboxservicio.Visible = true;
             cboxservicio.Focus();
             llenarcbox();
+
+
         }
+
         private void llenarcbox()
         {
             //defino el data table
@@ -148,6 +162,7 @@ namespace MASTER_TUNE_UP.Forms
                 txtCodigo.Focus();
 
 
+
             }
         }
 
@@ -160,7 +175,7 @@ namespace MASTER_TUNE_UP.Forms
             }
             txttotal.Text = Convert.ToString(total);
         }
-       
+
 
         private void Frmservicios_Load(object sender, EventArgs e)
         {
@@ -168,8 +183,9 @@ namespace MASTER_TUNE_UP.Forms
             string actividad = "El usuario ingreso a servicios.";
             acceso.Registrar_auditoria(actividad);
             maximo();
+            
         }
-        
+
 
         private void btngrabar_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -182,7 +198,8 @@ namespace MASTER_TUNE_UP.Forms
                 //suma();
                 txtCodigo.Focus();
             }
-               
+
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -255,12 +272,16 @@ namespace MASTER_TUNE_UP.Forms
                         txtteleono.Text = leer["Cl_tel"].ToString();
                         txtapeMat.Text = leer["Cl_apemat"].ToString();
 
+                        grpServicio.Enabled = true;
+                        btnbuscar.Enabled = false;
+
+
                     }
                     else
                     {
                         //si lavariable existe vale 0 y se usara insert
                         existe = 0;
-                        if (MessageBox.Show("Servicio no registrado.¿desea agregar un nuevo Servicio?", "No existe", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
+                        if (MessageBox.Show("Usuario no registrado.¿desea agregar un nuevo Servicio?", "No existe", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
                         {
                             //poner un habilitar aqui
                             txtCliente.Enabled = true;
@@ -285,7 +306,7 @@ namespace MASTER_TUNE_UP.Forms
 
         private void dgServicios_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+           
         }
 
         private void rdbtncontado_CheckedChanged(object sender, EventArgs e)
@@ -315,5 +336,38 @@ namespace MASTER_TUNE_UP.Forms
 
             }
         }
+
+        private void txtclave_TextChanged(object sender, EventArgs e)
+        {
+            if (txtclave.Text != string.Empty)
+            {
+                button1.Enabled = true;
+            }
+            else
+            {
+                button1.Enabled = false;
+            }
+        }
+
+        private void btnguardarTodo_Click(object sender, EventArgs e)
+        {
+            dgServicios.Rows.Clear();
+            MessageBox.Show("Trabajo guardado con exito", "Guardado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+        }
+
+        private void txtCodigo_TextChanged(object sender, EventArgs e)
+        {
+            if (txtCodigo.Text != string.Empty)
+            {
+                btnbuscar.Enabled = true;
+            }
+            else
+            {
+                btnbuscar.Enabled = false;
+            }
+        }
     }
 }
+ 

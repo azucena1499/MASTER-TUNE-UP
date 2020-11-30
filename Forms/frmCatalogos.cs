@@ -12,9 +12,9 @@ using CrystalDecisions.CrystalReports.Engine;
 
 namespace MASTER_TUNE_UP.Forms
 {
-    public partial class frmCatalogos : Form
+    public partial class Catalogos : Form
     {
-        public frmCatalogos()
+        public Catalogos()
         {
             InitializeComponent();
         }

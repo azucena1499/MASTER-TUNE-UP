@@ -30,6 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frmservicios));
             this.dgServicios = new System.Windows.Forms.DataGridView();
+            this.codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Trabajos = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Precio1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btneliminar = new System.Windows.Forms.Button();
             this.btngrabar = new System.Windows.Forms.Button();
             this.txtxprecio = new System.Windows.Forms.TextBox();
@@ -58,19 +61,17 @@
             this.txttotal = new System.Windows.Forms.TextBox();
             this.btntotal = new System.Windows.Forms.Button();
             this.dtpfecha = new System.Windows.Forms.DateTimePicker();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.grpServicio = new System.Windows.Forms.GroupBox();
             this.btnsalir = new System.Windows.Forms.Button();
-            this.codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Trabajos = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Precio1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gpboxtipo = new System.Windows.Forms.GroupBox();
             this.rdbtncontado = new System.Windows.Forms.RadioButton();
             this.rdbtncreito = new System.Windows.Forms.RadioButton();
             this.txtfolio = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.btnguardarTodo = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgServicios)).BeginInit();
             this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.grpServicio.SuspendLayout();
             this.gpboxtipo.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -82,14 +83,34 @@
             this.codigo,
             this.Trabajos,
             this.Precio1});
+            this.dgServicios.Enabled = false;
             this.dgServicios.Location = new System.Drawing.Point(48, 304);
             this.dgServicios.Name = "dgServicios";
             this.dgServicios.Size = new System.Drawing.Size(490, 163);
             this.dgServicios.TabIndex = 30;
             this.dgServicios.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgServicios_CellContentClick);
             // 
+            // codigo
+            // 
+            this.codigo.HeaderText = "Codigo";
+            this.codigo.Name = "codigo";
+            this.codigo.ReadOnly = true;
+            // 
+            // Trabajos
+            // 
+            this.Trabajos.HeaderText = "Trabajos";
+            this.Trabajos.Name = "Trabajos";
+            this.Trabajos.ReadOnly = true;
+            this.Trabajos.Width = 250;
+            // 
+            // Precio1
+            // 
+            this.Precio1.HeaderText = "Precio";
+            this.Precio1.Name = "Precio1";
+            // 
             // btneliminar
             // 
+            this.btneliminar.Enabled = false;
             this.btneliminar.Image = global::MASTER_TUNE_UP.Properties.Resources.cruzar4;
             this.btneliminar.Location = new System.Drawing.Point(739, 378);
             this.btneliminar.Name = "btneliminar";
@@ -100,10 +121,11 @@
             // 
             // btngrabar
             // 
-            this.btngrabar.Image = global::MASTER_TUNE_UP.Properties.Resources.disquete5;
-            this.btngrabar.Location = new System.Drawing.Point(678, 378);
+            this.btngrabar.Enabled = false;
+            this.btngrabar.Image = global::MASTER_TUNE_UP.Properties.Resources.comprobar1;
+            this.btngrabar.Location = new System.Drawing.Point(384, 19);
             this.btngrabar.Name = "btngrabar";
-            this.btngrabar.Size = new System.Drawing.Size(55, 41);
+            this.btngrabar.Size = new System.Drawing.Size(34, 34);
             this.btngrabar.TabIndex = 37;
             this.btngrabar.UseVisualStyleBackColor = true;
             this.btngrabar.Click += new System.EventHandler(this.btngrabar_Click);
@@ -171,6 +193,7 @@
             this.txtCodigo.Name = "txtCodigo";
             this.txtCodigo.Size = new System.Drawing.Size(48, 20);
             this.txtCodigo.TabIndex = 42;
+            this.txtCodigo.TextChanged += new System.EventHandler(this.txtCodigo_TextChanged);
             this.txtCodigo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodigo_KeyPress);
             // 
             // label2
@@ -219,6 +242,7 @@
             this.txtclave.Name = "txtclave";
             this.txtclave.Size = new System.Drawing.Size(51, 20);
             this.txtclave.TabIndex = 67;
+            this.txtclave.TextChanged += new System.EventHandler(this.txtclave_TextChanged);
             this.txtclave.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtclave_KeyPress);
             // 
             // label14
@@ -242,6 +266,7 @@
             // 
             // txtteleono
             // 
+            this.txtteleono.Enabled = false;
             this.txtteleono.Location = new System.Drawing.Point(81, 137);
             this.txtteleono.Name = "txtteleono";
             this.txtteleono.Size = new System.Drawing.Size(176, 20);
@@ -259,6 +284,7 @@
             // 
             // txtapeMat
             // 
+            this.txtapeMat.Enabled = false;
             this.txtapeMat.Location = new System.Drawing.Point(80, 111);
             this.txtapeMat.Name = "txtapeMat";
             this.txtapeMat.Size = new System.Drawing.Size(177, 20);
@@ -266,6 +292,7 @@
             // 
             // button1
             // 
+            this.button1.Enabled = false;
             this.button1.Image = global::MASTER_TUNE_UP.Properties.Resources.lupa3;
             this.button1.Location = new System.Drawing.Point(109, 11);
             this.button1.Name = "button1";
@@ -277,6 +304,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
+            this.label5.Enabled = false;
             this.label5.Location = new System.Drawing.Point(10, 140);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(52, 13);
@@ -286,6 +314,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
+            this.label9.Enabled = false;
             this.label9.Location = new System.Drawing.Point(0, 111);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(88, 13);
@@ -294,6 +323,7 @@
             // 
             // txtxape
             // 
+            this.txtxape.Enabled = false;
             this.txtxape.Location = new System.Drawing.Point(80, 85);
             this.txtxape.Name = "txtxape";
             this.txtxape.Size = new System.Drawing.Size(177, 20);
@@ -302,6 +332,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
+            this.label7.Enabled = false;
             this.label7.Location = new System.Drawing.Point(0, 85);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(86, 13);
@@ -311,6 +342,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.Enabled = false;
             this.label4.Location = new System.Drawing.Point(6, 62);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(52, 13);
@@ -319,6 +351,7 @@
             // 
             // txtCliente
             // 
+            this.txtCliente.Enabled = false;
             this.txtCliente.Location = new System.Drawing.Point(80, 59);
             this.txtCliente.Name = "txtCliente";
             this.txtCliente.Size = new System.Drawing.Size(177, 20);
@@ -334,6 +367,7 @@
             // 
             // btntotal
             // 
+            this.btntotal.Enabled = false;
             this.btntotal.Location = new System.Drawing.Point(392, 482);
             this.btntotal.Name = "btntotal";
             this.btntotal.Size = new System.Drawing.Size(75, 23);
@@ -344,31 +378,35 @@
             // 
             // dtpfecha
             // 
+            this.dtpfecha.Enabled = false;
             this.dtpfecha.Location = new System.Drawing.Point(624, 3);
             this.dtpfecha.Name = "dtpfecha";
             this.dtpfecha.Size = new System.Drawing.Size(212, 20);
             this.dtpfecha.TabIndex = 53;
             // 
-            // groupBox2
+            // grpServicio
             // 
-            this.groupBox2.Controls.Add(this.txtxprecio);
-            this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Controls.Add(this.txtCodigo);
-            this.groupBox2.Controls.Add(this.txtnombre);
-            this.groupBox2.Controls.Add(this.btnbuscar);
-            this.groupBox2.Controls.Add(this.cboxservicio);
-            this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Controls.Add(this.lblbuscar);
-            this.groupBox2.Location = new System.Drawing.Point(8, 193);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(451, 105);
-            this.groupBox2.TabIndex = 54;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Busqueda de servicios";
+            this.grpServicio.Controls.Add(this.txtxprecio);
+            this.grpServicio.Controls.Add(this.label1);
+            this.grpServicio.Controls.Add(this.label2);
+            this.grpServicio.Controls.Add(this.txtCodigo);
+            this.grpServicio.Controls.Add(this.txtnombre);
+            this.grpServicio.Controls.Add(this.btnbuscar);
+            this.grpServicio.Controls.Add(this.cboxservicio);
+            this.grpServicio.Controls.Add(this.label3);
+            this.grpServicio.Controls.Add(this.lblbuscar);
+            this.grpServicio.Controls.Add(this.btngrabar);
+            this.grpServicio.Enabled = false;
+            this.grpServicio.Location = new System.Drawing.Point(8, 193);
+            this.grpServicio.Name = "grpServicio";
+            this.grpServicio.Size = new System.Drawing.Size(451, 105);
+            this.grpServicio.TabIndex = 54;
+            this.grpServicio.TabStop = false;
+            this.grpServicio.Text = "Busqueda de servicios";
             // 
             // btnsalir
             // 
+            this.btnsalir.Enabled = false;
             this.btnsalir.Image = global::MASTER_TUNE_UP.Properties.Resources.error_1526110;
             this.btnsalir.Location = new System.Drawing.Point(732, 439);
             this.btnsalir.Name = "btnsalir";
@@ -376,24 +414,6 @@
             this.btnsalir.TabIndex = 55;
             this.btnsalir.UseVisualStyleBackColor = true;
             this.btnsalir.Click += new System.EventHandler(this.btnsalir_Click);
-            // 
-            // codigo
-            // 
-            this.codigo.HeaderText = "Codigo";
-            this.codigo.Name = "codigo";
-            this.codigo.ReadOnly = true;
-            // 
-            // Trabajos
-            // 
-            this.Trabajos.HeaderText = "Trabajos";
-            this.Trabajos.Name = "Trabajos";
-            this.Trabajos.ReadOnly = true;
-            this.Trabajos.Width = 250;
-            // 
-            // Precio1
-            // 
-            this.Precio1.HeaderText = "Precio";
-            this.Precio1.Name = "Precio1";
             // 
             // gpboxtipo
             // 
@@ -448,22 +468,32 @@
             this.label8.TabIndex = 56;
             this.label8.Text = "Folio";
             // 
+            // btnguardarTodo
+            // 
+            this.btnguardarTodo.Image = global::MASTER_TUNE_UP.Properties.Resources.disquete4;
+            this.btnguardarTodo.Location = new System.Drawing.Point(739, 322);
+            this.btnguardarTodo.Name = "btnguardarTodo";
+            this.btnguardarTodo.Size = new System.Drawing.Size(54, 41);
+            this.btnguardarTodo.TabIndex = 59;
+            this.btnguardarTodo.UseVisualStyleBackColor = true;
+            this.btnguardarTodo.Click += new System.EventHandler(this.btnguardarTodo_Click);
+            // 
             // Frmservicios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(853, 533);
+            this.Controls.Add(this.btnguardarTodo);
             this.Controls.Add(this.gpboxtipo);
             this.Controls.Add(this.txtfolio);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.btnsalir);
-            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.grpServicio);
             this.Controls.Add(this.dtpfecha);
             this.Controls.Add(this.btntotal);
             this.Controls.Add(this.txttotal);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btneliminar);
-            this.Controls.Add(this.btngrabar);
             this.Controls.Add(this.dgServicios);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -476,8 +506,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgServicios)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.grpServicio.ResumeLayout(false);
+            this.grpServicio.PerformLayout();
             this.gpboxtipo.ResumeLayout(false);
             this.gpboxtipo.PerformLayout();
             this.ResumeLayout(false);
@@ -516,7 +546,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox txtclave;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox grpServicio;
         private System.Windows.Forms.Button btnsalir;
         private System.Windows.Forms.DataGridViewTextBoxColumn codigo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Trabajos;
@@ -526,5 +556,6 @@
         private System.Windows.Forms.RadioButton rdbtncreito;
         private System.Windows.Forms.TextBox txtfolio;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button btnguardarTodo;
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace MASTER_TUNE_UP.Forms
 {
-    partial class frmCatalogos
+    partial class Catalogos
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Catalogos));
             this.gpbordenada = new System.Windows.Forms.GroupBox();
+            this.rdbActivos = new System.Windows.Forms.RadioButton();
             this.rdbclave = new System.Windows.Forms.RadioButton();
             this.rdbnombre = new System.Windows.Forms.RadioButton();
             this.btncerrar = new System.Windows.Forms.Button();
@@ -40,7 +42,6 @@
             this.rdbclientes = new System.Windows.Forms.RadioButton();
             this.rdbarticulo = new System.Windows.Forms.RadioButton();
             this.rdbgrupos = new System.Windows.Forms.RadioButton();
-            this.rdbActivos = new System.Windows.Forms.RadioButton();
             this.gpbordenada.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.gpbcatalogos.SuspendLayout();
@@ -58,6 +59,16 @@
             this.gpbordenada.TabStop = false;
             this.gpbordenada.Text = "ordenada por:";
             this.gpbordenada.Visible = false;
+            // 
+            // rdbActivos
+            // 
+            this.rdbActivos.AutoSize = true;
+            this.rdbActivos.Location = new System.Drawing.Point(16, 66);
+            this.rdbActivos.Name = "rdbActivos";
+            this.rdbActivos.Size = new System.Drawing.Size(60, 17);
+            this.rdbActivos.TabIndex = 4;
+            this.rdbActivos.Text = "Activos";
+            this.rdbActivos.UseVisualStyleBackColor = true;
             // 
             // rdbclave
             // 
@@ -178,17 +189,7 @@
             this.rdbgrupos.Text = "Grupos";
             this.rdbgrupos.UseVisualStyleBackColor = true;
             // 
-            // rdbActivos
-            // 
-            this.rdbActivos.AutoSize = true;
-            this.rdbActivos.Location = new System.Drawing.Point(16, 66);
-            this.rdbActivos.Name = "rdbActivos";
-            this.rdbActivos.Size = new System.Drawing.Size(60, 17);
-            this.rdbActivos.TabIndex = 4;
-            this.rdbActivos.Text = "Activos";
-            this.rdbActivos.UseVisualStyleBackColor = true;
-            // 
-            // frmCatalogos
+            // Catalogos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -198,7 +199,8 @@
             this.Controls.Add(this.btnimprimir);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.gpbcatalogos);
-            this.Name = "frmCatalogos";
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "Catalogos";
             this.Text = "frmCatalogos";
             this.gpbordenada.ResumeLayout(false);
             this.gpbordenada.PerformLayout();

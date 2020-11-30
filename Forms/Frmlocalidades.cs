@@ -104,15 +104,15 @@ namespace MASTER_TUNE_UP.Forms
             this.cboxservicio.DisplayMember = "lo_Nombre";
             Conexion.Close();
 
-            AutoCompleteStringCollection coleccion = new AutoCompleteStringCollection();
-            foreach (DataRow rows in dt.Rows)
-            {
-                coleccion.Add(Convert.ToString(rows["lo_Nombre"]));//Leer cada registro de la columna Nom y añadir a la coleccion
+            //AutoCompleteStringCollection coleccion = new AutoCompleteStringCollection();
+            //foreach (DataRow rows in dt.Rows)
+            //{
+            //    coleccion.Add(Convert.ToString(rows["lo_Nombre"]));//Leer cada registro de la columna Nom y añadir a la coleccion
 
-            }
-            cboxservicio.AutoCompleteCustomSource = coleccion;
-            cboxservicio.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            cboxservicio.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            //}
+            //cboxservicio.AutoCompleteCustomSource = coleccion;
+            //cboxservicio.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            //cboxservicio.AutoCompleteSource = AutoCompleteSource.CustomSource;
 
         }
 
