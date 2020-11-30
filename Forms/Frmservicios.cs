@@ -59,7 +59,15 @@ namespace MASTER_TUNE_UP.Forms
                 dgServicios.Rows.RemoveAt(dgServicios.CurrentRow.Index);
                 txtnombre.Focus();
             }
-           
+        
+            if(dgServicios.RowCount ==1)
+            {
+                btneliminar.Enabled = false;
+                btnguardarTodo.Enabled = false;
+                txtCodigo.Focus();
+
+            }
+
 
         }
 
