@@ -24,17 +24,18 @@ namespace MASTER_TUNE_UP.Forms
         {
             InitializeComponent();
         }
-        private void maximo()
-        {
-            objconexion = new Clases.Conexión();
-            Conexion = new SqlConnection(objconexion.Conn());
-            Conexion.Open();
-            string query = "SELECT max(Cl_id)+1 as ultimo from clientes";
-            SqlCommand comando = new SqlCommand(query, Conexion);
-            SqlDataReader leer = comando.ExecuteReader();
-            if (leer.Read())
-                txtclave.Text = leer["ultimo"].ToString();
-        }
+        //private void maximo()
+        //{
+        //    objconexion = new Clases.Conexión();
+        //    Conexion = new SqlConnection(objconexion.Conn());
+        //    Conexion.Open();
+        //    string query = "SELECT max(Cl_id)+1 as ultimo from clientes";
+        //    SqlCommand comando = new SqlCommand(query, Conexion);
+        //    SqlDataReader leer = comando.ExecuteReader();
+        //    if (leer.Read())
+        //        txtclave.Text = leer["ultimo"].ToString();
+        //}
+
 
         private void btngrabar_Click(object sender, EventArgs e)
         {
@@ -46,6 +47,11 @@ namespace MASTER_TUNE_UP.Forms
             txtCodigo.Focus();
             btneliminar.Enabled = true;
             btnsalir.Enabled = true;
+            btnguardarTodo.Enabled = true;
+            dgServicios.Enabled = true;
+            btngrabar.Enabled = false;
+            suma();
+
 
         }
 
@@ -65,6 +71,7 @@ namespace MASTER_TUNE_UP.Forms
                 btneliminar.Enabled = false;
                 btnguardarTodo.Enabled = false;
                 txtCodigo.Focus();
+
 
             }
 
@@ -173,6 +180,15 @@ namespace MASTER_TUNE_UP.Forms
 
             }
         }
+        private void suma()
+        {
+            double total = 0;
+            foreach (DataGridViewRow row in dgServicios.Rows)
+            {
+                total += Convert.ToDouble(row.Cells["Precio1"].Value);
+            }
+            txttotal.Text = Convert.ToString(total);
+        }
 
         private void btntotal_Click(object sender, EventArgs e)
         {
@@ -190,7 +206,7 @@ namespace MASTER_TUNE_UP.Forms
             Acceso acceso = new Acceso();
             string actividad = "El usuario ingreso a servicios.";
             acceso.Registrar_auditoria(actividad);
-            maximo();
+            //maximo();
             
         }
 
@@ -227,6 +243,8 @@ namespace MASTER_TUNE_UP.Forms
                 lblbuscar.Visible = false;
                 cboxCliente.Visible = false;
                 cboxCliente.Enabled = true;
+
+                txtclave.Enabled = true;
                 txtclave.Focus();
 
 
@@ -294,7 +312,7 @@ namespace MASTER_TUNE_UP.Forms
                             //poner un habilitar aqui
                             txtCliente.Enabled = true;
                             txtCliente.Focus();
-                            maximo();
+                            //maximo();
                         }
                     }
                 }
@@ -324,25 +342,25 @@ namespace MASTER_TUNE_UP.Forms
 
         private void rdbtncontado_Click(object sender, EventArgs e)
         {
-            if (rdbtncontado.Checked)
-            {
-                groupBox1.Visible = true;
-                txtfolio.Enabled = false;
-                txtclave.Focus();
-            }
+            //if (rdbtncontado.Checked)
+            //{
+            //    groupBox1.Visible = true;
+            //    txtfolio.Enabled = false;
+            //    txtclave.Focus();
+            //}
         }
 
         private void rdbtncreito_Click(object sender, EventArgs e)
         {
-            if (rdbtncreito.Checked)
-            {
-                txtfolio.Enabled = true;
-                dtpfecha.Enabled = true;
-                groupBox1.Visible = false;
-                txtfolio.Focus();
+            //if (rdbtncreito.Checked)
+            //{
+            //    txtfolio.Enabled = true;
+            //    dtpfecha.Enabled = true;
+            //    groupBox1.Visible = false;
+            //    txtfolio.Focus();
 
 
-            }
+            //}
         }
 
         private void txtclave_TextChanged(object sender, EventArgs e)
@@ -359,9 +377,54 @@ namespace MASTER_TUNE_UP.Forms
 
         private void btnguardarTodo_Click(object sender, EventArgs e)
         {
-            dgServicios.Rows.Clear();
-            MessageBox.Show("Trabajo guardado con exito", "Guardado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            try
+            {
+                objconexion = new Clases.Conexión();
+                Conexion = new SqlConnection(objconexion.Conn());
+                Conexion.Open();
+                string query = "insert into Trabajos values(@Id_cliente,@Fecha); SELECT SCOPE_IDENTITY();";//ESTE CONBINADO CON EL EXECUTE ME DEVUELVE EL ULTIMO PPFOLIO INSERTADO
+                SqlCommand comando = new SqlCommand(query, Conexion);
+                comando.Parameters.Clear();
+                comando.Parameters.AddWithValue("@Id_cliente", txtclave.Text);
+                comando.Parameters.AddWithValue("@Fecha", dtpfecha.Value);
+                int FOLIO = Convert.ToInt32(comando.ExecuteScalar());//ESTE DEVUELVE EL ULTIMO FOLIO
 
+                foreach (DataGridViewRow servicio in dgServicios.Rows)//recorre todo lo que hay en algo,po cadarow va a poner el nombre serv,se guarda bd
+                {
+                    if (servicio.Cells["Codigo"].Value != null)
+                    {
+                        int idservicio = Convert.ToInt32(servicio.Cells["Codigo"].Value.ToString());
+                        query = "insert into Servicios_Realizados values(@Id_servicio,@Folio)";//ESTE CONBINADO CON EL EXECUTE ME DEVUELVE EL ULTIMO PPFOLIO INSERTADO
+                        SqlCommand comandoo = new SqlCommand(query, Conexion);
+                        comandoo.Parameters.Clear();
+                        comandoo.Parameters.AddWithValue("@Id_servicio", idservicio);
+                        comandoo.Parameters.AddWithValue("@Folio", FOLIO);
+                        comandoo.ExecuteNonQuery();//es para verificar los editados
+
+                    }
+
+
+                }
+                Conexion.Close();
+                Acceso acceso = new Acceso();
+                string actividad = "El usuario registró el TRABAJO " + txtnombre.Text + "."; acceso.Registrar_auditoria(actividad);
+                MessageBox.Show("Trabajo guardado con exito", "Guardado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                cboxservicio.ResetText();
+                txtnombre.Clear();
+                cboxservicio.Text = "";
+                txtclave.Enabled = true;
+                txtclave.Clear();
+                txtclave.Focus();
+                dgServicios.Rows.Clear();
+                // a qui dejar todo como al inicio,desabilitiar btnguardar y eliminar
+               
+
+            }
+            catch (Exception i)
+            {
+                MessageBox.Show("No se pudo guardar el trabajo", "Error ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
 
         }
 
@@ -375,6 +438,11 @@ namespace MASTER_TUNE_UP.Forms
             {
                 btnbuscar.Enabled = false;
             }
+        }
+
+        private void cboxCliente_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

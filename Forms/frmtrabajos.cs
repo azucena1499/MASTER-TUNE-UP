@@ -152,6 +152,7 @@ namespace MASTER_TUNE_UP.Forms
                 txtnombre.Clear();
                 cboxservicio.Text = "";
                 txtclave.Enabled = true;
+
                 txtclave.Clear();
                 txtclave.Focus();
                 maximo();
