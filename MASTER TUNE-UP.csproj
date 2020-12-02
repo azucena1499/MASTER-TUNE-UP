@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="Clases\Acceso.cs" />
     <Compile Include="Clases\greet.cs" />
+    <Compile Include="Clases\ticket.cs" />
     <Compile Include="Clases\Usuario.cs" />
     <Compile Include="Clases\Conexión.cs" />
     <Compile Include="Clases\Valores.cs" />

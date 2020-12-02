@@ -65,8 +65,8 @@ namespace MASTER_TUNE_UP.Forms
                 dgServicios.Rows.RemoveAt(dgServicios.CurrentRow.Index);
                 txtnombre.Focus();
             }
-        
-            if(dgServicios.RowCount ==1)
+
+            if (dgServicios.RowCount == 1)
             {
                 btneliminar.Enabled = false;
                 btnguardarTodo.Enabled = false;
@@ -207,7 +207,7 @@ namespace MASTER_TUNE_UP.Forms
             string actividad = "El usuario ingreso a servicios.";
             acceso.Registrar_auditoria(actividad);
             //maximo();
-            
+
         }
 
 
@@ -332,7 +332,7 @@ namespace MASTER_TUNE_UP.Forms
 
         private void dgServicios_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-           
+
         }
 
         private void rdbtncontado_CheckedChanged(object sender, EventArgs e)
@@ -417,7 +417,7 @@ namespace MASTER_TUNE_UP.Forms
                 txtclave.Focus();
                 dgServicios.Rows.Clear();
                 // a qui dejar todo como al inicio,desabilitiar btnguardar y eliminar
-               
+
 
             }
             catch (Exception i)
@@ -444,6 +444,66 @@ namespace MASTER_TUNE_UP.Forms
         {
 
         }
+
+        private void btnImprimir_Click(object sender, EventArgs e)
+        {
+            //Creamos una instancia d ela clase CrearTicket
+            ticket ticket = new ticket();
+            //Ya podemos usar todos sus metodos
+            ticket.AbreCajon();//Para abrir el cajon de dinero.
+
+            //De aqui en adelante pueden formar su ticket a su gusto... Les muestro un ejemplo
+
+            //Datos de la cabecera del Ticket.
+            ticket.TextoCentro("NOMBRE DE LA EMPRESA");
+            ticket.TextoIzquierda("Master Tune-up");
+            ticket.TextoIzquierda("DIREC: DIRECCION DE LA EMPRESA");
+            ticket.TextoIzquierda("TELEF: 4530000");
+            ticket.TextoIzquierda("R.F.C: XXXXXXXXX-XX");
+            ticket.TextoIzquierda("EMAIL: azubonita@gmail.com");
+            ticket.TextoIzquierda("");
+            ticket.TextoExtremos("Caja # 1", "Ticket # 002-0000006");
+            ticket.lineasAsteriscos();
+
+            //Sub cabecera.
+            ticket.TextoIzquierda("");
+            ticket.TextoIzquierda("ATENDIÓ: VENDEDOR");
+            ticket.TextoIzquierda("CLIENTE: PUBLICO EN GENERAL");
+            ticket.TextoIzquierda("");
+            ticket.TextoExtremos("FECHA: " + DateTime.Now.ToShortDateString(), "HORA: " + DateTime.Now.ToShortTimeString());
+            ticket.lineasAsteriscos();
+
+            //Articulos a vender.
+            ticket.EncabezadoVenta();//NOMBRE DEL ARTICULO, CANT, PRECIO, IMPORTE
+            ticket.lineasAsteriscos();
+            foreach (DataGridViewRow fila in dgServicios.Rows)//dgvLista es el nombre del datagridview
+            {
+                ticket.AgregaArticulo(fila.Cells[2].Value.ToString(), fila.Cells[3].Value.ToString());
+            }
+            //ticket.AgregaArticulo("Articulo A");
+            //ticket.AgregaArticulo("Articulo B");
+            //ticket.AgregaArticulo("Este es un nombre largo del articulo, para mostrar como se bajan las lineas", 1, 30, 30);
+            //ticket.lineasIgual();
+
+            //Resumen de la venta. Sólo son ejemplos
+            ticket.AgregarTotales("         SUBTOTAL......$", 100);
+            ticket.AgregarTotales("         TOTAL.........$", 200);
+            ticket.TextoIzquierda("");
+            ticket.AgregarTotales("         EFECTIVO......$", 200);
+            ticket.AgregarTotales("         CAMBIO........$", 0);
+
+            //Texto final del Ticket.
+            ticket.TextoIzquierda("");
+            ticket.TextoIzquierda("ARTÍCULOS VENDIDOS: 3");
+            ticket.TextoIzquierda("");
+            ticket.TextoCentro("¡GRACIAS POR SU COMPRA!");
+            ticket.CortaTicket();
+            ticket.ImprimirTicket("Microsoft XPS Document Writer");//Nombre de la impresora ticketera
+
+
+
+        }
     }
 }
+  
  

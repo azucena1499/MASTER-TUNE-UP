@@ -64,6 +64,7 @@
             this.grpServicio = new System.Windows.Forms.GroupBox();
             this.btnsalir = new System.Windows.Forms.Button();
             this.btnguardarTodo = new System.Windows.Forms.Button();
+            this.btnImprimir = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgServicios)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.grpServicio.SuspendLayout();
@@ -421,11 +422,22 @@
             this.btnguardarTodo.UseVisualStyleBackColor = true;
             this.btnguardarTodo.Click += new System.EventHandler(this.btnguardarTodo_Click);
             // 
+            // btnImprimir
+            // 
+            this.btnImprimir.Location = new System.Drawing.Point(732, 183);
+            this.btnImprimir.Name = "btnImprimir";
+            this.btnImprimir.Size = new System.Drawing.Size(61, 34);
+            this.btnImprimir.TabIndex = 49;
+            this.btnImprimir.Text = "Imprimir";
+            this.btnImprimir.UseVisualStyleBackColor = true;
+            this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
+            // 
             // Frmservicios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(853, 533);
+            this.Controls.Add(this.btnImprimir);
             this.Controls.Add(this.btnguardarTodo);
             this.Controls.Add(this.btnsalir);
             this.Controls.Add(this.grpServicio);
@@ -490,5 +502,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Trabajos;
         private System.Windows.Forms.DataGridViewTextBoxColumn Precio1;
         private System.Windows.Forms.Button btnguardarTodo;
+        private System.Windows.Forms.Button btnImprimir;
     }
 }
