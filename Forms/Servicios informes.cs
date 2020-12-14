@@ -94,7 +94,7 @@ namespace MASTER_TUNE_UP.Forms
             
             else
             {
-                cboxUSUARIOS.Enabled = false;
+                cboxUSUARIOS.Enabled = true;
                 
             }
         }
@@ -198,17 +198,12 @@ namespace MASTER_TUNE_UP.Forms
                 reportetodo();
 
             }
-
-            
             else
             {
                 reporteporUsuario();
 
             }
-            //if (rdbservicios.Checked)
-            //{
-            //    reporteporServicio();
-            //}
+           
 
         }
 
@@ -234,6 +229,36 @@ namespace MASTER_TUNE_UP.Forms
         }
 
         private void rdbarticulo_CheckedChanged(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void datedesde_ValueChanged(object sender, EventArgs e)
+        {
+            datehasta.MinDate = datedesde.Value;
+
+        }
+
+        private void datehasta_ValueChanged(object sender, EventArgs e)
+        {
+            datedesde.MaxDate = datehasta.Value;
+
+        }
+
+        private void btnimprimir2_Click(object sender, EventArgs e)
+        {
+            if (rdbservicios.Checked)
+            {
+                reporteporServicio();
+            }
+        }
+
+        private void rdbarticulo_CheckedChanged_1(object sender, EventArgs e)
         {
             cboxservicio.Enabled = true;
             llenarcboxservicios();
