@@ -221,6 +221,7 @@ namespace MASTER_TUNE_UP.Clases
             textoCompleto += espacios + valor;
             linea.AppendLine(textoCompleto);
         }
+    
 
         //Metodo para agreagar articulos al ticket de venta
         public void AgregaArticulo(string articulo, string precio)
@@ -247,7 +248,26 @@ namespace MASTER_TUNE_UP.Clases
                 elemento += espacios + precio.ToString();//Agregamos el precio a la variable elemento
 
             }
-            
+            else 
+            {
+                for (int i = 0; i < (20 - articulo.Length); i++)
+                {
+                    espacios += " "; //Agrega espacios para completar los 20 caracteres
+                }
+                elemento = articulo + espacios;
+
+                
+
+                //Colocar el precio a la derecha.
+                nroEspacios = (7 - precio.ToString().Length);
+                espacios = "";
+                for (int i = 0; i < nroEspacios; i++)
+                {
+                    espacios += " ";
+                }
+                elemento += espacios + precio.ToString();
+                linea.AppendLine(elemento);//agrega todo 
+            }
         }
 
         //Metodos para enviar secuencias de escape a la impresora

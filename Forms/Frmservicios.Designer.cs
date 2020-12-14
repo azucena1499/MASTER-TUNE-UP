@@ -65,6 +65,8 @@
             this.btnsalir = new System.Windows.Forms.Button();
             this.btnguardarTodo = new System.Windows.Forms.Button();
             this.btnImprimir = new System.Windows.Forms.Button();
+            this.txtFolio = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgServicios)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.grpServicio.SuspendLayout();
@@ -395,7 +397,7 @@
             this.grpServicio.Enabled = false;
             this.grpServicio.Location = new System.Drawing.Point(8, 193);
             this.grpServicio.Name = "grpServicio";
-            this.grpServicio.Size = new System.Drawing.Size(451, 105);
+            this.grpServicio.Size = new System.Drawing.Size(418, 105);
             this.grpServicio.TabIndex = 54;
             this.grpServicio.TabStop = false;
             this.grpServicio.Text = "Busqueda de servicios";
@@ -424,7 +426,8 @@
             // 
             // btnImprimir
             // 
-            this.btnImprimir.Location = new System.Drawing.Point(732, 183);
+            this.btnImprimir.Enabled = false;
+            this.btnImprimir.Location = new System.Drawing.Point(571, 153);
             this.btnImprimir.Name = "btnImprimir";
             this.btnImprimir.Size = new System.Drawing.Size(61, 34);
             this.btnImprimir.TabIndex = 49;
@@ -432,11 +435,31 @@
             this.btnImprimir.UseVisualStyleBackColor = true;
             this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
             // 
+            // txtFolio
+            // 
+            this.txtFolio.Enabled = false;
+            this.txtFolio.Location = new System.Drawing.Point(593, 71);
+            this.txtFolio.Name = "txtFolio";
+            this.txtFolio.Size = new System.Drawing.Size(61, 20);
+            this.txtFolio.TabIndex = 69;
+            this.txtFolio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtFolio_KeyPress);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(550, 74);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(32, 13);
+            this.label8.TabIndex = 68;
+            this.label8.Text = "Folio:";
+            // 
             // Frmservicios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(853, 533);
+            this.Controls.Add(this.txtFolio);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.btnImprimir);
             this.Controls.Add(this.btnguardarTodo);
             this.Controls.Add(this.btnsalir);
@@ -503,5 +526,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Precio1;
         private System.Windows.Forms.Button btnguardarTodo;
         private System.Windows.Forms.Button btnImprimir;
+        private System.Windows.Forms.TextBox txtFolio;
+        private System.Windows.Forms.Label label8;
     }
 }

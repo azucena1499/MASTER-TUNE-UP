@@ -119,6 +119,12 @@
     <Compile Include="Forms\frmtrabajos.Designer.cs">
       <DependentUpon>frmtrabajos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Servicios informes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Servicios informes.Designer.cs">
+      <DependentUpon>Servicios informes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Informes\FrtClienteNom.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -141,6 +147,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>rptClienteId.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Informes\rptServicioUS.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptServicioUS.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Program.cs" />
@@ -175,6 +187,9 @@
     <EmbeddedResource Include="Forms\frmtrabajos.resx">
       <DependentUpon>frmtrabajos.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Servicios informes.resx">
+      <DependentUpon>Servicios informes.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Informes\FrtClienteNom.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>FrtClienteNom.cs</LastGenOutput>
@@ -190,6 +205,10 @@
     <EmbeddedResource Include="Informes\rptClienteId.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptClienteId.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Informes\rptServicioUS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptServicioUS.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

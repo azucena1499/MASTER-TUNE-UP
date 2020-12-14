@@ -644,6 +644,7 @@
             this.cboxUSUARIOS.Name = "cboxUSUARIOS";
             this.cboxUSUARIOS.Size = new System.Drawing.Size(121, 21);
             this.cboxUSUARIOS.TabIndex = 24;
+            this.cboxUSUARIOS.SelectedIndexChanged += new System.EventHandler(this.cboxUSUARIOS_SelectedIndexChanged);
             // 
             // label7
             // 

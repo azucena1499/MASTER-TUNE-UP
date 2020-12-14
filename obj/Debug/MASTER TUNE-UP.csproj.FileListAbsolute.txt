@@ -96,3 +96,4 @@ C:\MASTER_TUNE-UP\bin\Debug\CrystalDecisions.ReportAppServer.CommonControls.dll
 C:\MASTER_TUNE-UP\obj\Debug\MASTER_TUNE_UP.Forms.FrmReportes.resources
 C:\MASTER_TUNE-UP\obj\Debug\MASTER TUNE-UP.csproj.CopyComplete
 C:\MASTER_TUNE-UP\obj\Debug\MASTER_TUNE_UP.Forms.Catalogos.resources
+C:\MASTER_TUNE-UP\obj\Debug\MASTER_TUNE_UP.Forms.Servicios_informes.resources

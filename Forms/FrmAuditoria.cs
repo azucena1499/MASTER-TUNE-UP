@@ -932,6 +932,11 @@ namespace MASTER_TUNE_UP.Forms
         {
             this.Close();
         }
+
+        private void cboxUSUARIOS_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
     

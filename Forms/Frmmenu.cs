@@ -127,5 +127,11 @@ namespace MASTER_TUNE_UP.Forms
             x.Show();
 
         }
+
+        private void serviciosToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Forms.Servicios_informes x = new Forms.Servicios_informes();
+            x.Show();
+        }
     }
 }

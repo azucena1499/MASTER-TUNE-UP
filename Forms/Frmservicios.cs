@@ -24,17 +24,17 @@ namespace MASTER_TUNE_UP.Forms
         {
             InitializeComponent();
         }
-        //private void maximo()
-        //{
-        //    objconexion = new Clases.Conexión();
-        //    Conexion = new SqlConnection(objconexion.Conn());
-        //    Conexion.Open();
-        //    string query = "SELECT max(Cl_id)+1 as ultimo from clientes";
-        //    SqlCommand comando = new SqlCommand(query, Conexion);
-        //    SqlDataReader leer = comando.ExecuteReader();
-        //    if (leer.Read())
-        //        txtclave.Text = leer["ultimo"].ToString();
-        //}
+        private void maximo()
+        {
+            objconexion = new Clases.Conexión();
+            Conexion = new SqlConnection(objconexion.Conn());
+            Conexion.Open();
+            string query = "SELECT max(Id_serviciosR)+1 as ultimo from Servicios_Realizados";
+            SqlCommand comando = new SqlCommand(query, Conexion);
+            SqlDataReader leer = comando.ExecuteReader();
+            if (leer.Read())
+                txtFolio.Text = leer["ultimo"].ToString();
+        }
 
 
         private void btngrabar_Click(object sender, EventArgs e)
@@ -50,6 +50,8 @@ namespace MASTER_TUNE_UP.Forms
             btnguardarTodo.Enabled = true;
             dgServicios.Enabled = true;
             btngrabar.Enabled = false;
+            btnImprimir.Enabled = true;
+
             suma();
 
 
@@ -63,6 +65,9 @@ namespace MASTER_TUNE_UP.Forms
             if (dgServicios.RowCount > 1)
             {
                 dgServicios.Rows.RemoveAt(dgServicios.CurrentRow.Index);
+                Acceso acceso = new Acceso();
+                string actividad = "El usuario  Elimino el trabajo " + txtnombre.Text + ".";
+                acceso.Registrar_auditoria(actividad);
                 txtnombre.Focus();
             }
 
@@ -70,6 +75,8 @@ namespace MASTER_TUNE_UP.Forms
             {
                 btneliminar.Enabled = false;
                 btnguardarTodo.Enabled = false;
+                btnImprimir.Enabled = false;
+
                 txtCodigo.Focus();
 
 
@@ -206,7 +213,8 @@ namespace MASTER_TUNE_UP.Forms
             Acceso acceso = new Acceso();
             string actividad = "El usuario ingreso a servicios.";
             acceso.Registrar_auditoria(actividad);
-            //maximo();
+            txtclave.Focus();
+            maximo();
 
         }
 
@@ -462,12 +470,14 @@ namespace MASTER_TUNE_UP.Forms
             ticket.TextoIzquierda("R.F.C: XXXXXXXXX-XX");
             ticket.TextoIzquierda("EMAIL: azubonita@gmail.com");
             ticket.TextoIzquierda("");
-            ticket.TextoExtremos("Caja # 1", "Ticket # 002-0000006");
+
             ticket.lineasAsteriscos();
 
             //Sub cabecera.
             ticket.TextoIzquierda("");
             ticket.TextoIzquierda("ATENDIÓ: VENDEDOR");
+            //lbluser.Text = "Usuario:" + Txtusuario.Text;
+
             ticket.TextoIzquierda("CLIENTE: PUBLICO EN GENERAL");
             ticket.TextoIzquierda("");
             ticket.TextoExtremos("FECHA: " + DateTime.Now.ToShortDateString(), "HORA: " + DateTime.Now.ToShortTimeString());
@@ -476,25 +486,26 @@ namespace MASTER_TUNE_UP.Forms
             //Articulos a vender.
             ticket.EncabezadoVenta();//NOMBRE DEL ARTICULO, CANT, PRECIO, IMPORTE
             ticket.lineasAsteriscos();
-            foreach (DataGridViewRow fila in dgServicios.Rows)//dgvLista es el nombre del datagridview
-            {
-                ticket.AgregaArticulo(fila.Cells[2].Value.ToString(), fila.Cells[3].Value.ToString());
-            }
-            //ticket.AgregaArticulo("Articulo A");
-            //ticket.AgregaArticulo("Articulo B");
-            //ticket.AgregaArticulo("Este es un nombre largo del articulo, para mostrar como se bajan las lineas", 1, 30, 30);
-            //ticket.lineasIgual();
+            
+           foreach (DataGridViewRow fila in dgServicios.Rows)//dgvLista es el nombre del datagridview
+           {
+                if (fila.Cells[1].Value != null && fila.Cells[2].Value != null)
+                {
+
+                    ticket.AgregaArticulo(fila.Cells[1].Value.ToString(), fila.Cells[2].Value.ToString());
+                }
+
+           }
+           
 
             //Resumen de la venta. Sólo son ejemplos
-            ticket.AgregarTotales("         SUBTOTAL......$", 100);
-            ticket.AgregarTotales("         TOTAL.........$", 200);
+            ticket.AgregarTotales("         TOTAL.........$", Convert.ToDecimal( txttotal.Text));//TEXTBOX TOTAL
             ticket.TextoIzquierda("");
-            ticket.AgregarTotales("         EFECTIVO......$", 200);
-            ticket.AgregarTotales("         CAMBIO........$", 0);
 
             //Texto final del Ticket.
             ticket.TextoIzquierda("");
-            ticket.TextoIzquierda("ARTÍCULOS VENDIDOS: 3");
+            ticket.TextoIzquierda("ARTÍCULOS VENDIDOS:" + (dgServicios.Rows.Count - 1));
+
             ticket.TextoIzquierda("");
             ticket.TextoCentro("¡GRACIAS POR SU COMPRA!");
             ticket.CortaTicket();
@@ -503,6 +514,37 @@ namespace MASTER_TUNE_UP.Forms
 
 
         }
+
+        private void txtFolio_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+            if (e.KeyChar == 13)
+                //chechando que no sea valor nulo o blanco
+                if (string.IsNullOrEmpty(txtclave.Text))
+                {
+                    MessageBox.Show("Error:No se permiten nulos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    //no fue nulo
+
+                    objconexion = new Clases.Conexión();
+                    Conexion = new SqlConnection(objconexion.Conn());
+                    //se abre la conexion
+                    Conexion.Open();
+                    string query = "select * from Servicios_Realizados where Id_serviciosR=@Id_serviciosR";
+                    //asigno a comando el sqlcommand
+                    SqlCommand comando = new SqlCommand(query, Conexion);
+                    //inicializo cualquier parametrodefinido anteriormente
+                    comando.Parameters.Clear();
+                    //cualquier variable,pero se recomienda usar el mismo nombre del campo
+                    comando.Parameters.AddWithValue("@Id_serviciosR", this.txtFolio.Text);
+                    //asigno a leer el sqldatareader para leer el registro.
+
+                   
+                }
+        }
+            
     }
 }
   
