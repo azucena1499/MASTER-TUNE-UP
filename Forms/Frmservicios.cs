@@ -66,7 +66,8 @@ namespace MASTER_TUNE_UP.Forms
             {
                 dgServicios.Rows.RemoveAt(dgServicios.CurrentRow.Index);
                 Acceso acceso = new Acceso();
-                string actividad = "El usuario  Elimino el trabajo " + txtnombre.Text + ".";
+
+                string actividad = "El usuario  Elimino el trabajo " + txtnombre.Text;
                 acceso.Registrar_auditoria(actividad);
                 txtnombre.Focus();
             }
@@ -475,10 +476,10 @@ namespace MASTER_TUNE_UP.Forms
 
             //Sub cabecera.
             ticket.TextoIzquierda("");
-            ticket.TextoIzquierda("ATENDIÓ: VENDEDOR");
+            ticket.TextoIzquierda("ATENDIÓ: " + lbluser2.Text);
             //lbluser.Text = "Usuario:" + Txtusuario.Text;
 
-            ticket.TextoIzquierda("CLIENTE: PUBLICO EN GENERAL");
+            ticket.TextoIzquierda("CLIENTE: " + txtCliente.Text);
             ticket.TextoIzquierda("");
             ticket.TextoExtremos("FECHA: " + DateTime.Now.ToShortDateString(), "HORA: " + DateTime.Now.ToShortTimeString());
             ticket.lineasAsteriscos();
@@ -544,7 +545,11 @@ namespace MASTER_TUNE_UP.Forms
                    
                 }
         }
-            
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }
   

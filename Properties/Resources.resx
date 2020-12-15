@@ -145,38 +145,35 @@
   <data name="cruzar2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icons\cruzar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="disquete4" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Icons\disquete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  
   <data name="disquete2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icons\disquete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="error_152611" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icons\error_15261.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  
+  <data name="error_1526110" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\error_15261.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="cruzar4" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icons\cruzar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  
-  
+  <data name="comprobar1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\comprobar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="disquete3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\disquete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="cruzar5" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icons\cruzar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  
   <data name="disquete6" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icons\disquete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  
   <data name="error_152617" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icons\error_15261.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="users-team_icon-icons1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icons\users-team_icon-icons.com_57998.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="lupa1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Icons\lupa.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="error_152616" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icons\error_15261.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -199,7 +196,6 @@
   <data name="user1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icons\user.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  
   <data name="error_152613" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icons\error_15261.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -215,20 +211,19 @@
   <data name="error_152612" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icons\error_15261.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="comprobar1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Icons\comprobar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="lupa1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\lupa.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="disquete4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\disquete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="comprobar22" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icons\comprobar2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  
-  <data name="disquete3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Icons\disquete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="pass1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icons\pass.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="error_1526110" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Icons\error_15261.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="printer_78322" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\printer_78322.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

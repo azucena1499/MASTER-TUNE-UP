@@ -33,8 +33,6 @@
             this.rdbActivos = new System.Windows.Forms.RadioButton();
             this.rdbclave = new System.Windows.Forms.RadioButton();
             this.rdbnombre = new System.Windows.Forms.RadioButton();
-            this.btncerrar = new System.Windows.Forms.Button();
-            this.btnimprimir = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.rdbimpresora = new System.Windows.Forms.RadioButton();
             this.rdbpantalla = new System.Windows.Forms.RadioButton();
@@ -42,6 +40,8 @@
             this.rdbclientes = new System.Windows.Forms.RadioButton();
             this.rdbarticulo = new System.Windows.Forms.RadioButton();
             this.rdbgrupos = new System.Windows.Forms.RadioButton();
+            this.btncerrar = new System.Windows.Forms.Button();
+            this.btnimprimir = new System.Windows.Forms.Button();
             this.gpbordenada.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.gpbcatalogos.SuspendLayout();
@@ -52,7 +52,7 @@
             this.gpbordenada.Controls.Add(this.rdbActivos);
             this.gpbordenada.Controls.Add(this.rdbclave);
             this.gpbordenada.Controls.Add(this.rdbnombre);
-            this.gpbordenada.Location = new System.Drawing.Point(441, 77);
+            this.gpbordenada.Location = new System.Drawing.Point(352, 39);
             this.gpbordenada.Name = "gpbordenada";
             this.gpbordenada.Size = new System.Drawing.Size(126, 98);
             this.gpbordenada.TabIndex = 9;
@@ -92,30 +92,11 @@
             this.rdbnombre.Text = "Nombre";
             this.rdbnombre.UseVisualStyleBackColor = true;
             // 
-            // btncerrar
-            // 
-            this.btncerrar.Location = new System.Drawing.Point(613, 350);
-            this.btncerrar.Name = "btncerrar";
-            this.btncerrar.Size = new System.Drawing.Size(75, 23);
-            this.btncerrar.TabIndex = 8;
-            this.btncerrar.Text = "Cerrar";
-            this.btncerrar.UseVisualStyleBackColor = true;
-            // 
-            // btnimprimir
-            // 
-            this.btnimprimir.Location = new System.Drawing.Point(516, 350);
-            this.btnimprimir.Name = "btnimprimir";
-            this.btnimprimir.Size = new System.Drawing.Size(75, 23);
-            this.btnimprimir.TabIndex = 7;
-            this.btnimprimir.Text = "Imprimir";
-            this.btnimprimir.UseVisualStyleBackColor = true;
-            this.btnimprimir.Click += new System.EventHandler(this.btnimprimir_Click);
-            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.rdbimpresora);
             this.groupBox2.Controls.Add(this.rdbpantalla);
-            this.groupBox2.Location = new System.Drawing.Point(288, 77);
+            this.groupBox2.Location = new System.Drawing.Point(199, 39);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(126, 98);
             this.groupBox2.TabIndex = 6;
@@ -149,7 +130,7 @@
             this.gpbcatalogos.Controls.Add(this.rdbclientes);
             this.gpbcatalogos.Controls.Add(this.rdbarticulo);
             this.gpbcatalogos.Controls.Add(this.rdbgrupos);
-            this.gpbcatalogos.Location = new System.Drawing.Point(113, 77);
+            this.gpbcatalogos.Location = new System.Drawing.Point(43, 39);
             this.gpbcatalogos.Name = "gpbcatalogos";
             this.gpbcatalogos.Size = new System.Drawing.Size(126, 98);
             this.gpbcatalogos.TabIndex = 5;
@@ -189,11 +170,30 @@
             this.rdbgrupos.Text = "Grupos";
             this.rdbgrupos.UseVisualStyleBackColor = true;
             // 
+            // btncerrar
+            // 
+            this.btncerrar.Image = global::MASTER_TUNE_UP.Properties.Resources.error_152611;
+            this.btncerrar.Location = new System.Drawing.Point(541, 220);
+            this.btncerrar.Name = "btncerrar";
+            this.btncerrar.Size = new System.Drawing.Size(75, 37);
+            this.btncerrar.TabIndex = 8;
+            this.btncerrar.UseVisualStyleBackColor = true;
+            // 
+            // btnimprimir
+            // 
+            this.btnimprimir.Image = global::MASTER_TUNE_UP.Properties.Resources.printer_78322;
+            this.btnimprimir.Location = new System.Drawing.Point(466, 220);
+            this.btnimprimir.Name = "btnimprimir";
+            this.btnimprimir.Size = new System.Drawing.Size(53, 37);
+            this.btnimprimir.TabIndex = 7;
+            this.btnimprimir.UseVisualStyleBackColor = true;
+            this.btnimprimir.Click += new System.EventHandler(this.btnimprimir_Click);
+            // 
             // Catalogos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(699, 312);
             this.Controls.Add(this.gpbordenada);
             this.Controls.Add(this.btncerrar);
             this.Controls.Add(this.btnimprimir);
@@ -201,7 +201,8 @@
             this.Controls.Add(this.gpbcatalogos);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Catalogos";
-            this.Text = "frmCatalogos";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Catalogos";
             this.gpbordenada.ResumeLayout(false);
             this.gpbordenada.PerformLayout();
             this.groupBox2.ResumeLayout(false);

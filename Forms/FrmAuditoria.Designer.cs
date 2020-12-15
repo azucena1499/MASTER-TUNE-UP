@@ -538,21 +538,21 @@
             // 
             // btnImprimir
             // 
-            this.btnImprimir.Location = new System.Drawing.Point(311, 229);
+            this.btnImprimir.Image = global::MASTER_TUNE_UP.Properties.Resources.printer_78322;
+            this.btnImprimir.Location = new System.Drawing.Point(332, 229);
             this.btnImprimir.Name = "btnImprimir";
-            this.btnImprimir.Size = new System.Drawing.Size(75, 28);
+            this.btnImprimir.Size = new System.Drawing.Size(54, 35);
             this.btnImprimir.TabIndex = 34;
-            this.btnImprimir.Text = "Imprimir";
             this.btnImprimir.UseVisualStyleBackColor = true;
             this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
             // 
             // button2
             // 
+            this.button2.Image = global::MASTER_TUNE_UP.Properties.Resources.error_152611;
             this.button2.Location = new System.Drawing.Point(403, 229);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 28);
+            this.button2.Size = new System.Drawing.Size(49, 35);
             this.button2.TabIndex = 33;
-            this.button2.Text = "salir";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 

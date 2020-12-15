@@ -138,7 +138,9 @@ namespace MASTER_TUNE_UP
                     acceso.Registrar_auditoria(actividad);
                     this.Hide();
                     Frmmenu x = new Frmmenu(Txtusuario.Text);
-                    x.lbluser.Text = "Usuario:" + Txtusuario.Text;
+                    x.lbluser.Text = Txtusuario.Text;
+                    //    x.lbluser.Text = "Usuario:" + Txtusuario.Text;
+
                     x.lbl3.Text = "Nivel:" + txtnivel.Text;
                     x.Show();
 

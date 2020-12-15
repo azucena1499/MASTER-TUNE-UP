@@ -72,6 +72,7 @@ namespace MASTER_TUNE_UP.Forms
             this.Size = Screen.PrimaryScreen.WorkingArea.Size;
             //float lblUsuario = (float.Parse(acceso.Usuario));
             //lbluser.Text = lblUsuario.ToString();
+            lbluser.Visible = true;
 
 
         }
@@ -102,6 +103,7 @@ namespace MASTER_TUNE_UP.Forms
         private void serviciosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Forms.Frmservicios x = new Forms.Frmservicios();
+            x.lbluser2.Text =  lbluser.Text;
             x.Show();
         }
 
@@ -132,6 +134,11 @@ namespace MASTER_TUNE_UP.Forms
         {
             Forms.Servicios_informes x = new Forms.Servicios_informes();
             x.Show();
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

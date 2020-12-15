@@ -29,22 +29,27 @@ namespace MASTER_TUNE_UP.Forms
 
         private void llenarcbox3()//este me llena el CboxUsuario
         {
-            cboxUSUARIOS.Items.Clear();
+           
+
+            DataTable dt = new DataTable();
+            //establezco conex
             objconexion = new Clases.Conexión();
             Conexion = new SqlConnection(objconexion.Conn());
             //abro conexion
             Conexion.Open();
-            // SqlCommand comando = new SqlCommand("select Au_Clave from Auditoriaa", Conexion);
-            SqlCommand comando = new SqlCommand("select Cl_nom from Clientes", Conexion);
+            //establezco mi query
+            //string query = "SELECT * from Clientes where Cl_id >=1 order by Cl_nom";
+            string query = "SELECT * from Clientes ";
 
+            //defino comando
+            SqlCommand comando = new SqlCommand(query, Conexion);
             //defino mi adapter
-            SqlDataReader leer = comando.ExecuteReader();
-            while (leer.Read())
-            {
-                cboxUSUARIOS.Items.Add(leer["Cl_nom"].ToString());
-
-            }
-            cboxUSUARIOS.SelectedIndex = 0;
+            SqlDataAdapter da = new SqlDataAdapter(comando);
+            //lleno el datatable
+            da.Fill(dt);
+            this.cboxUSUARIOS.DataSource = dt;
+            this.cboxUSUARIOS.ValueMember = "Cl_id";
+            this.cboxUSUARIOS.DisplayMember = "Cl_nom";
             Conexion.Close();
 
         }
@@ -91,7 +96,6 @@ namespace MASTER_TUNE_UP.Forms
                 llenarcbox3();
 
             }
-            
             else
             {
                 cboxUSUARIOS.Enabled = true;
@@ -116,15 +120,39 @@ namespace MASTER_TUNE_UP.Forms
         }
         public void reporteporUsuario()//esto es para lenar el datagrid con TODOS
         {
+            //objconexion = new Clases.Conexión();
+            //Conexion = new SqlConnection(objconexion.Conn());
+            //Conexion.Open();
+            //SqlCommand cm = new SqlCommand("select * from azucena where Cl_id=@usuario", Conexion);
+            //cm.Parameters.Clear();
+            //cm.Parameters.AddWithValue("@usuario", cboxUSUARIOS.SelectedValue.ToString());
+            //SqlDataAdapter dscmd = new SqlDataAdapter(cm);
+            //DataSet ds = new DataSet();//este es para decir al reporte que datos va a buscar
+            //dscmd.Fill(ds, "azucena");
+            //Informes.rptServicioUS grupos = new Informes.rptServicioUS();
+            //grupos.SetDataSource(ds.Tables[0]);
+            //if (RdbPntalla.Checked)
+            //{
+            //    Forms.FrmReportes reporte = new FrmReportes();
+            //    reporte.crystalReportViewer1.ReportSource = grupos;
+            //    reporte.ShowDialog();
+            //}
+            //else
+            //{
+            //    imprimir(grupos);
+            //}
+
             objconexion = new Clases.Conexión();
             Conexion = new SqlConnection(objconexion.Conn());
             Conexion.Open();
-            SqlCommand cm = new SqlCommand("select * from servicioCompletos where Cliente=@usuario", Conexion);
+            SqlCommand cm = new SqlCommand("select * from azucena where Cl_id=@usuario and Fecha BETWEEN @FechaDesde AND @FechaHasta", Conexion);
             cm.Parameters.Clear();
-            cm.Parameters.AddWithValue("@usuario", cboxUSUARIOS.SelectedItem.ToString());
+            cm.Parameters.AddWithValue("@usuario", cboxUSUARIOS.SelectedValue.ToString());
+            cm.Parameters.AddWithValue("@FechaDesde", FechasDesde2.Value.Date.Add(new TimeSpan(0, 0, 0)));
+            cm.Parameters.AddWithValue("@FechaHasta", FechasHasta2.Value.Date.Add(new TimeSpan(23, 59, 59)));
             SqlDataAdapter dscmd = new SqlDataAdapter(cm);
-            DataSet ds = new DataSet();//este es para decir al reporte que datos va a buscar
-            dscmd.Fill(ds, "servicioCompletos");
+            DataSet ds = new DataSet();
+            dscmd.Fill(ds, "azucena");
             Informes.rptServicioUS grupos = new Informes.rptServicioUS();
             grupos.SetDataSource(ds.Tables[0]);
             if (RdbPntalla.Checked)
@@ -137,6 +165,9 @@ namespace MASTER_TUNE_UP.Forms
             {
                 imprimir(grupos);
             }
+
+
+
 
         }
         public void reportetodo()//AddWithValue es para remplazar un valor enviado
@@ -144,13 +175,13 @@ namespace MASTER_TUNE_UP.Forms
             objconexion = new Clases.Conexión();
             Conexion = new SqlConnection(objconexion.Conn());
             Conexion.Open();
-            SqlCommand cm = new SqlCommand("select * from servicioCompletos where trabajoF BETWEEN @FechaDesde AND @FechaHasta", Conexion);
+            SqlCommand cm = new SqlCommand("select * from azucena where Fecha BETWEEN @FechaDesde AND @FechaHasta", Conexion);
             cm.Parameters.Clear();
             cm.Parameters.AddWithValue("@FechaDesde", FechasDesde2.Value.Date.Add(new TimeSpan(0, 0, 0)));
             cm.Parameters.AddWithValue("@FechaHasta", FechasHasta2.Value.Date.Add(new TimeSpan(23, 59, 59)));
             SqlDataAdapter dscmd = new SqlDataAdapter(cm);
             DataSet ds = new DataSet();
-            dscmd.Fill(ds, "servicioCompletos");
+            dscmd.Fill(ds, "azucena");
             Informes.rptServicioUS grupos = new Informes.rptServicioUS();
             grupos.SetDataSource(ds.Tables[0]);
             if (RdbPntalla.Checked)
@@ -165,17 +196,43 @@ namespace MASTER_TUNE_UP.Forms
             }
 
         }
-        public void reporteporServicio()//esto es para lenar el datagrid con TODOS
+        public void reporteporServicio()
         {
+           // objconexion = new Clases.Conexión();
+           // Conexion = new SqlConnection(objconexion.Conn());
+           // Conexion.Open();
+           //SqlCommand cm = new SqlCommand("select * from azucena where Id_servicio=@servicios", Conexion);
+           //// SqlCommand cm = new SqlCommand("select * from servicioCompletos ", Conexion);
+
+           // cm.Parameters.Clear();
+           // cm.Parameters.AddWithValue("@servicios", cboxservicio.SelectedValue.ToString());
+           // SqlDataAdapter dscmd = new SqlDataAdapter(cm);
+           // DataSet ds = new DataSet();//este es para decir al reporte que datos va a buscar
+           // dscmd.Fill(ds, "azucena");
+           // Informes.rptServicioUS grupos = new Informes.rptServicioUS();
+           // grupos.SetDataSource(ds.Tables[0]);
+           // if (RdbPntalla.Checked)
+           // {
+           //     Forms.FrmReportes reporte = new FrmReportes();
+           //     reporte.crystalReportViewer1.ReportSource = grupos;
+           //     reporte.ShowDialog();
+           // }
+           // else
+           // {
+           //     imprimir(grupos);
+           // }
+
             objconexion = new Clases.Conexión();
             Conexion = new SqlConnection(objconexion.Conn());
             Conexion.Open();
-            SqlCommand cm = new SqlCommand("select * from servicioCompletos where Servicio=@Servicios", Conexion);
+            SqlCommand cm = new SqlCommand("select * from azucena where Id_servicio=@servicios and Fecha BETWEEN @datedesde AND @datehasta", Conexion);
             cm.Parameters.Clear();
-            cm.Parameters.AddWithValue("@Servicios", cboxservicio.SelectedItem.ToString());
+            cm.Parameters.AddWithValue("@servicios", cboxservicio.SelectedValue.ToString());
+            cm.Parameters.AddWithValue("@datedesde", datedesde.Value.Date.Add(new TimeSpan(0, 0, 0)));
+            cm.Parameters.AddWithValue("@datehasta", datehasta.Value.Date.Add(new TimeSpan(23, 59, 59)));
             SqlDataAdapter dscmd = new SqlDataAdapter(cm);
-            DataSet ds = new DataSet();//este es para decir al reporte que datos va a buscar
-            dscmd.Fill(ds, "servicioCompletos");
+            DataSet ds = new DataSet();
+            dscmd.Fill(ds, "azucena");
             Informes.rptServicioUS grupos = new Informes.rptServicioUS();
             grupos.SetDataSource(ds.Tables[0]);
             if (RdbPntalla.Checked)
@@ -190,53 +247,18 @@ namespace MASTER_TUNE_UP.Forms
             }
 
         }
+        
 
-        private void btnImprimir_Click(object sender, EventArgs e)
-        {
-            if (RdbTodoInforme.Checked)
-            {
-                reportetodo();
-
-            }
-            else
-            {
-                reporteporUsuario();
-
-            }
-           
-
-        }
-
-        private void FechasDesde2_ValueChanged(object sender, EventArgs e)
-        {
-            FechasHasta2.MinDate = FechasDesde2.Value;
-        }
+       private void FechasDesde2_ValueChanged(object sender, EventArgs e)
+       {
+          FechasHasta2.MinDate = FechasDesde2.Value;
+       }
 
         private void FechasHasta2_ValueChanged(object sender, EventArgs e)
         {
             FechasDesde2.MaxDate = FechasHasta2.Value;
 
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cboxservicio_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void rdbarticulo_CheckedChanged(object sender, EventArgs e)
-        {
-           
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
+        } 
 
         private void datedesde_ValueChanged(object sender, EventArgs e)
         {
@@ -252,16 +274,80 @@ namespace MASTER_TUNE_UP.Forms
 
         private void btnimprimir2_Click(object sender, EventArgs e)
         {
-            if (rdbservicios.Checked)
+           // MessageBox.Show(cboxservicio.SelectedValue.ToString());
+
+            if (rdbarticulo.Checked)
             {
                 reporteporServicio();
+
             }
+
         }
 
         private void rdbarticulo_CheckedChanged_1(object sender, EventArgs e)
         {
-            cboxservicio.Enabled = true;
-            llenarcboxservicios();
+            if (rdbservicios.Checked)
+            {
+                cboxservicio.Enabled = true;
+                llenarcboxservicios();
+            }
+            else
+            {
+                cboxservicio.Enabled = true;
+
+            }
+        }
+
+        private void RdbUsuarioInforme_CheckedChanged_1(object sender, EventArgs e)
+        {
+            if (RdbUsuarioInforme.Checked)
+            {
+
+                cboxUSUARIOS.Enabled = true;
+                llenarcbox3();
+
+            }
+            else
+            {
+                cboxUSUARIOS.Enabled = true;
+
+            }
+        }
+
+        private void btnImprimir_Click_1(object sender, EventArgs e)
+        {
+            if(rdbarticulo.Checked)
+            {
+                if (rdbarticulo.Checked)
+                {
+                    reporteporServicio();
+
+                }
+            }
+            else if (RdbTodoInforme.Checked)
+            {
+                reportetodo();
+
+            }
+           
+            else
+            {
+                reporteporUsuario();
+            }
+            
+
+
+        }
+
+        private void rdbTodos2_CheckedChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+
         }
     }
 }
